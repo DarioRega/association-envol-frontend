@@ -76,6 +76,8 @@
 
 <script>
 import MainNavigation from '~/components/navbar/MainNavigation';
+
+// TODO ADD ON SCROLL EFFECT WITH BOX SHADOW FIXED NAV
 export default {
   name: 'MobileNavbarLayout',
   components: { MainNavigation },
