@@ -18,6 +18,7 @@
     "attributionCriteria": "Critères d'attribution des bourses",
     "formDemand": "Formulaire de demande de bourse",
     "status": "Status",
+    "faq": "Questions fréquentes",
     "rapports": "Rapports",
     "contact": "Contact",
     "helpEnvol": "Soutenir envol"
@@ -74,6 +75,34 @@
     "formPostal": "le formulaire de demande de bourse",
     "consultOurPage": "Consultez notre page",
     "orTake": "ou prenez"
+  },
+  "faq": {
+    "subMenu": [
+      {
+        "name": "Demande de bourse",
+        "anchor": "#demande-de-bourse"
+      },
+      {
+        "name": "Budget",
+        "anchor": "#budget"
+      },
+      {
+        "name": "Critères d'attributions",
+        "anchor": "#criteres-d-attributions"
+      },
+      {
+        "name": "Séance d'entretien",
+        "anchor": "#seance-d-entretien"
+      },
+      {
+        "name": "Renouvellement",
+        "anchor": "#renouvellement"
+      }
+    ],
+    "budgetExample": "Example de budget :",
+    "budgetExampleFile": "Example budget demande.xls",
+    "youCanAlsoFrc": "Vous pouvez également trouver des modèles de budgets sur le site de la Fédération Romande des Consommateurs",
+    "andFindModelsFrc":"et trouver des modèles de budgets pour s’en inspirer.",
   },
   "helpEnvol": {
     "backToHome": "Revenir à l'accueil"
