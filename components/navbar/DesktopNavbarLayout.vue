@@ -1,19 +1,20 @@
 <template>
-  <nav class="shadow w-full relative" :style="{ zIndex: 888 }">
+  <nav class="shadow w-full relative h-32" :style="{ zIndex: 888 }">
     <div
-      class="max-w-7xl w-full mx-auto px-6 md:px-10 xl:px-24 transition-color duration-1000"
+      class="max-w-7xl h-full w-full mx-auto px-6 md:px-10 xl:px-10 2xl:px-24 transition-color duration-1000"
     >
-      <div class="flex justify-between h-24 px-6 md:px-10 lg:px-0 lg:flex-1">
+      <div
+        class="flex justify-between h-full items-center px-6 md:px-10 lg:px-0 lg:flex-1"
+      >
         <!--        LG MENU -->
         <div class="flex px-2 lg:px-0 w-auto lg:w-full">
-          <div class="flex-shrink-0 flex items-center lg:flex-none lg:w-32">
+          <div
+            class="flex-shrink-0 w-full max-w-xs flex items-center lg:flex-none"
+          >
             <!--            LOGO -->
             <div class="mx-auto">
-              <picture
-                :srcset="require(`~/assets/images/logo.svg`)"
-                type="image/svg+xml"
-              >
-                <img :src="require(`~/assets/images/logo.png`)" />
+              <picture srcset="~/assets/images/logo.svg" type="image/svg+xml">
+                <img src="~/assets/images/logo.png" />
               </picture>
             </div>
           </div>
@@ -27,7 +28,7 @@
         >
           <div class="relative w-full flex-shrink-0 xxl:w-full">
             <div class="flex items-center justify-end justify-around">
-              SOUTENIR ENVOL
+              <donate-envol />
             </div>
           </div>
         </div>
@@ -37,9 +38,10 @@
 </template>
 <script>
 import MainNavigation from '~/components/navbar/MainNavigation';
+import DonateEnvol from '~/components/navbar/DonateEnvol';
 export default {
   name: 'DesktopNavbarLayout',
-  components: { MainNavigation },
+  components: { MainNavigation, DonateEnvol },
   props: {
     navigationLinks: {
       type: Array,

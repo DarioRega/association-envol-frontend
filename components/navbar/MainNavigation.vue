@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex items-start mt-12 lg:mt-0 md:items-center lg:items-center justify-center lg:block lg:h-full"
+    class="flex items-start mt-12 lg:mt-0 md:items-center lg:items-center justify-center xl:block lg:h-full"
   >
     <!--    MOBILE -->
-    <div class="flex-col">
-      <ul class="lg:hidden text-center">
+    <div class="flex-col w-full md:-mt-24 lg:-mt-32">
+      <ul class="xl:hidden text-center">
         <li
           v-for="link in navigationLinks"
           :key="`${link.slug}-${generateRandomKey}`"
@@ -20,22 +20,22 @@
           </nuxt-link>
         </li>
       </ul>
-      <div class="mt-8 w-full text-center">
-        <donate-envol />
+      <div class="xl:hidden mt-8 w-full text-center">
+        <donate-envol class="max-w-xs w-full" />
       </div>
     </div>
 
     <!--    DESKTOP -->
-    <ul class="text-center hidden lg:flex items-center justify-start h-full">
+    <ul class="text-center hidden xl:flex items-center justify-start h-full">
       <li
         v-for="link in navigationLinks"
         :key="`${link.slug}-${generateRandomKey}`"
-        class="relative"
+        class="relative text-brand-carbon"
       >
         <nuxt-link
           :to="link.slug"
-          exact-active-class="font-semibold"
-          class="lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline text-current hover:text-brand-dark-gray focus:outline-none transition duration-150 ease-in-out"
+          exact-active-class="font-semibold text-brand-dark-blue"
+          class="hover-link lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
         >
           {{ link.name }}
         </nuxt-link>
@@ -62,3 +62,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.hover-link:hover {
+  opacity: 0.4;
+}
+</style>

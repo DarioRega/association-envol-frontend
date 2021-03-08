@@ -34,7 +34,7 @@
   "pages": [
     {
       "name": "Accueil",
-      "slug": ""
+      "slug": "/"
     },
     {
       "name": "Critères d'attribution",

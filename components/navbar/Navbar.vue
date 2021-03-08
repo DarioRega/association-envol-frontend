@@ -2,14 +2,14 @@
   <section>
     <mobile-navbar-layout
       v-show="isMobile"
-      class="lg:hidden"
+      class="xl:hidden"
       :is-menu-open="isMenuOpen"
       :navigation-links="navigationLinks"
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
     />
     <desktop-navbar-layout
-      class="hidden lg:block"
+      class="hidden xl:block"
       :navigation-links="navigationLinks"
     />
   </section>
@@ -22,14 +22,14 @@ export default {
   components: { MobileNavbarLayout, DesktopNavbarLayout },
   data() {
     return {
-      isMenuOpen: true,
+      isMenuOpen: false,
       navigationLinks: [],
     };
   },
   computed: {
     isMobile() {
       if (process.client) {
-        return window.innerWidth < 1150;
+        return window.innerWidth < 1300;
       }
       return false;
     },
