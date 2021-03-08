@@ -1,0 +1,9 @@
+.nuxt
+coverage
+node_modules
+doc/**
+dist/**
+data/**
+static/**
+bin/**
+!.eslintrc.js

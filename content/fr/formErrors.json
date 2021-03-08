@@ -1,0 +1,8 @@
+{
+  "emptyField": "Ce champs est obligatoire",
+  "email": "Veuillez fournir un email valide",
+  "phoneNumber": "Veuillez fournir un numéro valide",
+  "firstName": "Les chiffres ou symboles ne sont pas autorisés",
+  "lastName": "Les chiffres ou symboles ne sont pas autorisés",
+  "message": "Le message est trop court "
+}

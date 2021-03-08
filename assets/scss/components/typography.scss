@@ -1,0 +1,52 @@
+h1, .h1 {
+  font-size: 2.5rem;
+  line-height: 1.3em;
+  @screen md {
+    font-size: 4rem;
+  }
+}
+
+h2, .h2 {
+  font-size: 2.2rem;
+  line-height: 1.4em;
+  @screen md {
+    font-size: 3.5rem;
+  }
+}
+
+h3, .h3 {
+  font-size: 2rem;
+  line-height: 1.3em;
+  @screen lg {
+    font-size: 3rem;
+  }
+}
+
+h4, .h4 {
+  font-size: 1.8rem;
+  line-height: 1em;
+  @screen lg {
+    font-size: 2.5rem;
+  }
+}
+
+h5, .h5 {
+  font-size: 1.7rem;
+  line-height: 1.5em;
+  @screen lg {
+    font-size: 2.5rem;
+  }
+}
+
+p, .p, a, blockquote, cite, th  {
+  font-size: 1.7rem;
+  line-height: 1.7em;
+}
+
+button, .btn {
+  font-size: 1.7rem;
+  line-height: 1.7em;
+  letter-spacing: 1px;
+  @apply py-2 px-4 font-semibold capitalize;
+}
+

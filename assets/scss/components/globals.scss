@@ -1,0 +1,58 @@
+$lines: (1,2,3,4,5);
+
+@each $line in $lines {
+  .text-ellipsis-#{$line} {
+    -webkit-line-clamp: #{$line};
+    @extend .ellipsis-properties;
+  }
+}
+
+
+.ellipsis-properties {
+  overflow: hidden;
+  /* stylelint-disable */
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  /* stylelint-enable */
+  text-overflow: ellipsis;
+  padding-bottom: 0 !important;
+}
+
+.button-primary {
+  @apply bg-brand-dark-blue rounded-lg;
+
+  &:hover {
+    @apply border-brand-dark-blue bg-white;
+  }
+
+  &--rounded {
+    @apply rounded-full;
+  }
+}
+
+.button-secondary {
+  @apply bg-brand-light-blue rounded-lg;
+
+  &:hover {
+    @apply border-brand-light-blue bg-white;
+  }
+
+  &--rounded {
+    @apply rounded-full;
+  }
+}
+
+.primary-title {
+  @apply text-brand-dark-blue font-bold;
+}
+.secondary-title {
+  @apply text-brand-carbon font-semibold;
+}
+
+ p, .p {
+  @apply text-brand-carbon;
+}
+
+.lighter {
+  @apply text-brand-middle-gray;
+}

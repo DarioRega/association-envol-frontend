@@ -1,0 +1,20 @@
+/*----------------------------------------*\
+  BASE
+\*----------------------------------------*/
+@import 'tailwindcss/base';
+@import './base/fonts';
+@import './base/base';
+
+/*----------------------------------------*\
+  COMPONENTS
+\*----------------------------------------*/
+@import 'tailwindcss/components';
+@import './components/typography';
+//@import './components/rich-text';
+@import './components/globals';
+
+
+/*----------------------------------------*\
+  Utilities
+\*----------------------------------------*/
+@import 'tailwindcss/utilities';
