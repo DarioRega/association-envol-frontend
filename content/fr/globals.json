@@ -4,11 +4,19 @@
   "or": "ou",
   "send": "Envoyer",
   "search": "Chercher",
+  "address": "Adresse",
+  "contact": "Contact",
+  "contactUs": "Nous contacter",
   "questions": "Questions",
+  "formular": "Formulaire",
+  "mister": "Monsieur",
+  "miss": "Madame",
   "formLabels": {
     "firstName": "Prénom",
     "lastName": "Nom",
     "birthdate": "Date de naissance",
+    "subject": "Sujet",
+    "message": "Message",
     "email": "Email",
     "remarks": "Remarques",
     "slideFileHere": "Glisser vos fichiers ici"
@@ -98,13 +106,12 @@
         "name": "Renouvellement",
         "anchor": "#renouvellement"
       }
-    ],
-    "budgetExample": "Example de budget :",
-    "budgetExampleFile": "Example budget demande.xls",
-    "youCanAlsoFrc": "Vous pouvez également trouver des modèles de budgets sur le site de la Fédération Romande des Consommateurs",
-    "andFindModelsFrc":"et trouver des modèles de budgets pour s’en inspirer.",
+    ]
   },
   "helpEnvol": {
-    "backToHome": "Revenir à l'accueil"
+    "backToHome": "Revenir à l'accueil",
+    "helpUs": "Soutenir Envol",
+    "donateNow": "Faites un don en ligne maintenant :",
+    "thanksForYourSupport": "Merci de votre soutien"
   }
 }
