@@ -19,26 +19,18 @@ $lines: (1,2,3,4,5);
 }
 
 .button-primary {
-  @apply bg-brand-dark-blue rounded-lg;
+  @apply text-white bg-brand-dark-blue rounded-lg;
 
   &:hover {
     @apply border-brand-dark-blue bg-white;
   }
-
-  &--rounded {
-    @apply rounded-full;
-  }
 }
 
 .button-secondary {
-  @apply bg-brand-light-blue rounded-lg;
+  @apply text-white bg-brand-light-blue rounded-lg;
 
   &:hover {
     @apply border-brand-light-blue bg-white;
-  }
-
-  &--rounded {
-    @apply rounded-full;
   }
 }
 

@@ -1,5 +1,5 @@
 export default (context, inject) => {
-  const getContent = async (agency, path) => {
+  const getContent = async (path) => {
     const file = `${context.app.i18n.locale}/${path}`;
     const defaultFile = `content/fr/${path}`;
     try {

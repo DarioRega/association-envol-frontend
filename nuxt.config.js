@@ -26,9 +26,9 @@ export default {
     '~/plugins/getContent.js',
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
+  components: {
+    dirs: ['~/components'],
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
@@ -41,13 +41,26 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxt/content',
-    'nuxt-i18n',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            code: 'fr',
+            iso: 'fr-CH',
+            file: 'fr/globals.json',
+            name: 'Français',
+          },
+        ],
+        parsePages: false, // https://nuxt-community.github.io/nuxt-i18n/routing.html#module-s-configuration
+        defaultLocale: 'fr',
+        langDir: 'content/',
+        lazy: true,
+        seo: true,
+      },
+    ],
     '@nuxtjs/svg-sprite',
   ],
-  i18n: {
-    locales: [{ code: 'fr', iso: 'fr-CH', name: 'Français' }],
-    defaultLocale: 'fr',
-  },
   tailwindcss: {
     cssPath: '~/assets/scss/tailwind.scss',
   },
@@ -62,5 +75,7 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    analyze: true,
+  },
 };
