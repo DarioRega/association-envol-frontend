@@ -1,3 +1,81 @@
 {
+  "download": "Télécharger",
+  "associationEnvol": "Association Envol",
+  "or": "ou",
+  "send": "Envoyer",
+  "search": "Chercher",
+  "questions": "Questions",
+  "formLabels": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "birthdate": "Date de naissance",
+    "email": "Email",
+    "remarks": "Remarques",
+    "slideFileHere": "Glisser vos fichiers ici"
+  },
+  "pagesNames": {
+    "home": "Accueil",
+    "attributionCriteria": "Critères d'attribution des bourses",
+    "formDemand": "Formulaire de demande de bourse",
+    "status": "Status",
+    "rapports": "Rapports",
+    "contact": "Contact",
+    "helpEnvol": "Soutenir envol"
+  },
+  "pages": [
+    {
+      "name": "Accueil",
+      "slug": ""
+    },
+    {
+      "name": "Critères d'attribution",
+      "slug": "criteres-d-attribution"
+    },
+    {
+      "name": "Formulaire de demande",
+      "slug": "formulaire-de-demande"
+    },
+    {
+      "name": "FAQ",
+      "slug": "faq"
+    },
+    {
+      "name": "Status",
+      "slug": "status"
+    },
+    {
+      "name": "Rapports",
+      "slug": "rapports"
+    },
+    {
+      "name": "Contact",
+      "slug": "contact"
+    },
+    {
+      "name": "Contact",
+      "slug": "contact"
+    },
+    {
+      "name": "Soutenir Envol",
+      "slug": "soutenir-envol"
+    }
 
+  ],
+  "ḧome": {
+  "subtitle": "ENVOL a pour but de favoriser les études ou la formation professionnelle par l’attribution de bourses.",
+  "envolIs": "Envol c'est",
+    "since": "Une association depuis",
+    "bourseAttribuee": "Bourses attribuées",
+    "donators": "Donateurs",
+    "ourComitee": "Notre commité"
+  },
+  "formDemand": {
+    "formOnlineHere": "le formulaire de demande de bourse en ligne ici",
+    "formPostal": "le formulaire de demande de bourse",
+    "consultOurPage": "Consultez notre page",
+    "orTake": "ou prenez"
+  },
+  "helpEnvol": {
+    "backToHome": "Revenir à l'accueil"
+  }
 }
