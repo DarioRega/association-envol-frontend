@@ -40,8 +40,9 @@
           <accordion-content
             v-show="isOpen(item.id)"
             :is-open="isOpen(item.id)"
-            :content="item.description"
-          />
+          >
+            <p>{{ item.body }}</p>
+          </accordion-content>
         </div>
       </li>
     </ul>

@@ -11,6 +11,24 @@ h1,h2,h3,h4,h5,h6, th {
   @apply font-heading;
 }
 
+.nuxt-content.faq-content {
+  margin: 0 !important;
+  ul {
+    @apply my-3;
+  }
+}
+
+.faq .nuxt-content {
+  ul {
+    @apply ml-0;
+  }
+    ul li {
+      @apply my-5 pl-0;
+      text-indent: 0;
+    }
+  }
+
+
 .nuxt-content {
   @apply text-left my-12;
 
@@ -22,6 +40,7 @@ h1,h2,h3,h4,h5,h6, th {
       text-indent: -1em;
     }
   }
+
 
   &.outside-list {
     ul {
