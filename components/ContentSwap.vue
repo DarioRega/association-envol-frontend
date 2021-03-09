@@ -1,10 +1,11 @@
 <template>
   <article class="home-swap">
     <div
-      class="flex flex-col lg:items-center overflow-hidden card-swap"
+      class="flex flex-col lg:items-center overflow-hidden"
       :class="body.side === 'right' ? 'lg:flex-row' : 'lg:flex-row-reverse'"
     >
-      <div class="flex-shrink-0 bg-white lg:w-2/4 py-6">
+      <div class="flex-none bg-white lg:w-2/5 2xl:w-5/12 3xl:w-1/2 py-6">
+        <!--        mobile -->
         <container class="lg:hidden">
           <picture
             :srcset="require(`~/assets/svg/${body.fileName}.svg`)"
@@ -19,35 +20,32 @@
             />
           </picture>
         </container>
+        <!-- desktop -->
         <picture
           :srcset="require(`~/assets/svg/${body.fileName}.svg`)"
           :data-aos="body.side === 'right' ? 'zoom-in-right' : 'zoom-in-left'"
           data-aos-easing="ease-out"
           data-aos-duration="800"
           data-aos-delay="500"
-          :class="[
-            body.side === 'right' ? 'lg:mr-auto lg:ml-0' : 'lg:ml-auto lg:mr-0',
-            body.biggerWidth ? 'max-w-sm' : 'max-w-xs',
-          ]"
-          class="content-swap hidden lg:block w-full object-cover md:w-4/5 md:max-w-sm xl:max-w-lg h-64 md:h-auto lg:h-auto mx-auto"
+          :class="[body.biggerWidth ? 'max-w-lg 2xl:max-w-lg' : 'max-w-md']"
+          class="content-swap hidden lg:block w-full mx-auto"
           type="image/svg+xml"
         >
           <img
             :src="require(`~/assets/images/${body.fileName}.png`)"
-            class="w-full object-cover xl:max-w-lg h-64 md:h-auto lg:h-auto mx-auto"
-            :class="body.biggerWidth ? 'max-w-sm' : 'max-w-xs'"
+            class="content-swap hidden lg:block w-full mx-auto"
+            :class="[body.biggerWidth ? 'max-w-lg 2xl:max-w-lg' : 'max-w-md']"
           />
         </picture>
       </div>
+
       <div
-        class="content-swap bg-brand-main-gray flex-1 md:flex-none lg:w-2/4 py-6 flex flex-col justify-between"
+        class="container-swap-item bg-brand-main-gray flex-1 py-6 lg:py-0 flex flex-col justify-center lg:justify-around"
+        :class="body.side === 'right' ? 'rounded-l-3xl' : 'rounded-r-3xl'"
       >
         <container>
-          <div class="flex-1">
-            <!--          <h3 class="mt-1 font-semibold text-primary">{{ // title }}</h3>-->
-            <div class="mt-4 text-secondary rich-text">
-              <nuxt-content class="home-swap" :document="body" />
-            </div>
+          <div class="mt-4 text-secondary rich-text">
+            <nuxt-content class="home-swap" :document="body" />
           </div>
         </container>
       </div>
@@ -73,12 +71,9 @@ export default {
 </script>
 
 <style lang="scss">
-.card-swap {
-  @screen md {
-    @apply bg-transparent border-0;
-  }
+.container-swap-item {
   @screen lg {
-    @apply bg-brand-main-gray;
+    min-height: 35rem;
   }
 }
 .home-swap {

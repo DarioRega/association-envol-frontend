@@ -24,7 +24,7 @@
         v-for="item in contentSwap"
         :key="item.slug"
         :body="item"
-        class="py-12 md:py-16 xxl:py-32"
+        class="py-12 md:py-16 2xl:py-24"
       />
     </section>
   </section>
