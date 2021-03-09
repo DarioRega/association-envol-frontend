@@ -27,7 +27,7 @@
         class="py-12 md:py-16 2xl:py-24"
       />
     </section>
-    <container>
+    <container :extra-spacing="true">
       <h2 class="text-center font-semibold pb-8 md:pb-16">
         {{ $t('home.ourComitee') }}
       </h2>

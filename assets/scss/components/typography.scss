@@ -40,9 +40,14 @@ h5, .h5 {
   }
 }
 
-p, .p, a, blockquote, cite, th  {
+p, .p, blockquote, cite, th  {
   font-size: 1.7rem;
   line-height: 1.7em;
+}
+
+a {
+  font-size: 1.7rem;
+  line-height: 1.2em;
 }
 
 button, .btn {

@@ -1,23 +1,31 @@
 <template>
-  <div class="grid grid-cols-1 gap-12 sm:grid-cols-2">
+  <div class="flex flex-wrap flex-col md:flex-row justify-center items-stretch">
     <div
-      v-for="item in list"
+      v-for="(item, index) in list"
       :key="item.name"
-      class="relative rounded-lg shadow-md bg-brand-main-gray px-8 py-8 flex items-center hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+      class="comitee-card relative my-8 md:my-10 mx-8 rounded-lg shadow-md bg-brand-main-gray px-8 py-8 flex items-center"
     >
-      <div class="flex-shrink-0 hidden lg:block">
-        <div class="w-20 h-20 bg-brand-dark-blue rounded-full">
+      <div class="flex-shrink-0 hidden xl:block">
+        <div class="w-24 h-24 bg-brand-dark-blue rounded-full">
           <div class="flex items-center text-white h-full justify-center">
-            <icon name="user" size="100" />
+            <icon name="user" size="125" />
           </div>
         </div>
       </div>
-      <div class="flex-1 min-w-0 lg:pl-6">
-        <span class="absolute inset-0" aria-hidden="true"></span>
+      <div class="flex-1 min-w-0 xl:pl-12">
         <p>{{ item.name }}</p>
         <p class="text-brand-dark-gray font-light">{{ item.function }}</p>
-        <p class="font-light hidden">{{ item.mail }}</p>
-        <div class="mt-8 text-center">
+        <a
+          :href="`mailto:${item.mail}`"
+          class="font-light hidden xl:inline-flex items-center cursor-pointer hover:text-brand-dark-gray pt-2"
+          ><icon name="email" class="mr-4 text-current" size="75" />{{
+            item.mail
+          }}</a
+        >
+        <div
+          class="xl:hidden text-center"
+          :class="index === 0 ? 'md:mt-20' : 'mt-8'"
+        >
           <a
             :href="`mailto:${item.mail}`"
             class="contact-cta inline-block py-3 px-4 bg-brand-light-blue text-white rounded-md"
@@ -44,6 +52,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.comitee-card {
+  @screen md {
+    flex: 0 0 calc(48% - 4rem);
+  }
+}
 .contact-cta {
   font-size: 14px;
 }
