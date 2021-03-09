@@ -45,6 +45,9 @@ $lines: (1,2,3,4,5);
   @apply text-brand-carbon;
 }
 
+ .stats-value {
+   font-size: 7.2rem !important;
+ }
 .lighter {
   @apply text-brand-middle-gray;
 }

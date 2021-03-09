@@ -11,20 +11,39 @@ h1,h2,h3,h4,h5,h6, th {
 }
 
 .nuxt-content {
-  @apply text-left my-12 text-justify;
+  @apply text-left my-12;
 
   ul {
-    @apply ml-4 pl-0;
-    list-style: none;
+    @apply ml-4 pl-0 list-inside list-disc;
 
     li {
       @apply pl-2;
       text-indent: -1em;
     }
 
+
     li::before {
-      content: '-';
       @apply pr-4;
+    }
+  }
+
+  ol {
+   li {
+     counter-increment: item;
+     margin-bottom: 15px;
+     @apply list-none;
+    }
+    p {
+      @apply pl-16 flex items-center;
+      @screen md {
+       @apply my-10;
+      }
+    }
+    p::before {
+      @apply bg-brand-dark-blue rounded-full text-white text-center absolute left-0;
+      content: counter(item);
+      font-family: 'Montserrat Alternates',Helvetica,Arial,Lucida,sans-serif;
+      width: 1.8em;
     }
   }
 
