@@ -1,7 +1,11 @@
 <template>
-  <button class="button-primary rounded-full">
+  <nuxt-link
+    :to="$t('helpEnvol.slug')"
+    class="button-primary btn font-medium rounded-full"
+    exact-active-class="font-semibold"
+  >
     {{ $t('pagesNames.helpEnvol') }}
-  </button>
+  </nuxt-link>
 </template>
 
 <script>

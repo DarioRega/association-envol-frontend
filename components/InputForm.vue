@@ -52,7 +52,6 @@
           class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
           :placeholder="field.placeholder"
         >
-          <option value="" hidden disabled>Choisir</option>
           <option
             v-for="option in field.options"
             :key="option.value"
@@ -129,6 +128,11 @@ export default {
     value(newValue, oldValue) {
       this.$emit('valueChange', this.field.id, newValue);
     },
+  },
+  mounted() {
+    if (this.field.type === 'select') {
+      this.value = this.field.options[0].value;
+    }
   },
 };
 </script>

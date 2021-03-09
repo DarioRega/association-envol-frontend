@@ -15,7 +15,7 @@
       />
       <div class="mt-4">
         <span
-          class="inline-flex rounded-md shadow-sm lg:hidden"
+          class="inline-flex rounded-md lg:hidden"
           data-aos="fade-right"
           data-aos-easing="ease-in-out"
           data-aos-duration="500"
@@ -27,7 +27,7 @@
           </button>
         </span>
         <span
-          class="inline-flex rounded-md shadow-sm hidden lg:block"
+          class="inline-flex rounded-md hidden lg:block"
           data-aos="fade-left"
           data-aos-easing="ease-in-out"
           data-aos-duration="500"

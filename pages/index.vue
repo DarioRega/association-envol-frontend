@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="page-spacer">
     <hero />
     <h2 class="text-center font-semibold spacing-subtitle">
       {{ $t('home.envolIs') }}

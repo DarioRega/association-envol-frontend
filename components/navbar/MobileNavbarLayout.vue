@@ -64,7 +64,10 @@
             class="xl:hidden flex-1 md:relative md:h-full flex md:items-center"
           >
             <div class="pt-2 pb-3 w-full h-full flex flex-col justify-between">
-              <main-navigation :navigation-links="navigationLinks" />
+              <main-navigation
+                :navigation-links="navigationLinks"
+                @closeMenu="$emit('closeMenu')"
+              />
             </div>
           </div>
         </div>

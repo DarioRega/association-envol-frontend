@@ -1,5 +1,5 @@
 <template>
-  <section class="criterias">
+  <section class="criterias page-spacer">
     <small-container>
       <page-header :title="$t('pagesNames.attributionCriteria')" />
     </small-container>

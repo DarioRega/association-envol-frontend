@@ -83,7 +83,9 @@ $lines: (1,2,3,4,5);
     }
   }
   &::-webkit-input-placeholder {
-    @apply text-brand-middle-gray;
+    @apply text-brand-dark-gray;
+    opacity: 0.7;
+    @extend .caption-lg;
   }
 }
 
@@ -92,4 +94,7 @@ $lines: (1,2,3,4,5);
     @apply border-red-300;
     box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.45) !important; // text-tertiary theme
   }
+}
+.page-spacer {
+  @apply pb-16;
 }

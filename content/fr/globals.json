@@ -116,6 +116,7 @@
     "phoneNumber": "079 643 16 65"
   },
   "helpEnvol": {
+    "slug": "soutenir-envol",
     "backToHome": "Revenir à l'accueil",
     "helpUs": "Soutenir Envol",
     "donateNow": "Faites un don en ligne maintenant :",

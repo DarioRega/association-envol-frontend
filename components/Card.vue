@@ -3,7 +3,7 @@
     class="bg-brand-main-gray rounded-lg shadow-lg bg-white p-10 md:px-24 md:py-16 lg:px-16 lg:py-10"
   >
     <div class="flex items-center justify-start">
-      <span class="flex-none w-24">
+      <span class="flex-none w-20">
         <icon :name="iconName" :size="iconSize" />
       </span>
       <div class="flex-1">

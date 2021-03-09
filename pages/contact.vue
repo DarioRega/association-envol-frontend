@@ -1,25 +1,33 @@
 <template>
-  <section>
-    <small-container>
+  <section class="page-spacer">
+    <container>
       <page-header :title="$t('contactUs')" />
-    </small-container>
+    </container>
     <section class="bg-white">
       <container>
         <div class="flex flex-col lg:flex-row justify-between items-start">
-          <div class="w-full lg:w-3/5 lg:pr-16 mb-16 lg:mb-0">
-            <form-contact />
+          <div class="w-full lg:w-3/5 2xl:max-w-5xl lg:pr-24 mb-16 lg:mb-0">
+            <div class="sm:w-9/12 lg:w-full mx-auto w-full">
+              <form-contact />
+            </div>
           </div>
-          <div class="w-full lg:w-2/5 lg:pl-16">
-            <card icon-name="location" icon-size="150">
-              <h5 class="font-medium pb-4">{{ $t('contact.adress') }}</h5>
-              <p>{{ $t('contact.name') }}</p>
-              <p>{{ $t('contact.cp') }}</p>
-              <p>{{ $t('contact.npa') }}</p>
-            </card>
-            <card class="mt-12" icon-name="phone" icon-size="125">
-              <h5 class="font-medium pb-4">{{ $t('contact.contact') }}</h5>
-              <p>{{ $t('contact.phoneNumber') }}</p>
-            </card>
+          <div class="w-full lg:w-2/5">
+            <div class="sm:w-9/12 lg:w-full mx-auto w-full">
+              <card icon-name="location" icon-size="150">
+                <h5 class="font-medium pb-4">{{ $t('contact.adress') }}</h5>
+                <p>{{ $t('contact.name') }}</p>
+                <p>{{ $t('contact.cp') }}</p>
+                <p>{{ $t('contact.npa') }}</p>
+              </card>
+              <card class="mt-12" icon-name="phone" icon-size="125">
+                <h5 class="font-medium pb-4">{{ $t('contact.contact') }}</h5>
+                <a
+                  class="hover:text-brand-dark-gray"
+                  :href="`tel:${$t('contact.phoneNumber')}`"
+                  >{{ $t('contact.phoneNumber') }}</a
+                >
+              </card>
+            </div>
           </div>
         </div>
       </container>
@@ -29,12 +37,11 @@
 
 <script>
 import PageHeader from '@/components/PageHeader';
-import SmallContainer from '@/components/containers/SmallContainer';
 import Container from '@/components/containers/Container';
 import Card from '@/components/Card';
 import FormContact from '@/components/FormContact';
 export default {
   name: 'Contact',
-  components: { FormContact, Card, Container, SmallContainer, PageHeader },
+  components: { FormContact, Card, Container, PageHeader },
 };
 </script>

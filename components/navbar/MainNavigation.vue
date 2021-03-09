@@ -13,7 +13,7 @@
           <nuxt-link
             :to="link.slug"
             exact-active-class="font-semibold underline"
-            class="text-current text-state-white inline-block my-4 no-underline focus:outline-none transition duration-150 ease-in-out"
+            class="text-current font-medium text-state-white inline-block my-4 no-underline focus:outline-none transition duration-150 ease-in-out"
             @click.native="$emit('closeMenu')"
           >
             {{ link.name }}
@@ -35,7 +35,7 @@
         <nuxt-link
           :to="link.slug"
           exact-active-class="font-semibold text-brand-dark-blue"
-          class="hover-link lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
+          class="hover-link font-medium lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
         >
           {{ link.name }}
         </nuxt-link>

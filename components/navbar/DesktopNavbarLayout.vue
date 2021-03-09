@@ -20,7 +20,10 @@
           </div>
 
           <div class="lg:ml-2 xl:ml-6 lg:w-full">
-            <main-navigation :navigation-links="navigationLinks" />
+            <main-navigation
+              :navigation-links="navigationLinks"
+              @closeMenu="$emit('closeMenu')"
+            />
           </div>
         </div>
         <div
