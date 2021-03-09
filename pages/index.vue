@@ -50,6 +50,7 @@ export default {
   async asyncData({ $getContent, error }) {
     try {
       const contentSwap = await $getContent('home/content-swap');
+      contentSwap.sort((a, b) => a.slug.localeCompare(b.slug));
       const comiteeData = await $getContent('home/comitee');
       return { contentSwap, comitee: comiteeData.comitee };
     } catch (err) {

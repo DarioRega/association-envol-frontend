@@ -1,5 +1,5 @@
 <template>
-  <article class="home-swap">
+  <article class="home-swap" :class="[body.side, body.slug]">
     <div
       class="flex flex-col lg:items-center overflow-hidden"
       :class="body.side === 'right' ? 'lg:flex-row' : 'lg:flex-row-reverse'"
@@ -67,9 +67,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  mounted() {
-    console.log('THIS BODY', this.body);
   },
 };
 </script>
