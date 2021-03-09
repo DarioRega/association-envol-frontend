@@ -3,7 +3,7 @@
     class="flex items-start mt-12 lg:mt-0 md:items-center lg:items-center justify-center xl:block lg:h-full"
   >
     <!--    MOBILE -->
-    <div class="flex-col w-full md:-mt-24 lg:-mt-32">
+    <div class="xl:hidden flex-col w-full md:-mt-24 lg:-mt-32">
       <ul class="xl:hidden text-center">
         <li
           v-for="link in navigationLinks"
@@ -21,7 +21,7 @@
         </li>
       </ul>
       <div class="xl:hidden mt-8 w-full text-center">
-        <donate-envol class="max-w-xs w-full" />
+        <donate-envol />
       </div>
     </div>
 

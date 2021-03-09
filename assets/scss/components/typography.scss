@@ -30,6 +30,11 @@ h4, .h4 {
   }
 }
 
+.subtitle {
+  @extend .h4;
+  line-height: 1.5em;
+}
+
 h5, .h5 {
   font-size: 1.7rem;
   line-height: 1.5em;
@@ -45,7 +50,7 @@ p, .p, a, blockquote, cite, th  {
 
 button, .btn {
   font-size: 1.7rem;
-  line-height: 1.7em;
+  line-height: 1em;
   letter-spacing: 1px;
   padding: .9rem 1.6rem;
   @apply font-medium capitalize;
