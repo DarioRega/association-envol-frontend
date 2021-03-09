@@ -9,6 +9,7 @@
         :key="item.slug"
         :class="index < criterias.length - 1 && 'mb-16 lg:mb-20'"
       >
+        <h3>{{ item.title }}</h3>
         <nuxt-content :document="item" class="outside-list" />
       </div>
     </small-container>
