@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  @apply font-light;
   @extend .p;
 }
 
@@ -20,10 +21,15 @@ h1,h2,h3,h4,h5,h6, th {
       @apply pl-2;
       text-indent: -1em;
     }
+  }
 
-
-    li::before {
-      @apply pr-4;
+  &.outside-list {
+    ul {
+      @apply list-outside ml-8;
+      & li {
+        @apply pl-0 my-6;
+        text-indent: 0;
+      }
     }
   }
 

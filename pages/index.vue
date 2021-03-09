@@ -42,6 +42,8 @@ import Container from '@/components/containers/Container';
 import ContentSwap from '@/components/ContentSwap';
 import StatsEnvol from '@/components/StatsEnvol';
 import ComiteeGrid from '@/components/ComiteeGrid';
+
+// TODO Scroll to on click icon, animation content swap, animation hero, animation comitee, animation trigger on numbers when only visisble stats
 export default {
   name: 'Index',
   components: { ComiteeGrid, StatsEnvol, Container, Hero, ContentSwap },

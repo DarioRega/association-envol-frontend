@@ -29,7 +29,7 @@
           <a
             :href="`mailto:${item.mail}`"
             class="contact-cta inline-block py-3 px-4 bg-brand-light-blue text-white rounded-md"
-            >Contacter <icon name="email" class="ml-4" size="75"
+            >{{ $t('contactHer') }} <icon name="email" class="ml-4" size="75"
           /></a>
         </div>
       </div>
