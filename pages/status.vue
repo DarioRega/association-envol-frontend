@@ -24,7 +24,6 @@ export default {
     try {
       const sections = await $getContent('status/sections');
       const officalSignature = await $getContent('status/signature');
-      console.log('sections =>', sections);
       return { sections, officalSignature };
     } catch (err) {
       error({

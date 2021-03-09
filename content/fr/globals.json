@@ -101,6 +101,14 @@
       }
     ]
   },
+  "contact": {
+    "adress": "Adresse",
+    "name": "Association Envol",
+    "cp": "Case postale 5193",
+    "npa": "1002 Lausanne",
+    "contact": "Contact",
+    "phoneNumber": "079 643 16 65"
+  },
   "helpEnvol": {
     "backToHome": "Revenir à l'accueil",
     "helpUs": "Soutenir Envol",
