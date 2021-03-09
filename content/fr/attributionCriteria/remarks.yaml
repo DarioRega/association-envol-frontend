@@ -1,14 +1,14 @@
 remarks:
   - id: 1
     title: Pour les bénéficiaires de l’EVAM
-    body: Le dossier de demande doit contenir la réponse écrite et justifiée de l’EVAM concernant les possibilités de financement du projet de formation.
+    description: Le dossier de demande doit contenir la réponse écrite et justifiée de l’EVAM concernant les possibilités de financement du projet de formation.
 
   - id: 2
     title: Pour les personnes en formation niveau Master
-    body: Envol privilégie les prêts aux bourses.
+    description: Envol privilégie les prêts aux bourses.
 
   - id: 3
     title: Pour les demandes concernant les niveaux post-obligatoires de type gymnase, maturité professionnelle, CFC ou formation initiale
-    body: La réponse d’Envol à toute demande de bourse est suspendue en attendant la réponse des gymnases et autres organismes (OCBE, fondations, associations…) susceptibles de fournir une aide.
+    description: La réponse d’Envol à toute demande de bourse est suspendue en attendant la réponse des gymnases et autres organismes (OCBE, fondations, associations…) susceptibles de fournir une aide.
 
 

@@ -14,22 +14,22 @@
           @click="handleClick(item.id)"
         >
           <div class="flex justify-between my-4">
-            <h4
+            <h5
               class="hidden lg:block flex-1 font-normal pr-8"
               :class="
                 isOpen(item.id) ? 'text-brand-dark-blue' : 'text-brand-carbon'
               "
             >
               {{ item.title }}
-            </h4>
-            <h5
+            </h5>
+            <h4
               class="lg:hidden flex-1 font-normal pr-8"
               :class="
                 isOpen(item.id) ? 'text-brand-dark-blue' : 'text-brand-carbon'
               "
             >
               {{ item.title }}
-            </h5>
+            </h4>
             <span
               :class="isOpen(item.id) ? 'opacity-0' : 'opacity-100'"
               class="flex-none w-12 text-right transition-opacity duration-300 delay-700"
@@ -41,7 +41,12 @@
             v-show="isOpen(item.id)"
             :is-open="isOpen(item.id)"
           >
-            <p>{{ item.body }}</p>
+            <p v-if="item.description">{{ item.description }}</p>
+
+            <nuxt-content v-else :document="item" class="outside-list" />
+            <div v-if="item.isBourseForm">
+              <h1>IS BOURSE FORM</h1>
+            </div>
           </accordion-content>
         </div>
       </li>
@@ -66,6 +71,7 @@ export default {
     };
   },
   mounted() {
+    console.log('THIS LIST', this.list);
     this.currentOpenAccordion = this.list[0].id;
   },
   methods: {

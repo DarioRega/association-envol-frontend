@@ -41,6 +41,10 @@ h1,h2,h3,h4,h5,h6, th {
     }
   }
 
+  ol {
+    @apply list-inside list-decimal;
+  }
+
 
   &.outside-list {
     ul {
@@ -52,25 +56,29 @@ h1,h2,h3,h4,h5,h6, th {
     }
   }
 
-  ol {
-   li {
-     counter-increment: item;
-     margin-bottom: 15px;
-     @apply list-none;
-    }
-    p {
-      @apply pl-16 flex items-center;
-      @screen md {
-       @apply my-10;
-      }
-    }
-    p::before {
-      @apply bg-brand-dark-blue rounded-full text-white text-center absolute left-0;
-      content: counter(item);
-      font-family: 'Montserrat Alternates',Helvetica,Arial,Lucida,sans-serif;
-      width: 1.8em;
-    }
-  }
+ &.home-swap {
+   ol {
+     li {
+       counter-increment: item;
+       margin-bottom: 15px;
+       @apply list-none;
+     }
+
+     p {
+       @apply pl-16 flex items-center;
+       @screen md {
+         @apply my-10;
+       }
+     }
+
+     p::before {
+       @apply bg-brand-dark-blue rounded-full text-white text-center absolute left-0;
+       content: counter(item);
+       font-family: 'Montserrat Alternates', Helvetica, Arial, Lucida, sans-serif;
+       width: 1.8em;
+     }
+   }
+ }
 
   p {
     @apply my-3;

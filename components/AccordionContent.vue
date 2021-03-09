@@ -1,6 +1,8 @@
 <template>
   <transition-expand>
-    <slot />
+    <div>
+      <slot />
+    </div>
   </transition-expand>
 </template>
 

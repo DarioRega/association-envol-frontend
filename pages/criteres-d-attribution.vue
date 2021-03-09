@@ -30,9 +30,8 @@ export default {
   async asyncData({ $getContent, error }) {
     try {
       const criterias = await $getContent('attributionCriteria/criterias');
-      const demands = await $getContent('attributionCriteria/formDemands');
       const remarksContent = await $getContent('attributionCriteria/remarks');
-      return { criterias, demands, remarks: remarksContent.remarks };
+      return { criterias, remarks: remarksContent.remarks };
     } catch (err) {
       error({
         statusCode: 404,
@@ -43,7 +42,6 @@ export default {
   data() {
     return {
       criterias: [],
-      demands: [],
       remarks: [],
     };
   },
