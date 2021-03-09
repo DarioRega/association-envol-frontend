@@ -3,6 +3,7 @@
   "associationEnvol": "Association Envol",
   "or": "ou",
   "send": "Envoyer",
+  "sendInProgress": "Envoie en cours...",
   "search": "Chercher",
   "address": "Adresse",
   "contact": "Contact",
@@ -11,17 +12,22 @@
   "importantsRemarks": "Remarques importantes",
   "questions": "Questions",
   "formular": "Formulaire",
-  "mister": "Monsieur",
-  "miss": "Madame",
   "formLabels": {
+    "mister": "Monsieur",
+    "miss": "Madame",
+    "sex": "Genre",
+    "fullName": "Nom et Prénom",
     "firstName": "Prénom",
     "lastName": "Nom",
     "birthdate": "Date de naissance",
     "subject": "Sujet",
     "message": "Message",
     "email": "Email",
+    "phoneNumber": "Téléphone",
     "remarks": "Remarques",
-    "slideFileHere": "Glisser vos fichiers ici"
+    "slideFileHere": "Glisser vos fichiers ici",
+    "isOptional": "Facultatif",
+    "isRequired": "Requis"
   },
   "pagesNames": {
     "home": "Accueil",

@@ -58,3 +58,38 @@ $lines: (1,2,3,4,5);
     @apply pb-16;
   }
 }
+
+
+//.form-input {
+//  @apply bg-secondary border-secondary-sc;
+//}
+
+.form-outline {
+  &:focus {
+    @apply outline-none border-transparent;
+    box-shadow: 0 0 0 3px rgba(127, 156, 245, 0.45); // text-tertiary theme
+  }
+}
+
+.form-input {
+  @apply border border-brand-main-gray rounded-md text-brand-carbon bg-white;
+  &.has-error {
+    @apply border-red-300 text-red-900;
+    &:focus {
+      @apply border-red-300;
+    }
+    &::-webkit-input-placeholder {
+      @apply text-red-500;
+    }
+  }
+  &::-webkit-input-placeholder {
+    @apply text-brand-middle-gray;
+  }
+}
+
+.form-outline.has-error {
+  &:focus {
+    @apply border-red-300;
+    box-shadow: 0 0 0 3px rgba(245, 101, 101, 0.45) !important; // text-tertiary theme
+  }
+}

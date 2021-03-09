@@ -23,6 +23,7 @@ export default {
   plugins: [
     { src: '~/plugins/aos.js', mode: 'client' },
     '~/plugins/form-validation.js',
+    '~/plugins/form-labels.js',
     '~/plugins/getContent.js',
   ],
 
