@@ -34,14 +34,16 @@
           <img
             :src="require(`~/assets/images/${body.fileName}.png`)"
             class="content-swap hidden lg:block w-full mx-auto"
-            :class="[body.biggerWidth ? 'max-w-lg 2xl:max-w-lg' : 'max-w-md']"
+            :class="[
+              body.biggerWidth ? 'lg:max-w-lg 2xl:max-w-lg' : 'lg:max-w-md',
+            ]"
           />
         </picture>
       </div>
 
       <div
         class="container-swap-item bg-brand-main-gray flex-1 py-6 lg:py-0 flex flex-col justify-center lg:justify-around"
-        :class="body.side === 'right' ? 'rounded-l-3xl' : 'rounded-r-3xl'"
+        :class="body.side === 'right' ? 'lg:rounded-l-3xl' : 'lg:rounded-r-3xl'"
       >
         <container>
           <div class="mt-4 text-secondary rich-text">

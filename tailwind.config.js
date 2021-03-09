@@ -21,11 +21,12 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          'dark-gray': '#C4C4C4',
+          'dark-gray': '#666',
           'dark-blue': '#011993',
           'light-blue': '#429CF4',
           'main-gray': '#F4F5F7',
-          'middle-gray': '#666',
+          'variant-main-gray': '#dbdcde',
+          'middle-gray': '#C4C4C4',
           carbon: '#333',
           error: '#E60013',
           success: '#18A339',

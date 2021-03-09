@@ -1,7 +1,7 @@
 <template>
   <section>
     <hero />
-    <h2 class="text-center font-semibold pb-8 lg:pb-16">
+    <h2 class="text-center font-semibold pb-8 md:pb-16">
       {{ $t('home.envolIs') }}
     </h2>
     <div class="bg-brand-main-gray">
@@ -27,6 +27,12 @@
         class="py-12 md:py-16 2xl:py-24"
       />
     </section>
+    <container>
+      <h2 class="text-center font-semibold pb-8 md:pb-16">
+        {{ $t('home.ourComitee') }}
+      </h2>
+      <comitee-grid :list="comitee" />
+    </container>
   </section>
 </template>
 
@@ -35,13 +41,15 @@ import Hero from '@/components/Hero';
 import Container from '@/components/containers/Container';
 import ContentSwap from '@/components/ContentSwap';
 import StatsEnvol from '@/components/StatsEnvol';
+import ComiteeGrid from '@/components/ComiteeGrid';
 export default {
   name: 'Index',
-  components: { StatsEnvol, Container, Hero, ContentSwap },
+  components: { ComiteeGrid, StatsEnvol, Container, Hero, ContentSwap },
   async asyncData({ $getContent, error }) {
     try {
       const contentSwap = await $getContent('home/content-swap');
-      return { contentSwap };
+      const comiteeData = await $getContent('home/comitee');
+      return { contentSwap, comitee: comiteeData.comitee };
     } catch (err) {
       error({
         statusCode: 404,
@@ -53,6 +61,7 @@ export default {
     return {
       stats: [],
       contentSwap: [],
+      comitee: [],
     };
   },
   mounted() {
