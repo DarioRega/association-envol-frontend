@@ -1,7 +1,7 @@
 <template>
   <section>
     <hero />
-    <h2 class="text-center font-semibold pb-8 md:pb-16">
+    <h2 class="text-center font-semibold spacing-subtitle">
       {{ $t('home.envolIs') }}
     </h2>
     <div class="bg-brand-main-gray">
@@ -28,7 +28,7 @@
       />
     </section>
     <container :extra-spacing="true">
-      <h2 class="text-center font-semibold pb-8 md:pb-16">
+      <h2 class="text-center font-semibold spacing-subtitle">
         {{ $t('home.ourComitee') }}
       </h2>
       <comitee-grid :list="comitee" />

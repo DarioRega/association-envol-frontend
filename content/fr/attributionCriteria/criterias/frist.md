@@ -1,4 +1,4 @@
-#### Critères d’attribution
+### Critères d’attribution
 
 * Etre domicilié-e dans le canton de Vaud depuis au minimum un an
 * Présenter un budget mensuel détaillé dans son dossier de demande

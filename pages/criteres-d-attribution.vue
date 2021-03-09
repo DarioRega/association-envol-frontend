@@ -1,25 +1,31 @@
 <template>
   <section class="criterias">
-    <container>
+    <small-container>
       <page-header :title="$t('pagesNames.attributionCriteria')" />
-    </container>
-    <container>
-      <div v-for="item in criterias" :key="item.slug">
+    </small-container>
+    <small-container>
+      <div
+        v-for="(item, index) in criterias"
+        :key="item.slug"
+        :class="index < criterias.length - 1 && 'mb-16 lg:mb-20'"
+      >
         <nuxt-content :document="item" class="outside-list" />
       </div>
-    </container>
-    <container>
-      <h4>{{ $t('importantsRemarks') }}</h4>
-    </container>
+    </small-container>
+    <small-container>
+      <h3 class="spacing-subtitle">{{ $t('importantsRemarks') }}</h3>
+      <accordions :list="remarks" />
+    </small-container>
   </section>
 </template>
 
 <script>
 import PageHeader from '@/components/PageHeader';
-import Container from '@/components/containers/Container';
+import Accordions from '@/components/Accordions';
+import SmallContainer from '@/components/containers/SmallContainer';
 export default {
   name: 'CriteresDAttribution',
-  components: { Container, PageHeader },
+  components: { SmallContainer, Accordions, PageHeader },
   async asyncData({ $getContent, error }) {
     try {
       const criterias = await $getContent('attributionCriteria/criterias');
@@ -44,7 +50,7 @@ export default {
 </script>
 <style lang="scss">
 .criterias {
-  h4 {
+  h3 {
     @apply text-brand-dark-blue font-medium;
   }
 }

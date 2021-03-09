@@ -51,3 +51,10 @@ $lines: (1,2,3,4,5);
 .lighter {
   @apply text-brand-middle-gray;
 }
+
+.spacing-subtitle {
+  @apply pb-8;
+  @screen md {
+    @apply pb-16;
+  }
+}
