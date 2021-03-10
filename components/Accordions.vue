@@ -45,8 +45,9 @@
 
             <nuxt-content v-else :document="item" class="outside-list" />
             <div v-if="item.isBourseForm">
-              <form-contact type-of-form="bourse" />
-              <h1>IS BOURSE FORM</h1>
+              <div class="md:p-8 md:bg-white md:rounded-md">
+                <form-contact type-of-form="bourse" />
+              </div>
             </div>
           </accordion-content>
         </div>

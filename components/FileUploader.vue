@@ -1,8 +1,8 @@
 <template>
-  <div id="file-drag-drop">
+  <div id="file-drag-drop" class="pb-12">
     <form
       ref="fileForm"
-      class="uploader lg:bg-brand-variant-main-gray lg:rounded-md lg:h-64 flex items-center justify-center"
+      class="uploader lg:bg-brand-main-gray lg:rounded-md lg:h-64 flex items-center justify-center"
     >
       <input
         ref="inputFile"
@@ -11,13 +11,10 @@
         class="invisible w-0 h-0 opacity-0"
       />
       <div class="text-center">
-        <div class="hidden lg:block">
+        <div class="hidden lg:block text-center">
           <span class="drop-files">{{ $t('formDemand.dropFilesHere') }}</span>
-          <p>{{ $t('formDemand.or') }}</p>
-          <button
-            class="hidden lg:block button-secondary"
-            @click="openDirectory"
-          >
+          <p class="my-2">{{ $t('formDemand.or') }}</p>
+          <button class="button-secondary" @click="openDirectory">
             {{ $t('formDemand.find') }}
           </button>
         </div>
@@ -27,10 +24,12 @@
       </div>
     </form>
 
-    <!--    <progress max="100" :value.prop="uploadPercentage"></progress>-->
-    <div v-show="files.length > 0" class="flex justify-between items-center">
-      <h5 class="py-10">Documents déposés</h5>
-      <span @click="shouldShowFiles = !shouldShowFiles">
+    <div
+      v-show="files.length > 0"
+      class="flex justify-between items-center py-10"
+    >
+      <h5>{{ $t('formDemand.filesDeposed') }}</h5>
+      <span class="h-full" @click="shouldShowFiles = !shouldShowFiles">
         <icon :name="shouldShowFiles ? 'arrow-up' : 'arrow-down'" size="75" />
       </span>
     </div>

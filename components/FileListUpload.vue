@@ -5,15 +5,13 @@
         v-for="(file, key) in files"
         :key="key"
         class="flex w-full justify-between items-center"
-        :class="key > 1 ? 'my-10' : 'mb-10'"
+        :class="key > 1 ? 'my-10 lg:my-14' : 'mb-10 lg:mb-14'"
       >
         <p class="hidden lg:block">#{{ key + 1 }}</p>
-        <img
-          v-if="'preview' + parseInt(key).includes"
-          :ref="'preview' + parseInt(key)"
-          class="w-16 md:w-24 lg:w-48 flex-none"
-        />
-        <p>
+        <div class="w-16 md:w-24 mr-10 lg:mx-10 flex-none">
+          <img :ref="'preview' + parseInt(key)" />
+        </div>
+        <p class="flex-1 overflow-hidden">
           {{ file.name }}
         </p>
         <div class="w-16 lg:w-32 text-right">
