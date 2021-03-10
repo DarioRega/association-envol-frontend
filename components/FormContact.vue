@@ -53,6 +53,12 @@ import InputForm from '@/components/InputForm';
 export default {
   name: 'FormContact',
   components: { InputForm },
+  props: {
+    typeOfForm: {
+      type: String,
+      default: 'contact',
+    },
+  },
   data() {
     return {
       formKey: 1,
@@ -80,7 +86,7 @@ export default {
     },
   },
   mounted() {
-    const fields = this.$getFormsLabels();
+    const fields = this.$getFormsLabels(this.typeOfForm);
     fields.forEach((field) => {
       if (field) {
         this.formValues[field.id] = '';

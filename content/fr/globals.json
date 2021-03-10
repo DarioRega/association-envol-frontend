@@ -19,6 +19,7 @@
     "fullName": "Nom et Prénom",
     "firstName": "Prénom",
     "lastName": "Nom",
+    "files": "Fichiers",
     "birthdate": "Date de naissance",
     "subject": "Sujet",
     "message": "Message",

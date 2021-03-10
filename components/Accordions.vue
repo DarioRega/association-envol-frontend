@@ -45,6 +45,7 @@
 
             <nuxt-content v-else :document="item" class="outside-list" />
             <div v-if="item.isBourseForm">
+              <form-contact type-of-form="bourse" />
               <h1>IS BOURSE FORM</h1>
             </div>
           </accordion-content>
@@ -56,9 +57,10 @@
 
 <script>
 import AccordionContent from '@/components/AccordionContent';
+import FormContact from '@/components/FormContact';
 export default {
   name: 'Accordions',
-  components: { AccordionContent },
+  components: { FormContact, AccordionContent },
   props: {
     list: {
       type: Array,

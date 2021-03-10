@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- LABEL TOP REQUIRED  -->
+
     <label :for="field.id" class="sr-only">{{ field.label }}</label>
     <span
       data-aos="fade-in"
@@ -16,6 +18,7 @@
       }}</span
     >
     <div class="relative rounded-md shadow-sm">
+      <!-- CASE  TEXTAREA -->
       <div
         v-if="field.type === 'textarea'"
         data-aos="fade-up"
@@ -35,6 +38,8 @@
           :placeholder="field.placeholder"
         ></textarea>
       </div>
+
+      <!-- CASE  SELECT  -->
       <div
         v-else-if="field.type === 'select'"
         data-aos="fade-up"
@@ -61,6 +66,26 @@
           </option>
         </select>
       </div>
+
+      <!--     CASE  FILE UPLOAD -->
+      <div
+        v-else-if="field.type === 'files'"
+        data-aos="fade-up"
+        data-aos-easing="ease-out"
+        data-aos-duration="500"
+        data-aos-anchor=".contact-form"
+        data-aos-anchor-placement="top-bottom"
+        :data-aos-delay="index * 300 + 100"
+      >
+        <file-uploader
+          :id="field.id"
+          :name="field.name"
+          :class="error && 'has-error'"
+          @filesChange="value = $event"
+        />
+      </div>
+
+      <!-- CASE  INPUT TEXT -->
       <div
         v-else
         data-aos="fade-up"
@@ -79,6 +104,9 @@
           :placeholder="field.placeholder"
         />
       </div>
+
+      <!-- ERROR INPUT  -->
+
       <div
         v-if="error"
         class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
@@ -125,8 +153,11 @@ export default {
     };
   },
   watch: {
-    value(newValue, oldValue) {
-      this.$emit('valueChange', this.field.id, newValue);
+    value: {
+      deep: true,
+      handler(newValue) {
+        this.$emit('valueChange', this.field.id, newValue);
+      },
     },
   },
   mounted() {
