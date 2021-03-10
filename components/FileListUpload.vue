@@ -1,28 +1,36 @@
 <template>
-  <div>
-    <h5 v-show="files.length > 0" class="pb-10">Documents</h5>
-    <div
-      v-for="(file, key) in files"
-      :key="key"
-      class="flex w-full justify-between items-center"
-    >
-      <p>#{{ key + 1 }}</p>
-      <img :ref="'preview' + parseInt(key)" class="w-48 flex-none" />
-      <p>
-        {{ file.name }}
-      </p>
-      <div class="w-32 text-rigth">
-        <a class="cursor-pointer" @click="$emit('removeFile', key)"
-          ><icon name="close" size="75"
-        /></a>
+  <transition-expand>
+    <div>
+      <div
+        v-for="(file, key) in files"
+        :key="key"
+        class="flex w-full justify-between items-center"
+        :class="key > 1 ? 'my-10' : 'mb-10'"
+      >
+        <p class="hidden lg:block">#{{ key + 1 }}</p>
+        <img
+          v-if="'preview' + parseInt(key).includes"
+          :ref="'preview' + parseInt(key)"
+          class="w-16 md:w-24 lg:w-48 flex-none"
+        />
+        <p>
+          {{ file.name }}
+        </p>
+        <div class="w-16 lg:w-32 text-right">
+          <a class="cursor-pointer" @click="$emit('removeFile', key)"
+            ><icon name="close" size="75"
+          /></a>
+        </div>
       </div>
     </div>
-  </div>
+  </transition-expand>
 </template>
 
 <script>
+import TransitionExpand from '@/components/TransitionExpand';
 export default {
   name: 'FileListUpload',
+  components: { TransitionExpand },
   props: {
     files: {
       type: Array,
@@ -68,7 +76,9 @@ export default {
           //  We do the next tick so the reference is bound and we can access it.
           // */
           this.$nextTick(function () {
-            this.$refs[`preview${parseInt(i)}`][0].src = '/images/file.png';
+            // TODO REPLACE WITH OWN UPLOADED IMG ON DOMAIN
+            this.$refs[`preview${parseInt(i)}`][0].src =
+              'https://i.imgur.com/waeQCg6.png';
           });
         }
       }

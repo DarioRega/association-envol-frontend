@@ -1,40 +1,60 @@
 <template>
   <div id="file-drag-drop">
     <form
-      ref="fileform"
-      class="uploader bg-brand-variant-main-gray rounded-md h-64 flex items-center justify-center"
+      ref="fileForm"
+      class="uploader lg:bg-brand-variant-main-gray lg:rounded-md lg:h-64 flex items-center justify-center"
     >
+      <input
+        ref="inputFile"
+        type="file"
+        :multiple="true"
+        class="invisible w-0 h-0 opacity-0"
+      />
       <div class="text-center">
-        <span class="drop-files">Drop the files here!</span>
-        <p>ou</p>
-        <button class="button-secondary" @click="openDirectory">
-          chercher
+        <div class="hidden lg:block">
+          <span class="drop-files">{{ $t('formDemand.dropFilesHere') }}</span>
+          <p>{{ $t('formDemand.or') }}</p>
+          <button
+            class="hidden lg:block button-secondary"
+            @click="openDirectory"
+          >
+            {{ $t('formDemand.find') }}
+          </button>
+        </div>
+        <button class="lg:hidden button-secondary my-10" @click="openDirectory">
+          {{ $t('formDemand.downloadFiles') }}
         </button>
       </div>
     </form>
 
     <!--    <progress max="100" :value.prop="uploadPercentage"></progress>-->
-
+    <div v-show="files.length > 0" class="flex justify-between items-center">
+      <h5 class="py-10">Documents déposés</h5>
+      <span @click="shouldShowFiles = !shouldShowFiles">
+        <icon :name="shouldShowFiles ? 'arrow-up' : 'arrow-down'" size="75" />
+      </span>
+    </div>
     <file-list-upload
+      v-show="shouldShowFiles"
       ref="fileListUpload"
       :files="files"
       @removeFile="removeFile($event)"
     />
-
-    <a v-show="files.length > 0" class="submit-button" @click="submitFiles()"
-      >Submit</a
-    >
   </div>
 </template>
 
 <script>
+import FileListUpload from '@/components/FileListUpload';
+
 export default {
   /*
    Variables used by the drag and drop component
   */
   name: 'FileUpload',
+  components: { FileListUpload },
   data() {
     return {
+      shouldShowFiles: true,
       dragAndDropCapable: false,
       files: [],
       uploadPercentage: 0,
@@ -44,6 +64,7 @@ export default {
     files: {
       deep: true,
       handler() {
+        this.$refs.fileListUpload.getImagePreviews();
         this.$emit('filesChange', this.files);
       },
     },
@@ -59,7 +80,7 @@ export default {
 
     if (this.dragAndDropCapable) {
       // Listen to all of the drag events and bind an event listener to each
-      // for the fileform.
+      // for the fileForm.
       // /
       [
         'drag',
@@ -76,7 +97,7 @@ export default {
           //  (opening the file in the browser) and stop the propagation of the event (so
           //  no other elements open the file in the browser)
           // */
-          this.$refs.fileform.addEventListener(
+          this.$refs.fileForm.addEventListener(
             evt,
             function (e) {
               e.preventDefault();
@@ -90,25 +111,29 @@ export default {
       // /*
       //  Add an event listener for drop to the form
       // /
-      this.$refs.fileform.addEventListener(
-        'drop',
-        function (e) {
-          // /
-          //  Capture the files from the drop event and add them to our local files
-          //  array.
-          // */
-          for (let i = 0; i < e.dataTransfer.files.length; i++) {
-            this.files.push(e.dataTransfer.files[i]);
-            this.$refs.fileListUpload.getImagePreviews();
-            // this.getImagePreviews();
-          }
-        }.bind(this)
-      );
+      this.$refs.fileForm.addEventListener('drop', (e) => {
+        // /
+        //  Capture the files from the drop event and add them to our local files
+        //  array.
+        // */
+        console.log(typeof e.dataTransfer);
+        console.log(e.dataTransfer.files);
+        // e.dataTransfer.files.forEach((file) => this.files.push(file));
+        for (let i = 0; i < e.dataTransfer.files.length; i++) {
+          this.files.push(e.dataTransfer.files[i]);
+        }
+      });
     }
+    this.$refs.inputFile.addEventListener('change', (e) => {
+      console.log('EVENT FILE', e.target.files);
+      e.target.files.forEach((file) => this.files.push(file));
+    });
   },
   methods: {
-    openDirectory(){
-    }
+    openDirectory(e) {
+      e.preventDefault();
+      this.$refs.inputFile.click();
+    },
     // /*
     //  Determines if the drag and drop functionality is in the
     //  window
@@ -193,59 +218,9 @@ export default {
 <style lang="scss">
 .uploader {
   &:hover {
-    box-shadow: 0 0 0 3px rgba(127, 156, 245, 0.45);
+    @screen lg {
+      box-shadow: 0 0 0 3px rgba(127, 156, 245, 0.45);
+    }
   }
-}
-.upload-form {
-  display: block;
-  height: 400px;
-  width: 400px;
-  background: #ccc;
-  margin: auto;
-  margin-top: 40px;
-  text-align: center;
-  line-height: 400px;
-  border-radius: 4px;
-}
-
-div.file-listing {
-  width: 400px;
-  margin: auto;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-div.file-listing img {
-  height: 100px;
-}
-
-div.remove-container {
-  text-align: center;
-}
-
-div.remove-container a {
-  color: red;
-  cursor: pointer;
-}
-
-a.submit-button {
-  display: block;
-  margin: auto;
-  text-align: center;
-  width: 200px;
-  padding: 10px;
-  text-transform: uppercase;
-  background-color: #ccc;
-  color: white;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-progress {
-  width: 400px;
-  margin: auto;
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 </style>

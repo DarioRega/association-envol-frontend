@@ -79,6 +79,10 @@
     "ourComitee": "Notre commité"
   },
   "formDemand": {
+    "downloadFiles": "Télécharger des fichiers",
+    "find": "Chercher",
+    "dropFilesHere": "Glisser des fichiers",
+    "or": "ou",
     "formOnlineHere": "le formulaire de demande de bourse en ligne ici",
     "formPostal": "le formulaire de demande de bourse",
     "consultOurPage": "Consultez notre page",
