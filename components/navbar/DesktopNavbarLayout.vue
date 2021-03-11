@@ -12,8 +12,9 @@
             class="flex-shrink-0 w-full max-w-xs flex items-center lg:flex-none"
           >
             <!--            LOGO -->
+            <!--            ADD IMAGES AND ASSETS TO STATIC FOLDER AND USE PICTURE WITHOUT ~/ only /logo.svg-->
             <div class="mx-auto">
-              <picture srcset="~/assets/images/logo.svg" type="image/svg+xml">
+              <picture srcset="/assets/images/logo.svg" type="image/svg+xml">
                 <img src="~/assets/images/logo.png" />
               </picture>
             </div>
