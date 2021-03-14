@@ -4,6 +4,7 @@
       :is-visible="shouldShowNotification"
       :type="notification.type"
       :message="notification.message"
+      @click="shouldShowNotification = false"
     />
     <form
       :key="formKey"
@@ -56,6 +57,7 @@
 import InputForm from '@/components/InputForm';
 import { API_URL } from '~/constantes';
 import Notification from '~/components/Notification';
+import { refreshGlobalNotificationState } from '~/store';
 
 export default {
   name: 'FormContact',
@@ -74,10 +76,10 @@ export default {
       errors: {},
       optionalFields: [''],
       isLoading: false,
-      shouldShowNotification: true,
+      shouldShowNotification: false,
       notification: {
-        type: 'error',
-        message: '<p>test message<p>',
+        type: '',
+        message: '',
       },
     };
   },
@@ -88,6 +90,7 @@ export default {
           if (this.shouldShowNotification) {
             this.shouldShowNotification = false;
           }
+          refreshGlobalNotificationState();
         }, 5000);
       }
     },
@@ -116,8 +119,11 @@ export default {
       if (this.typeOfForm === 'contact') {
         this.$axios
           .post(API_URL.CONTACT, this.formValues)
-          .then((res) => this.handleSuccess(res))
-          .catch((err) => this.handleError(err))
+          .then((res) => {
+            console.log('RES =>', res);
+            this.handleSuccess(res.data.message);
+          })
+          .catch((err) => this.handleError(err.response.data.message))
           .finally(() => (this.isLoading = false));
       } else {
         this.submitScholarship();

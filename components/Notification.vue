@@ -1,7 +1,7 @@
 <template>
   <div
-    v-show="isVisible"
-    :style="{ zIndex: 999999, maxWidth: '1400px', margin: '0 auto' }"
+    v-show="shouldShow"
+    :style="{ zIndex: 777, maxWidth: '1400px', margin: '0 auto' }"
     class="fixed inset-0 flex items-start justify-center px-6 md:px-10 xl:px-0 pt-32 xl:pt-40 pointer-events-none sm:justify-end"
   >
     <transition
@@ -90,6 +90,7 @@
   </div>
 </template>
 <script>
+import state from '~/store';
 export default {
   props: {
     type: {
@@ -103,6 +104,12 @@ export default {
     message: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    shouldShow() {
+      if (state.shouldCloseNotificationGlobal) return false;
+      return this.isVisible;
     },
   },
 };

@@ -17,17 +17,26 @@
 <script>
 import MobileNavbarLayout from '~/components/navbar/MobileNavbarLayout';
 import DesktopNavbarLayout from '~/components/navbar/DesktopNavbarLayout';
+import state, {
+  closeMenu,
+  toggleMenu,
+  triggerCloseGlobalNotification,
+} from '~/store';
+
 export default {
   name: 'Navbar',
   components: { MobileNavbarLayout, DesktopNavbarLayout },
   data() {
     return {
-      isMenuOpen: false,
       navigationLinks: [],
     };
   },
   computed: {
+    isMenuOpen() {
+      return state.isMenuOpen;
+    },
     isMobile() {
+      // TODO ADD WINDOW EVENT LISTENER
       if (process.client) {
         return window.innerWidth < 1300;
       }
@@ -39,10 +48,11 @@ export default {
   },
   methods: {
     closeMenu() {
-      this.isMenuOpen = false;
+      closeMenu();
     },
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
+      toggleMenu();
+      triggerCloseGlobalNotification();
     },
   },
 };
