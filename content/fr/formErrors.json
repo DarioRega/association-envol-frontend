@@ -4,5 +4,6 @@
   "phoneNumber": "Veuillez fournir un numéro valide",
   "firstName": "Les chiffres ou symboles ne sont pas autorisés",
   "lastName": "Les chiffres ou symboles ne sont pas autorisés",
-  "message": "Le message est trop court "
+  "message": "Le message est trop court",
+  "birthdate": "Veuillez fournir une date de naissance au format JJ.MM.AAAA"
 }

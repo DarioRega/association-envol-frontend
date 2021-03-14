@@ -1,5 +1,10 @@
 <template>
   <section>
+    <notification
+      :is-visible="shouldShowNotification"
+      :type="notification.type"
+      :message="notification.message"
+    />
     <form
       :key="formKey"
       class="grid grid-cols-1 gap-y-6 md:gap-y-6"
@@ -49,10 +54,12 @@
 
 <script>
 import InputForm from '@/components/InputForm';
+import { API_URL } from '~/constantes';
+import Notification from '~/components/Notification';
 
 export default {
   name: 'FormContact',
-  components: { InputForm },
+  components: { Notification, InputForm },
   props: {
     typeOfForm: {
       type: String,
@@ -67,10 +74,10 @@ export default {
       errors: {},
       optionalFields: [''],
       isLoading: false,
-      shouldShowNotification: false,
+      shouldShowNotification: true,
       notification: {
-        type: '',
-        message: '',
+        type: 'success',
+        message: '<p>test message<p>',
       },
     };
   },
@@ -102,22 +109,37 @@ export default {
       this.formValues[propertyName] = value;
     },
     handleSubmit() {
-      if (!this.validateFormValues()) {
-        return;
-      }
-      console.log('VALUES VALIDS', this.formValues);
+      // if (!this.validateFormValues()) {
+      //   return;
+      // }
       this.isLoading = true;
-      // this.$axios
-      //   .post('/contact', this.formValues)
-      //   .then((res) => this.handleSuccess())
-      //   .catch(() =>
-      //     this.handleError(
-      //       'Un problème est survenu, veuillez nous contacter directement via notre email en bas de page. Merci'
-      //     )
-      //   )
-      //   .finally(() => (this.isLoading = false));
+      if (this.typeOfForm === 'contact') {
+        this.$axios
+          .post(API_URL.CONTACT, this.formValues)
+          .then((res) => this.handleSuccess(res))
+          .catch((err) => this.handleError(err))
+          .finally(() => (this.isLoading = false));
+      } else {
+        this.submitScholarship();
+      }
     },
-    handleSuccess() {
+    submitScholarship() {
+      const formData = new FormData();
+      Object.keys(this.formValues).forEach((property) => {
+        if (property === 'files') {
+          formData.append('files[]', this.formValues[property]);
+        } else {
+          formData.append(property, this.formValues[property]);
+        }
+      });
+      this.$axios
+        .post(API_URL.SCHOLARSHIP, formData)
+        .then((response) => this.handleSuccess(response.data.message))
+        .catch((err) => this.handleError(err.response.data.message))
+        .finally(() => (this.isLoading = false));
+    },
+    handleSuccess(successMessage) {
+      console.log('successMessage', successMessage);
       this.formValues = {};
       this.formKey = Math.floor(Math.random() * Math.floor(9999));
       this.shouldShowNotification = true;
@@ -125,6 +147,7 @@ export default {
       this.notification = {
         type: 'success',
         message:
+          successMessage ||
           'Merci pour votre envoi, nous reviendrons vers vous dès que possible.',
       };
     },
@@ -133,7 +156,7 @@ export default {
       this.shouldShowNotification = true;
       this.notification = {
         type: 'error',
-        message: errMessage,
+        message: errMessage || 'Une erreur est survenue.',
       };
     },
     hasError(fieldId) {

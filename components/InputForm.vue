@@ -1,22 +1,35 @@
 <template>
   <div>
     <!-- LABEL TOP REQUIRED  -->
-
-    <label :for="field.id" class="sr-only">{{ field.label }}</label>
-    <span
-      data-aos="fade-in"
-      data-aos-easing="linear"
-      data-aos-duration="800"
-      data-aos-delay="1600"
-      data-aos-anchor=".contact-form"
-      data-aos-anchor-placement="top-bottom"
-      class="caption-sm block pb-2 text-right text-secondary"
-      >{{
-        field.isOptional
-          ? $t('formLabels.isOptional')
-          : $t('formLabels.isRequired')
-      }}</span
+    <label :for="field.id" class="sr-only">{{ field.placeholder }}</label>
+    <div
+      class="flex items-center"
+      :class="value ? 'justify-between' : 'justify-end'"
     >
+      <p
+        v-if="value"
+        class="caption-sm block pb-2 text-right text-secondary"
+        data-aos="fade-in"
+        data-aos-easing="linear"
+        data-aos-duration="500"
+      >
+        {{ field.placeholder }}
+      </p>
+      <span
+        class="caption-sm block pb-2 text-right text-secondary"
+        data-aos="fade-in"
+        data-aos-easing="linear"
+        data-aos-duration="800"
+        data-aos-delay="1600"
+        data-aos-anchor=".contact-form"
+        data-aos-anchor-placement="top-bottom"
+        >{{
+          field.isOptional
+            ? $t('formLabels.isOptional')
+            : $t('formLabels.isRequired')
+        }}</span
+      >
+    </div>
     <div class="relative rounded-md shadow-sm">
       <!-- CASE  TEXTAREA -->
       <div
@@ -101,6 +114,7 @@
           :name="field.id"
           class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
           :class="error && 'has-error'"
+          :data-mask="field.id === 'birthdate' ? '00.00.0000' : ''"
           :placeholder="field.placeholder"
         />
       </div>

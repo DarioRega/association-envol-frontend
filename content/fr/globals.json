@@ -2,6 +2,8 @@
   "download": "Télécharger",
   "associationEnvol": "Association Envol",
   "or": "ou",
+  "success": "Succès",
+  "error": "Erreur",
   "send": "Envoyer",
   "sendInProgress": "Envoie en cours...",
   "search": "Chercher",
@@ -13,6 +15,7 @@
   "questions": "Questions",
   "formular": "Formulaire",
   "formLabels": {
+    "gender": "Civilité",
     "mister": "Monsieur",
     "miss": "Madame",
     "sex": "Genre",

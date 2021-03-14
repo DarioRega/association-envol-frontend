@@ -9,20 +9,19 @@ export default (context, inject) => {
     fullName: /^[_A-z]*((-|\s)*[_A-z])*$/,
     subject: /^[a-zA-Z]{3,}$/,
     message: /^[a-zA-Z]{5,}$/,
-    sex: /^[a-zA-Z]+$/
+    birthdate: /^(0?[1-9]|[12][0-9]|3[01])[\.](0?[1-9]|1[012])[\.]\d{4}$/,
   }
+
+
+  const ignoredFields = ['gender','phoneNumber','remarks']
   /* eslint-enable */
 
   const validate = (property, value, shouldNotValidate) => {
-    if (!shouldNotValidate) {
+    if (!ignoredFields.includes(property)) {
       if (!value) {
         return formErrors.empty;
       }
-
-      if (property === 'sex') {
-        return;
-      }
-      if (property === 'phoneNumber' && !value) return;
+      if (property.includes('file')) return;
 
       if (!validators[property].test(value)) {
         return formErrors[property];
@@ -40,6 +39,7 @@ const formErrors = {
   email: errorsText.email,
   phoneNumber: errorsText.phoneNumber,
   firstName: errorsText.firstName,
+  birthdate: errorsText.birthdate,
   lastName: errorsText.lastName,
   message: errorsText.message,
 };

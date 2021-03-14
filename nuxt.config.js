@@ -71,7 +71,6 @@ export default {
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
 
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},

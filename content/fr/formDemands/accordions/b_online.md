@@ -6,7 +6,7 @@ title : Envoi en ligne
 
 2. Compléter le formulaire
 3. Glisser dans la boîte d’envoi le formulaire de demande complété et tous les documents nécessaires
-4. Compléter les rubriques ci-dessous, le format de date accepté est  JJ-MM-AAAA
+4. Compléter les rubriques ci-dessous, le format de date accepté est  JJ.MM.AAAA
 5. Envoyer.
 
 Pour valider la demande, il faut :

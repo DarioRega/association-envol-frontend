@@ -4,10 +4,10 @@ export default (context, inject) => {
     if (typeOfForm === 'contact') {
       return [
         {
-          id: 'sex',
+          id: 'gender',
           type: 'select',
           isOptional: false,
-          placeholder: i18n.t('formLabels.sex'),
+          placeholder: i18n.t('formLabels.gender'),
           options: [
             {
               value: i18n.t('formLabels.mister'),
@@ -52,10 +52,10 @@ export default (context, inject) => {
 
     return [
       {
-        id: 'sex',
+        id: 'gender',
         type: 'select',
         isOptional: false,
-        placeholder: i18n.t('formLabels.sex'),
+        placeholder: i18n.t('formLabels.gender'),
         options: [
           {
             value: i18n.t('formLabels.mister'),
@@ -86,7 +86,7 @@ export default (context, inject) => {
       {
         id: 'remarks',
         type: 'textarea',
-        isOptional: false,
+        isOptional: true,
         placeholder: i18n.t('formLabels.remarks'),
       },
       {
