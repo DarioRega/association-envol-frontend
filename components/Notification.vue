@@ -2,7 +2,7 @@
   <div
     v-show="isVisible"
     :style="{ zIndex: 999999, maxWidth: '1400px', margin: '0 auto' }"
-    class="fixed inset-0 flex items-end justify-center px-4 xl:px-0 pb-16 md:pb-0 md:pt-16 lg:pt-32 xl:pt-40 pointer-events-none sm:p-6 sm:items-start sm:justify-end"
+    class="fixed inset-0 flex items-start justify-center px-6 md:px-10 xl:px-0 pt-32 xl:pt-40 pointer-events-none sm:justify-end"
   >
     <transition
       enter-active-class="transform ease-out duration-300 transition"

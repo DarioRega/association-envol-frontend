@@ -76,7 +76,7 @@ export default {
       isLoading: false,
       shouldShowNotification: true,
       notification: {
-        type: 'success',
+        type: 'error',
         message: '<p>test message<p>',
       },
     };
