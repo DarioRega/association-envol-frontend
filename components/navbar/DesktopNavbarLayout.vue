@@ -1,7 +1,7 @@
 <template>
-  <nav class="shadow w-full relative h-32" :style="{ zIndex: 888 }">
+  <nav class="shadow w-full relative h-32">
     <div
-      class="max-w-7xl h-full w-full mx-auto px-6 md:px-10 xl:px-0 transition-color duration-1000"
+      class="max-w-7xl h-full w-full mx-auto px-6 lg:px-10 2xl:px-0 transition-color duration-1000"
       :style="{ maxWidth: '1400px', margin: '0 auto' }"
     >
       <div

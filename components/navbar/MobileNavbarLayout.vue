@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full h-24 lg:h-32 relative" :style="{ zIndex: 888 }">
+  <nav class="w-full h-24 lg:h-32 relative">
     <div class="h-full">
       <transition
         enter-active-class="ease-in-out duration-100"

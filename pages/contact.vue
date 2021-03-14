@@ -1,7 +1,11 @@
 <template>
   <section class="page-spacer">
     <container>
-      <page-header :title="$t('contactUs')" />
+      <page-header
+        :title="$t('contactUs')"
+        page-category="contact"
+        class="md:mt-10 lg:my-16 xl:my-20 2xl:my-24"
+      />
     </container>
     <section class="bg-white">
       <container>

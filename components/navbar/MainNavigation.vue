@@ -3,24 +3,24 @@
     class="flex items-start mt-12 lg:mt-0 md:items-center lg:items-center justify-center xl:block lg:h-full"
   >
     <!--    MOBILE -->
-    <div class="xl:hidden flex-col w-full md:-mt-24 lg:-mt-32">
+    <div class="xl:hidden flex-col w-full sm:mt-12 lg:-mt-32">
       <ul class="xl:hidden text-center">
         <li
           v-for="link in navigationLinks"
           :key="`${link.slug}-${generateRandomKey}`"
-          class="text-brand-dark-blue"
+          class="text-brand-dark-blue mb-6"
         >
           <nuxt-link
             :to="link.slug"
-            exact-active-class="font-semibold underline"
-            class="text-current font-medium text-state-white inline-block my-4 no-underline focus:outline-none transition duration-150 ease-in-out"
+            exact-active-class="font-bold underline"
+            class="text-current font-semibold text-state-white inline-block my-4 no-underline focus:outline-none transition duration-150 ease-in-out"
             @click.native="$emit('closeMenu')"
           >
             {{ link.name }}
           </nuxt-link>
         </li>
       </ul>
-      <div class="xl:hidden mt-8 w-full text-center">
+      <div class="xl:hidden mt-8 pt-6 w-full text-center">
         <donate-envol />
       </div>
     </div>
@@ -34,8 +34,8 @@
       >
         <nuxt-link
           :to="link.slug"
-          exact-active-class="font-semibold text-brand-dark-blue"
-          class="hover-link font-medium lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
+          exact-active-class="font-bold text-brand-dark-blue"
+          class="hover-link font-semibold lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
         >
           {{ link.name }}
         </nuxt-link>

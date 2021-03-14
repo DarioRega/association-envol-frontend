@@ -109,9 +109,6 @@ export default {
     isOpen(id) {
       return this.currentOpenAccordion === id;
     },
-    handleMobileSuccess() {
-      this.currentOpenAccordion = this.list.length;
-    },
   },
 };
 </script>
