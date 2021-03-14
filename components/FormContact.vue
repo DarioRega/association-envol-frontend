@@ -29,7 +29,7 @@
           data-aos-offset="-500"
         >
           <button class="button-primary focus:outline-none" type="submit">
-            {{ $t('send') }}
+            {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
         <span
@@ -40,11 +40,7 @@
           data-aos-delay="1300"
           data-aos-offset="-500"
         >
-          <button
-            class="button-primary focus:outline-none"
-            type="submit"
-            :is-loading="isLoading"
-          >
+          <button class="button-primary focus:outline-none" type="submit">
             {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
@@ -112,15 +108,14 @@ export default {
       this.formValues[propertyName] = value;
     },
     handleSubmit() {
-      // if (!this.validateFormValues()) {
-      //   return;
-      // }
+      if (!this.validateFormValues()) {
+        return;
+      }
       this.isLoading = true;
       if (this.typeOfForm === 'contact') {
         this.$axios
           .post(API_URL.CONTACT, this.formValues)
           .then((res) => {
-            console.log('RES =>', res);
             this.handleSuccess(res.data.message);
           })
           .catch((err) => this.handleError(err.response.data.message))
@@ -133,23 +128,35 @@ export default {
       const formData = new FormData();
       Object.keys(this.formValues).forEach((property) => {
         if (property === 'files') {
-          formData.append('files[]', this.formValues[property]);
+          this.formValues[property].forEach((file, index) => {
+            formData.append(`files[${index}]`, file);
+          });
         } else {
           formData.append(property, this.formValues[property]);
         }
       });
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Accept: '*',
+        },
+      };
       this.$axios
-        .post(API_URL.SCHOLARSHIP, formData)
-        .then((response) => this.handleSuccess(response.data.message))
-        .catch((err) => this.handleError(err.response.data.message))
+        .post(API_URL.SCHOLARSHIP, formData, config)
+        .then(() => this.$emit('onSuccess'))
+        .catch((err) => {
+          let errMessage = err.response.data.message;
+          if (err.response.status === 422) {
+            errMessage = '<p>Un ou plusieurs champs sont invalides</p>';
+          }
+          this.handleError(errMessage);
+        })
         .finally(() => (this.isLoading = false));
     },
     handleSuccess(successMessage) {
-      console.log('successMessage', successMessage);
       this.formValues = {};
       this.formKey = Math.floor(Math.random() * Math.floor(9999));
       this.shouldShowNotification = true;
-      // TODO HANDLE SUCCESS
       this.notification = {
         type: 'success',
         message:
@@ -158,7 +165,6 @@ export default {
       };
     },
     handleError(errMessage) {
-      // TODO HANDLE ERROR
       this.shouldShowNotification = true;
       this.notification = {
         type: 'error',

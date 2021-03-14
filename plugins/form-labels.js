@@ -58,10 +58,12 @@ export default (context, inject) => {
         placeholder: i18n.t('formLabels.gender'),
         options: [
           {
-            value: i18n.t('formLabels.mister'),
+            value: 2,
+            placeholder: i18n.t('formLabels.mister'),
           },
           {
-            value: i18n.t('formLabels.miss'),
+            value: 1,
+            placeholder: i18n.t('formLabels.miss'),
           },
         ],
       },

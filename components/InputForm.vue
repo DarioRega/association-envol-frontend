@@ -64,7 +64,7 @@
       >
         <select
           :id="field.id"
-          v-model="value"
+          v-model="field.options[0].value"
           :name="field.id"
           :class="error && 'has-error'"
           class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
@@ -75,7 +75,7 @@
             :key="option.value"
             :value="option.value"
           >
-            {{ option.value }}
+            {{ option.placeholder }}
           </option>
         </select>
       </div>

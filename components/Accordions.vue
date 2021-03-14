@@ -46,7 +46,29 @@
             <nuxt-content v-else :document="item" class="outside-list" />
             <div v-if="item.isBourseForm">
               <div class="md:p-8 md:bg-white md:rounded-md">
-                <form-contact type-of-form="bourse" />
+                <transition-expand>
+                  <form-contact
+                    v-show="!isFormSubmitted"
+                    type-of-form="bourse"
+                    @onSuccess="isFormSubmitted = true"
+                  />
+                </transition-expand>
+                <div v-show="isFormSubmitted">
+                  <div
+                    class="max-w-2xl w-full bg-white rounded-md overflow-hidden"
+                  >
+                    <div class="flex items-start justify-center p-4">
+                      <icon
+                        name="success"
+                        size="100"
+                        class="text-brand-success mr-5"
+                      />
+                      <p class="flex-1 font-medium">
+                        {{ $t('requestSent') }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </accordion-content>
@@ -59,9 +81,10 @@
 <script>
 import AccordionContent from '@/components/AccordionContent';
 import FormContact from '@/components/FormContact';
+import TransitionExpand from '@/components/TransitionExpand';
 export default {
   name: 'Accordions',
-  components: { FormContact, AccordionContent },
+  components: { TransitionExpand, FormContact, AccordionContent },
   props: {
     list: {
       type: Array,
@@ -70,11 +93,11 @@ export default {
   },
   data() {
     return {
+      isFormSubmitted: false,
       currentOpenAccordion: null,
     };
   },
   mounted() {
-    console.log('THIS LIST', this.list);
     this.currentOpenAccordion = this.list[0].id;
   },
   methods: {
@@ -85,6 +108,9 @@ export default {
     },
     isOpen(id) {
       return this.currentOpenAccordion === id;
+    },
+    handleMobileSuccess() {
+      this.currentOpenAccordion = this.list.length;
     },
   },
 };
