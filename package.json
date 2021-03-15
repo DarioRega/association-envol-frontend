@@ -21,6 +21,7 @@
   "dependencies": {
     "@nuxt/content": "^1.5.0",
     "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/svg-sprite": "^0.4.12",
     "animated-number-vue": "^1.0.0",
     "aos": "^2.3.4",
