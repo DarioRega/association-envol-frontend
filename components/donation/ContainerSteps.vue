@@ -1,6 +1,5 @@
 <template>
-  <section class="w-full max-w-6xl bg-white rounded-md shadow-md">
-    <slot name="stateDonation" />
+  <section class="w-full bg-white rounded-md shadow-md">
     <div
       class="rounded-t-md bg-brand-dark-blue h-20 md:h-16 lg:h-24 flex items-center justify-center px-5 lg:px-12"
     >

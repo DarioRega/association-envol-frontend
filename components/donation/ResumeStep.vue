@@ -1,30 +1,34 @@
 <template>
   <div>
-    <p class="font-semibold text-md md:text-lg text-brand-dark-blue">
-      Récapitulatif
-    </p>
+    <p class="font-semibold text-brand-dark-blue">Récapitulatif</p>
     <div clas="flex flex-wrap">
       <p class="inline-flex flex-none">Montant du don sélectionné :</p>
-      <p class="inline-flex font-medium">{{ selectedAmount.amount }} CHF</p>
+      <p class="inline-flex font-semibold">
+        {{
+          selectedAmount.id
+            ? selectedAmount.amount / 100
+            : selectedAmount.amount
+        }}
+        CHF
+      </p>
     </div>
     <div clas="flex flex-wrap">
       <p class="inline-flex flex-none">Récurrence :</p>
-      <p class="inline-flex font-medium">{selectedInterval.interval}</p>
+      <p class="inline-flex font-semibold">{{ selectedInterval.name }}</p>
     </div>
-    <div
-      v-if="customer.company_name && isDonationFromCompany"
-      clas="flex flex-wrap"
-    >
+    <div v-if="company_name && isDonationFromCompany" clas="flex flex-wrap">
       <p class="inline-flex flex-none">Entreprise de référence :</p>
-      <p class="inline-flex font-medium">{{ customer.company_name }}</p>
-    </div>
-    <div clas="flex flex-wrap">
-      <p class="inline-flex flex-none">Email :</p>
-      <p class="inline-flex font-medium">{{ customer.email }}</p>
+      <p class="inline-flex font-semibold">{{ company_name }}</p>
     </div>
     <div v-if="commentary && hasCommentary" clas="flex flex-wrap">
       <p class="inline-flex flex-none">Commentaire :</p>
-      <p class="inline-flex font-medium">{{ commentary }}</p>
+      <p class="inline-flex font-semibold">{{ commentary }}</p>
+    </div>
+    <div class="mt-4">
+      <p>
+        En cliquant sur le bouton <i>Procéder au don</i>, vous allez être
+        redirigé vers une <b>plateforme sécurisée</b> pour le paiement.
+      </p>
     </div>
   </div>
 </template>
@@ -41,13 +45,13 @@ export default {
       type: Object,
       required: true,
     },
-    customer: {
-      type: Object,
-      required: true,
-    },
     commentary: {
       type: String,
-      required: true,
+      required: false,
+    },
+    company_name: {
+      type: String,
+      required: false,
     },
     hasCommentary: {
       type: Boolean,

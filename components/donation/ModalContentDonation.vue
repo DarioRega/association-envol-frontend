@@ -1,5 +1,5 @@
 <template>
-  <section class="relative px-4 flex justify-center items-center">
+  <section class="relative flex justify-center items-center">
     <container-steps class="relative">
       <!--      <template v-slot:stateDonation>-->
       <!--        <donation-feedback v-if="isSubmitting || hasFeedback" />-->
@@ -18,8 +18,8 @@
               :has-commentary="hasCommentary"
               :errors="errors"
               :is-donation-from-company="isDonationFromCompany"
-              @onAmountSelect="selectedAmount = $event"
-              @onIntervalSelect="selectedInterval = $event"
+              @onAmountSelect="handleSelectAmount"
+              @onIntervalSelect="handleSelectInterval"
               @onHasCommentary="hasCommentary = $event"
               @onCommentary="commentary = $event"
               @onCustomAmount="handleCustomAmount"
@@ -42,14 +42,15 @@
         <form-stepper
           :current-step="currentStep.number"
           :total-steps="steps.length"
-          class="px-5 lg:px-0 pb-10 max-w-lg lg:max-w-md mx-auto w-full flex space-between"
+          class="px-5 lg:px-0 pb-10 max-w-lg lg:max-w-xl mx-auto w-full flex space-between"
           @onNextStep="validateCurrentStepToNext"
           @onPreviousStep="previousStep"
         >
           <button
-            class="p-2 text-md md:text-lg outline-none focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
+            class="p-4 outline-none focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
+            @click="handleSubmit"
           >
-            Faire le don
+            Procéder au don
           </button>
         </form-stepper>
       </template>
@@ -58,9 +59,6 @@
 </template>
 
 <script>
-// import StepPayment from '@/components/donation/StepPayment';
-// import DonationFeedback from '@/components/donation/DonationFeedback';
-// import StepCustomerInfo from '@/components/donation/StepCustomerInfo';
 import FormStepper from '@/components/donation/FormStepper';
 import WrapperSteps from '@/components/donation/WrapperSteps';
 import ContainerSteps from '@/components/donation/ContainerSteps';
@@ -95,14 +93,23 @@ export default {
       type: Array,
       default: () => [],
     },
+    selectedAmount: {
+      type: Object,
+      default: () => {},
+    },
+    selectedInterval: {
+      type: Object,
+      default: () => {},
+    },
+    customAmount: {
+      type: [Number, null],
+      default: null,
+    },
   },
   data() {
     return {
       steps,
       currentStep: {},
-      selectedAmount: {},
-      selectedInterval: {},
-      customAmount: null,
       hasCommentary: false,
       isDonationFromCompany: false,
       company_name: '',
@@ -120,9 +127,6 @@ export default {
       if (this.currentStep.name === 'main') {
         if (!this.isMainStepValid()) return;
       }
-      // if (this.currentStep.name === 'customer-info') {
-      //   if (!this.areCustomerDetailsValids()) return;
-      // }
       this.nextStep();
     },
     nextStep() {
@@ -137,10 +141,16 @@ export default {
       );
       this.currentStep = previousStep;
     },
+    handleSelectAmount(value) {
+      this.$emit('onSelectAmount', value);
+    },
+    handleSelectInterval(value) {
+      this.$emit('onSelectInterval', value);
+    },
     handleCustomAmount(value) {
       const amount = parseInt(value);
-      this.customAmount = amount;
-      this.selectedAmount = { id: null, amount };
+      this.$emit('onSelectAmount', { id: null, amount });
+      this.$emit('onCustomAmount', amount);
     },
     isMainStepValid() {
       const errors = [];
@@ -163,12 +173,8 @@ export default {
       this.errors = errors;
       return errors.length < 1;
     },
-    handleCustomerInfoChange(evt, fieldKey) {
-      this.customer[fieldKey] = evt.target.value;
-    },
-    handleSubmit(evt) {
-      console.log('submit', evt);
-      // this.processPayment();
+    handleSubmit() {
+      this.$emit('handleSubmit');
     },
   },
 };
