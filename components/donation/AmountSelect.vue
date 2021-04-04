@@ -3,10 +3,10 @@
     <div
       v-for="item in options"
       :key="item.id"
-      class="border-2 h-12 md:h-16 lg:h-20 flex items-center justify-center px-3 md:px-4 lg:px-8 cursor-pointer rounded-md"
+      class="border-2 h-16 lg:h-20 flex items-center justify-center px-3 md:px-4 lg:px-8 cursor-pointer rounded-md"
       :class="[
         selectedOption.id === item.id
-          ? 'shadow-md text-white bg-brand-dark-blue border-brand-dark-blue'
+          ? 'text-white bg-brand-dark-blue border-brand-dark-blue'
           : 'text-brand-carbon border-brand-variant-main-gray bg-white',
       ]"
       @click="$emit('click', item)"
