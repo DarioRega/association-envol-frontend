@@ -1,14 +1,27 @@
 <template>
   <section>
     <container>
-      Hello envol donation
-      <button class="btn button-primary" @click="isModalOpen = true">
-        Toggle donation
-      </button>
+      <div class="text-center lg:flex lg:flex-row-reverse">
+        <flying-birds
+          class="md:w-full md:max-w-4xl mx-auto lg:w-7/12 lg:pl-8 2xl:pl-6 2xl:w-7/12"
+        />
+        <div class="lg:w-5/12 2xl:w-5/12 lg:text-right">
+          <h1 class="font-bold uppercase -mb-6 mt-4">Soutenir envol</h1>
+          <nuxt-content :document="intro" class="font-medium" />
+        </div>
+      </div>
+      <div class="text-center lg:text-left pt-4 lg:pt-0 lg:-mt-16">
+        <h4 class="lg:mb-6">{{ $t('helpEnvol.butWeStillNeedYou') }}</h4>
+        <button class="btn button-primary" @click="isModalOpen = true">
+          {{ $t('helpEnvol.donateNow') }}
+        </button>
+      </div>
     </container>
     <container>
+      <nuxt-content :document="informations" class="font-medium" />
+    </container>
+    <container v-show="isModalOpen">
       <modal
-        v-show="isModalOpen"
         :is-modal-open="isModalOpen"
         :fluid="true"
         @closeModal="isModalOpen = false"
@@ -31,35 +44,60 @@
 
 <script>
 import { loadStripe } from '@stripe/stripe-js';
+import { v4 as uuidv4 } from 'uuid';
 import ModalContentDonation from '@/components/donation/ModalContentDonation';
 import Container from '@/components/containers/Container';
 import Modal from '@/components/Modal';
+import FlyingBirds from '@/components/FlyingBirds';
+
 const BACK_URL = process.env.BACK_URL;
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
 
 // TODO make fields of form disabled when payment processing (this.paymentProcessing) is active
 export default {
   name: 'SoutenirEnvol',
-  components: { Modal, Container, ModalContentDonation },
+  components: { FlyingBirds, Modal, Container, ModalContentDonation },
   layout: 'helpEnvol',
+  async asyncData({ $getContent, error }) {
+    try {
+      const intro = await $getContent('donate/intro');
+      const informations = await $getContent('donate/informations');
+      return { intro, informations };
+    } catch (err) {
+      error({
+        statusCode: 404,
+        message: 'Page could not be found',
+      });
+    }
+  },
   data() {
     return {
+      intro: {},
+      informations: {},
       stripe: undefined,
       isModalOpen: false,
       customAmount: null,
-      targetProcess: 'subscription',
       amounts: [],
       intervals: [],
       metadata: [],
       selectedAmount: {},
       selectedInterval: {},
+      donationState: '',
+      sessionId: '',
     };
   },
+  watch: {
+    data(newValue, oldValue) {},
+  },
   async mounted() {
+    const sessionId = sessionStorage.getItem('sessionId');
+    if (sessionId) {
+      this.sessionId = sessionId;
+    }
+
     this.stripe = await stripePromise;
 
     this.$axios.get(`${BACK_URL}/products/metadata`).then((res) => {
-      console.log('res.data', res.data);
       const { amounts, intervals } = res.data;
       this.amounts = amounts;
       this.intervals = intervals;
@@ -69,21 +107,15 @@ export default {
   },
   updated() {
     const query = new URLSearchParams(window.location.search);
-    if (query.get('success')) {
+    if (query.get('success') && query.get('session') === this.sessionId) {
       this.donationState = 'success';
     }
-    if (query.get('canceled')) {
+    if (query.get('canceled') && query.get('session') === this.sessionId) {
       this.donationState = 'canceled';
-      console.log(
-        "Order canceled -- continue to shop around and checkout when you're ready."
-      );
     }
   },
   methods: {
     async handleSubmit() {
-      // check if custom amount
-      // let price;
-      // if (!this.selectedAmount.id) {
       const { data } = await this.$axios.post(
         `${BACK_URL}/products/prices/findOrCreate`,
         {
@@ -99,20 +131,23 @@ export default {
       this.processPayment(data);
     },
     async processPayment(price) {
-      console.log('price process', price);
+      const sessionId = uuidv4();
+      sessionStorage.setItem('sessionId', sessionId);
+
       const stripe = await stripePromise;
       const { data } = await this.$axios.post(
         `${process.env.BACK_URL}/donate/session`,
         {
           price,
+          sessionId,
         }
       );
-
       const result = await stripe.redirectToCheckout({
         sessionId: data.id,
       });
       if (result.error) {
         console.log('error', result.error.message);
+        this.donationState = 'error';
         // If `redirectToCheckout` fails due to a browser or network
         // error, display the localized error message to your customer
         // using `result.error.message`.

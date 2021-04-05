@@ -129,7 +129,9 @@
     "slug": "soutenir-envol",
     "backToHome": "Revenir à l'accueil",
     "helpUs": "Soutenir Envol",
-    "donateNow": "Faites un don en ligne maintenant :",
-    "thanksForYourSupport": "Merci de votre soutien"
+    "donateNow": "Faire un don en ligne",
+    "thanksForYourSupport": "Merci de votre soutien",
+    "butWeStillNeedYou": "Mais nous avons toujours besoin de vous !"
+
   }
 }
