@@ -1,6 +1,6 @@
 <template>
   <section class="relative flex justify-center items-center">
-    <container-steps class="relative">
+    <container-steps class="relative" @closeModal="$emit('closeModal')">
       <template v-slot:form>
         <wrapper-steps>
           <form class="form-donation">

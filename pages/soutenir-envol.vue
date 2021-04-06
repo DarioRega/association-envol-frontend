@@ -30,7 +30,12 @@
         :fluid="true"
         @closeModal="isModalOpen = false"
       >
+        <modal-content-donation-success
+          v-if="donationState === 'success'"
+          @closeModal="isModalOpen = false"
+        />
         <modal-content-donation
+          v-else
           :amounts="amounts"
           :intervals="intervals"
           :selected-payment-method="selectedPaymentMethod"
@@ -38,6 +43,7 @@
           :selected-amount="selectedAmount"
           :selected-interval="selectedInterval"
           @handleSubmit="handleSubmit"
+          @closeModal="isModalOpen = false"
           @onSelectInterval="selectedInterval = $event"
           @onSelectPaymentMethod="selectedPaymentMethod = $event"
           @onCustomAmount="customAmount = $event"
@@ -55,6 +61,7 @@ import ModalContentDonation from '@/components/donation/ModalContentDonation';
 import Container from '@/components/containers/Container';
 import Modal from '@/components/Modal';
 import FlyingBirds from '@/components/FlyingBirds';
+import ModalContentDonationSuccess from '@/components/donation/ModalContentDonationSuccess';
 
 const BACK_URL = process.env.BACK_URL;
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
@@ -62,7 +69,13 @@ const stripePromise = loadStripe(process.env.STRIPE_KEY);
 // TODO make fields of form disabled when payment processing (this.paymentProcessing) is active
 export default {
   name: 'SoutenirEnvol',
-  components: { FlyingBirds, Modal, Container, ModalContentDonation },
+  components: {
+    ModalContentDonationSuccess,
+    FlyingBirds,
+    Modal,
+    Container,
+    ModalContentDonation,
+  },
   layout: 'helpEnvol',
   async asyncData({ $getContent, error }) {
     try {
@@ -81,7 +94,7 @@ export default {
       intro: {},
       informations: {},
       stripe: undefined,
-      isModalOpen: false,
+      isModalOpen: true,
       customAmount: null,
       amounts: [],
       intervals: [],
@@ -98,7 +111,6 @@ export default {
   },
   async mounted() {
     this.verifyIfDonationRedirect();
-
     this.stripe = await stripePromise;
 
     this.$axios.get(`${BACK_URL}/products/metadata`).then((res) => {
@@ -109,49 +121,38 @@ export default {
       this.selectedAmount = amounts[0];
     });
   },
-  // updated() {
-  //   const query = new URLSearchParams(window.location.search);
-  //   if (query.get('success') && query.get('session') === this.sessionId) {
-  //     this.donationState = 'success';
-  //   }
-  //   if (query.get('canceled') && query.get('session') === this.sessionId) {
-  //     this.donationState = 'canceled';
-  //   }
-  // },
   methods: {
     verifyIfDonationRedirect() {
       let donation = sessionStorage.getItem('donation');
       if (donation) {
         donation = JSON.parse(donation);
         this.sessionId = donation.sessionId;
+
         if (!donation.isThankYouEmailSent) {
-          console.log('WILL SEND EMAIL');
           const query = new URLSearchParams(window.location.search);
           if (
             query.get('success') &&
             query.get('session') === donation.sessionId
           ) {
             this.donationState = 'success';
+            this.isModalOpen = true;
+
             this.$axios
               .post(`${BACK_URL}/donate/thankYou`, donation)
               .then((res) => console.log('response', res));
 
             donation.isThankYouEmailSent = true;
-
             sessionStorage.setItem('donation', JSON.stringify(donation));
             this.autoDestructDonationSessionStorage();
-          }
-          if (
-            query.get('canceled') &&
-            query.get('session') === donation.sessionId
-          ) {
-            this.donationState = 'canceled';
+          } else {
+            this.donationState = '';
           }
         }
+      } else {
+        this.donationState = '';
       }
     },
     autoDestructDonationSessionStorage() {
-      console.log('timer');
       setTimeout(() => {
         sessionStorage.removeItem('donation');
       }, 300000);
