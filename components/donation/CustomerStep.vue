@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul v-show="errors.length > 0" class="mb-16">
+    <ul v-show="errors.length > 0" class="mb-10 mt-6">
       <li
         v-for="error in errors"
         :key="error"
@@ -9,7 +9,7 @@
         {{ error }}
       </li>
     </ul>
-    <h5 class="font-medium text-brand-dark-blue mb-20">
+    <h5 class="font-medium text-brand-dark-blue mb-20 lg:mt-6">
       Informations personnelles
     </h5>
 
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <div class="single-input-container lg:ml-8">
+      <div class="single-input-container mt-16 lg:mt-0 lg:ml-8">
         <label for="email" class="sr-only">Email</label>
         <div
           class="flex items-center absolute w-full"
@@ -214,12 +214,15 @@ export default {
 <style lang="scss" scoped>
 .single-input-container {
   @apply w-full relative;
-  &:not(:first-child) {
-    @apply mt-16;
+  &.full-size {
+    @apply mt-12;
   }
   @screen lg {
     &:not(.full-size) {
       @apply w-1/2;
+    }
+    &:nth-child(2) {
+      @apply mt-0;
     }
   }
   @screen 2xl {

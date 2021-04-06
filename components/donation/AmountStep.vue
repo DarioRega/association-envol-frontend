@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul v-show="errors.length > 0" class="mb-16">
+    <ul v-show="errors.length > 0" class="mb-10 mt-6">
       <li
         v-for="error in errors"
         :key="error"
@@ -52,11 +52,6 @@
     <label
       v-if="selectedAmount.amount === customAmount && customAmount < 10"
       class="caption-sm pt-2"
-      :class="
-        errors.includes('customAmount')
-          ? 'text-brand-error'
-          : 'text-brand-carbon'
-      "
       >Les dons minimaux sont de 10 CHF</label
     >
   </section>

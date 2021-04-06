@@ -1,8 +1,8 @@
 <template>
   <div>
     <h5 class="font-medium text-brand-dark-blue mb-20">Récapitulatif</h5>
-    <div clas="flex flex-wrap">
-      <p class="inline-flex flex-none">Montant du don sélectionné :</p>
+    <div class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Montant du don sélectionné :</p>
       <p class="inline-flex font-semibold">
         {{
           selectedAmount.id
@@ -12,16 +12,24 @@
         CHF
       </p>
     </div>
-    <div clas="flex flex-wrap">
-      <p class="inline-flex flex-none">Récurrence :</p>
+    <div class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Récurrence :</p>
       <p class="inline-flex font-semibold">{{ selectedInterval.name }}</p>
     </div>
-    <div v-if="company_name && isDonationFromCompany" clas="flex flex-wrap">
-      <p class="inline-flex flex-none">Entreprise de référence :</p>
+    <div class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Personne de référence :</p>
+      <p class="inline-flex font-semibold">{{ full_name }}</p>
+    </div>
+    <div class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Email :</p>
+      <p class="inline-flex font-semibold">{{ email }}</p>
+    </div>
+    <div v-if="company_name && isDonationFromCompany" class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Entreprise de référence :</p>
       <p class="inline-flex font-semibold">{{ company_name }}</p>
     </div>
-    <div v-if="commentary && hasCommentary" clas="flex flex-wrap">
-      <p class="inline-flex flex-none">Commentaire :</p>
+    <div v-if="commentary && hasCommentary" class="flex flex-wrap">
+      <p class="inline-flex flex-none mr-2">Commentaire :</p>
       <p class="inline-flex font-semibold">{{ commentary }}</p>
     </div>
     <div class="mt-4">
@@ -52,6 +60,14 @@ export default {
     company_name: {
       type: String,
       required: false,
+    },
+    full_name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
     },
     hasCommentary: {
       type: Boolean,

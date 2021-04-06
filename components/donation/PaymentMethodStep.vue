@@ -4,9 +4,11 @@
       Méthode de paiement
     </h5>
     <div class="flex flex-col lg:flex-row lg:justify-between items-stretch">
-      <div class="w-full lg:w-1/2 lg:pr-6 border-r">
+      <div
+        class="w-full lg:w-1/2 pb-4 lg:pb-0 lg:pr-6 border-b lg:border-b-0 lg:border-r"
+      >
         <button
-          class="method-container h-full"
+          class="method-container py-20 h-full"
           :class="selectedPaymentMethod === 'paypal' && 'selected'"
           @click="handlePaymentMethodClick($event, 'paypal')"
         >
@@ -16,9 +18,11 @@
           />
         </button>
       </div>
-      <div class="w-full lg:w-1/2 lg:pl-6 border-l">
+      <div
+        class="w-full lg:w-1/2 pt-4 lg:pt-0 lg:pl-6 border-t lg:border-t-0 lg:border-l"
+      >
         <button
-          class="method-container"
+          class="method-container py-14 lg:py-20"
           :class="selectedPaymentMethod === 'stripe' && 'selected'"
           @click="handlePaymentMethodClick($event, 'stripe')"
         >
@@ -36,12 +40,12 @@
             <div class="flex justify-center items-center w-full">
               <img
                 src="~/assets/images/apple-pay-logo.png"
-                class="w-24 my-4 lg:mr-4"
+                class="w-24 my-4 mr-4"
                 alt="apple pay"
               />
               <img
                 src="~/assets/images/gpay-logo.png"
-                class="w-24 my-4 lg:ml:4"
+                class="w-24 my-4 ml:4"
                 alt="google pay"
               />
             </div>
@@ -71,7 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .method-container {
-  @apply w-full rounded-md cursor-pointer flex items-center justify-center py-20 outline-none;
+  @apply w-full rounded-md cursor-pointer flex items-center justify-center  outline-none;
   &:hover {
     @apply bg-brand-variant-main-gray;
   }

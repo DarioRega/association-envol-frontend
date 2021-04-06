@@ -49,6 +49,8 @@
               :selected-interval="selectedInterval"
               :has-commentary="hasCommentary"
               :commentary="commentary"
+              :email="email"
+              :full_name="full_name"
               :is-donation-from-company="isDonationFromCompany"
               :company_name="company_name"
               class="w-full"
@@ -84,6 +86,12 @@ import ResumeStep from '@/components/donation/ResumeStep';
 import CustomerStep from '@/components/donation/CustomerStep';
 import AmountStep from '@/components/donation/AmountStep';
 import PaymentMethodStep from '@/components/donation/PaymentMethodStep';
+/* eslint-disable */
+//prettier-ignore
+const regex = {
+  email: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  full_name:/^([^0-9]*)$/,
+};
 
 const steps = [
   {
@@ -198,7 +206,19 @@ export default {
           errors.push('Les dons minimaux sont de 10 CHF.');
         }
       }
+
       if (step === 'customer') {
+        if (!this.full_name) {
+          errors.push('Le champs Nom et prénom est requis.');
+        } else if (!regex.full_name.test(this.full_name)) {
+          errors.push('Le nom et prénom sont invalides');
+        }
+        if (!this.email) {
+          errors.push('Le champs Email est requis.');
+        } else if (!regex.email.test(this.email)) {
+          errors.push("L'email est invalide");
+        }
+
         if (this.isDonationFromCompany && !this.company_name) {
           errors.push(
             "Le champs donations pour le compte d'une entreprise est requis."
