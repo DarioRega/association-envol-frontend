@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ul v-show="errors.length > 0" class="mb-10 mt-6">
+    <ul v-show="errors.length > 0" class="mb-10 mt-6 list-inside">
       <li
         v-for="error in errors"
         :key="error"

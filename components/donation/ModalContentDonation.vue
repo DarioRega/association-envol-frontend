@@ -67,7 +67,7 @@
           @onPreviousStep="previousStep"
         >
           <button
-            class="p-4 outline-none focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
+            class="p-4 outline-none leading-8 focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
             @click="handleSubmit"
           >
             Procéder au don
@@ -234,7 +234,14 @@ export default {
       return errors.length < 1;
     },
     handleSubmit() {
-      this.$emit('handleSubmit');
+      const data = {
+        full_name: this.full_name,
+        company_name: this.company_name,
+        commentary: this.commentary,
+        email: this.email,
+        payment_method: this.selectedPaymentMethod
+      }
+      this.$emit('handleSubmit', data);
     },
   },
 };

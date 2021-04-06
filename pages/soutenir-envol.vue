@@ -1,18 +1,22 @@
 <template>
   <section>
     <container>
-      <div class="text-center lg:flex lg:flex-row-reverse">
+      <div class="text-center lg:flex lg:flex-row-reverse lg:items-center">
         <flying-birds
           class="md:w-full md:max-w-4xl mx-auto lg:w-7/12 lg:pl-8 2xl:pl-6 2xl:w-7/12"
         />
-        <div class="lg:w-5/12 2xl:w-5/12 lg:text-right">
-          <h1 class="font-bold uppercase -mb-6 mt-4">Soutenir envol</h1>
-          <nuxt-content :document="intro" class="font-medium" />
+        <div class="lg:w-5/12 2xl:w-5/12 lg:text-right h-full">
+          <nuxt-content :document="intro" class="font-medium h-full" />
         </div>
       </div>
       <div class="text-center lg:text-left pt-4 lg:pt-0 3xl:-mt-16">
-        <h4 class="lg:mb-6">{{ $t('helpEnvol.butWeStillNeedYou') }}</h4>
-        <button class="btn button-primary" @click="isModalOpen = true">
+        <h5 class="lg:mb-6 hidden lg:block">
+          {{ $t('helpEnvol.butWeStillNeedYou') }}
+        </h5>
+        <button
+          class="btn button-primary font-semibold lg:mt-6 focus:outline-none"
+          @click="isModalOpen = true"
+        >
           {{ $t('helpEnvol.donateNow') }}
         </button>
       </div>
@@ -93,10 +97,7 @@ export default {
     data(newValue, oldValue) {},
   },
   async mounted() {
-    const sessionId = sessionStorage.getItem('sessionId');
-    if (sessionId) {
-      this.sessionId = sessionId;
-    }
+    this.verifyIfDonationRedirect();
 
     this.stripe = await stripePromise;
 
@@ -108,17 +109,54 @@ export default {
       this.selectedAmount = amounts[0];
     });
   },
-  updated() {
-    const query = new URLSearchParams(window.location.search);
-    if (query.get('success') && query.get('session') === this.sessionId) {
-      this.donationState = 'success';
-    }
-    if (query.get('canceled') && query.get('session') === this.sessionId) {
-      this.donationState = 'canceled';
-    }
-  },
+  // updated() {
+  //   const query = new URLSearchParams(window.location.search);
+  //   if (query.get('success') && query.get('session') === this.sessionId) {
+  //     this.donationState = 'success';
+  //   }
+  //   if (query.get('canceled') && query.get('session') === this.sessionId) {
+  //     this.donationState = 'canceled';
+  //   }
+  // },
   methods: {
-    async handleSubmit() {
+    verifyIfDonationRedirect() {
+      let donation = sessionStorage.getItem('donation');
+      if (donation) {
+        donation = JSON.parse(donation);
+        this.sessionId = donation.sessionId;
+        if (!donation.isThankYouEmailSent) {
+          console.log('WILL SEND EMAIL');
+          const query = new URLSearchParams(window.location.search);
+          if (
+            query.get('success') &&
+            query.get('session') === donation.sessionId
+          ) {
+            this.donationState = 'success';
+            this.$axios
+              .post(`${BACK_URL}/donate/thankYou`, donation)
+              .then((res) => console.log('response', res));
+
+            donation.isThankYouEmailSent = true;
+
+            sessionStorage.setItem('donation', JSON.stringify(donation));
+            this.autoDestructDonationSessionStorage();
+          }
+          if (
+            query.get('canceled') &&
+            query.get('session') === donation.sessionId
+          ) {
+            this.donationState = 'canceled';
+          }
+        }
+      }
+    },
+    autoDestructDonationSessionStorage() {
+      console.log('timer');
+      setTimeout(() => {
+        sessionStorage.removeItem('donation');
+      }, 300000);
+    },
+    async handleSubmit(customer) {
       const { data } = await this.$axios.post(
         `${BACK_URL}/products/prices/findOrCreate`,
         {
@@ -131,14 +169,20 @@ export default {
           selected_interval: this.selectedInterval,
         }
       );
-      this.processPayment(data);
+      this.processPayment(data, customer);
     },
-    async processPayment(price) {
+    async processPayment(price, customer) {
       const sessionId = uuidv4();
-      const donation = {};
+      const donation = {
+        sessionId,
+        amount: this.selectedAmount.amount,
+        interval: this.selectedInterval.name,
+        isThankYouEmailSent: false,
+        created_at: new Date(),
+        ...customer,
+      };
 
-      sessionStorage.setItem('sessionId', sessionId);
-      sessionStorage.setItem('donation', donation);
+      sessionStorage.setItem('donation', JSON.stringify(donation));
 
       const stripe = await stripePromise;
       const { data } = await this.$axios.post(

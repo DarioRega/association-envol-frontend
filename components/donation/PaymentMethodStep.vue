@@ -13,6 +13,7 @@
           @click="handlePaymentMethodClick($event, 'paypal')"
         >
           <img
+            class="w-56 lg:w-64"
             src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png"
             alt="PayPal"
           />
@@ -29,18 +30,18 @@
           <div class="w-full mx-auto text-center">
             <img
               src="~/assets/images/stripe-logo.png"
-              class="w-48 mx-auto"
+              class="w-32 lg:w-48 mx-auto"
               alt="stripe"
             />
             <img
               src="~/assets/images/amex-visa-mastercard-v2.png"
-              class="w-64 mx-auto"
+              class="w-56 lg:w-64 mx-auto"
               alt="credits-cards"
             />
             <div class="flex justify-center items-center w-full">
               <img
                 src="~/assets/images/apple-pay-logo.png"
-                class="w-24 my-4 mr-4"
+                class="w-20 my-4 mr-4"
                 alt="apple pay"
               />
               <img
