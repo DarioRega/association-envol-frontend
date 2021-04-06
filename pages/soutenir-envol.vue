@@ -94,7 +94,7 @@ export default {
       intro: {},
       informations: {},
       stripe: undefined,
-      isModalOpen: true,
+      isModalOpen: false,
       customAmount: null,
       amounts: [],
       intervals: [],
@@ -123,13 +123,14 @@ export default {
   },
   methods: {
     verifyIfDonationRedirect() {
+      const query = new URLSearchParams(window.location.search);
+
       let donation = sessionStorage.getItem('donation');
       if (donation) {
         donation = JSON.parse(donation);
         this.sessionId = donation.sessionId;
 
         if (!donation.isThankYouEmailSent) {
-          const query = new URLSearchParams(window.location.search);
           if (
             query.get('success') &&
             query.get('session') === donation.sessionId
@@ -139,11 +140,12 @@ export default {
 
             this.$axios
               .post(`${BACK_URL}/donate/thankYou`, donation)
-              .then((res) => console.log('response', res));
-
-            donation.isThankYouEmailSent = true;
-            sessionStorage.setItem('donation', JSON.stringify(donation));
-            this.autoDestructDonationSessionStorage();
+              .then((res) => {
+                donation.isThankYouEmailSent = true;
+                sessionStorage.setItem('donation', JSON.stringify(donation));
+                this.autoDestructDonationSessionStorage();
+                this.refreshModalDonation();
+              });
           } else {
             this.donationState = '';
           }
@@ -151,11 +153,24 @@ export default {
       } else {
         this.donationState = '';
       }
+
+      if (query.get('canceled')) {
+        sessionStorage.removeItem('donation');
+        this.$router.push('/soutenir-envol');
+        this.isModalOpen = false;
+        this.donationState = '';
+      }
     },
     autoDestructDonationSessionStorage() {
       setTimeout(() => {
         sessionStorage.removeItem('donation');
       }, 300000);
+    },
+    refreshModalDonation() {
+      setTimeout(() => {
+        this.isModalOpen = false;
+        this.donationState = '';
+      }, 5000);
     },
     async handleSubmit(customer) {
       const { data } = await this.$axios.post(
@@ -190,7 +205,8 @@ export default {
         `${process.env.BACK_URL}/donate/session`,
         {
           price,
-          sessionId,
+          client_session: sessionId,
+          email: customer.email,
         }
       );
       const result = await stripe.redirectToCheckout({
