@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="font-semibold text-brand-dark-blue">Récapitulatif</p>
+    <h5 class="font-medium text-brand-dark-blue mb-20">Récapitulatif</h5>
     <div clas="flex flex-wrap">
       <p class="inline-flex flex-none">Montant du don sélectionné :</p>
       <p class="inline-flex font-semibold">

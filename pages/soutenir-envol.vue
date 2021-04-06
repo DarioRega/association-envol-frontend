@@ -10,7 +10,7 @@
           <nuxt-content :document="intro" class="font-medium" />
         </div>
       </div>
-      <div class="text-center lg:text-left pt-4 lg:pt-0 lg:-mt-16">
+      <div class="text-center lg:text-left pt-4 lg:pt-0 3xl:-mt-16">
         <h4 class="lg:mb-6">{{ $t('helpEnvol.butWeStillNeedYou') }}</h4>
         <button class="btn button-primary" @click="isModalOpen = true">
           {{ $t('helpEnvol.donateNow') }}
@@ -29,11 +29,13 @@
         <modal-content-donation
           :amounts="amounts"
           :intervals="intervals"
+          :selected-payment-method="selectedPaymentMethod"
           :custom-amount="customAmount"
           :selected-amount="selectedAmount"
           :selected-interval="selectedInterval"
           @handleSubmit="handleSubmit"
           @onSelectInterval="selectedInterval = $event"
+          @onSelectPaymentMethod="selectedPaymentMethod = $event"
           @onCustomAmount="customAmount = $event"
           @onSelectAmount="selectedAmount = $event"
         />
@@ -80,6 +82,7 @@ export default {
       amounts: [],
       intervals: [],
       metadata: [],
+      selectedPaymentMethod: 'stripe',
       selectedAmount: {},
       selectedInterval: {},
       donationState: '',
@@ -132,7 +135,10 @@ export default {
     },
     async processPayment(price) {
       const sessionId = uuidv4();
+      const donation = {};
+
       sessionStorage.setItem('sessionId', sessionId);
+      sessionStorage.setItem('donation', donation);
 
       const stripe = await stripePromise;
       const { data } = await this.$axios.post(

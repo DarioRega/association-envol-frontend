@@ -9,7 +9,7 @@
         {{ error }}
       </li>
     </ul>
-
+    <h5 class="font-medium text-brand-dark-blue mb-20">Montant</h5>
     <interval-select
       :options="intervals"
       :selected-option="selectedInterval"
@@ -59,84 +59,15 @@
       "
       >Les dons minimaux sont de 10 CHF</label
     >
-
-    <div class="mt-10 md:mt-16">
-      <div class="relative flex items-center">
-        <div class="flex items-center h-5">
-          <input
-            :value="isDonationFromCompany"
-            :checked="isDonationFromCompany"
-            type="checkbox"
-            class="cursor-pointer h-6 w-6 border-brand-variant-main-gray rounded-md"
-            @click="$emit('onDonationFromCompany', !isDonationFromCompany)"
-          />
-        </div>
-        <div class="ml-3">
-          <label
-            class="caption-lg font-medium text-brand-carbon cursor-pointer"
-            @click="$emit('onDonationFromCompany', !isDonationFromCompany)"
-            >Ce don est pour le compte d'une entreprise</label
-          >
-        </div>
-      </div>
-      <transition-expand>
-        <div v-show="isDonationFromCompany">
-          <div class="mt-5">
-            <input
-              type="text"
-              :value="company_name"
-              class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
-              placeholder="Société donatrice"
-              @change="$emit('onCompanyName', $event.target.value)"
-            />
-          </div>
-        </div>
-      </transition-expand>
-    </div>
-
-    <div class="mt-10">
-      <div class="relative flex items-center">
-        <div class="flex items-center h-6">
-          <input
-            :value="hasCommentary"
-            :checked="hasCommentary"
-            type="checkbox"
-            class="cursor-pointer h-6 w-6 border-brand-variant-main-gray rounded-md"
-            @click="$emit('onHasCommentary', !hasCommentary)"
-          />
-        </div>
-        <div class="ml-3">
-          <label
-            class="caption-lg font-medium text-brand-carbon cursor-pointer"
-            @click="$emit('onHasCommentary', !hasCommentary)"
-            >Laisser un commentaire</label
-          >
-        </div>
-      </div>
-      <transition-expand>
-        <div v-show="hasCommentary">
-          <div class="mt-5">
-            <textarea
-              rows="4"
-              :value="commentary"
-              class="shadow-sm focus:outline-none p-3 block w-full p sm: border-brand-variant-main-gray border-2 rounded-md"
-              placeholder="Votre commentaire"
-              @change="$emit('onCommentary', $event.target.value)"
-            ></textarea>
-          </div>
-        </div>
-      </transition-expand>
-    </div>
   </section>
 </template>
 
 <script>
-import TransitionExpand from '@/components/TransitionExpand';
 import IntervalSelect from '@/components/donation/IntervalSelect';
 import AmountSelect from '@/components/donation/AmountSelect';
 export default {
-  name: 'MainStep',
-  components: { AmountSelect, IntervalSelect, TransitionExpand },
+  name: 'AmountStep',
+  components: { AmountSelect, IntervalSelect },
   props: {
     amounts: {
       type: Array,
@@ -154,25 +85,10 @@ export default {
       type: Object,
       required: true,
     },
-    commentary: {
-      type: String,
-      default: '',
-    },
-    company_name: {
-      type: String,
-      default: '',
-    },
+
     customAmount: {
       type: Number,
       default: null,
-    },
-    hasCommentary: {
-      type: Boolean,
-      default: false,
-    },
-    isDonationFromCompany: {
-      type: Boolean,
-      default: false,
     },
     errors: {
       type: Array,

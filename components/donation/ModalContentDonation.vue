@@ -1,39 +1,57 @@
 <template>
   <section class="relative flex justify-center items-center">
     <container-steps class="relative">
-      <!--      <template v-slot:stateDonation>-->
-      <!--        <donation-feedback v-if="isSubmitting || hasFeedback" />-->
-      <!--      </template>-->
       <template v-slot:form>
         <wrapper-steps>
-          <form>
-            <main-step
+          <form class="form-donation">
+            <payment-method-step
               v-if="currentStep.number === 1"
+              class="w-full"
+              :selected-payment-method="selectedPaymentMethod"
+              @onPaymentMethod="$emit('onSelectPaymentMethod', $event)"
+            />
+
+            <amount-step
+              v-if="currentStep.number === 2"
               :intervals="intervals"
               :selected-interval="selectedInterval"
               :amounts="amounts"
               :selected-amount="selectedAmount"
-              :commentary="commentary"
               :custom-amount="customAmount"
-              :has-commentary="hasCommentary"
-              :errors="errors"
-              :is-donation-from-company="isDonationFromCompany"
+              :errors="errors.amount"
+              class="w-full"
               @onAmountSelect="handleSelectAmount"
               @onIntervalSelect="handleSelectInterval"
+              @onCustomAmount="handleCustomAmount"
+            />
+
+            <customer-step
+              v-if="currentStep.number === 3"
+              :has-commentary="hasCommentary"
+              :commentary="commentary"
+              :full_name="full_name"
+              :is-donation-from-company="isDonationFromCompany"
+              :company_name="company_name"
+              :email="email"
+              :errors="errors.customer"
+              class="w-full"
               @onHasCommentary="hasCommentary = $event"
               @onCommentary="commentary = $event"
-              @onCustomAmount="handleCustomAmount"
+              @onFullName="full_name = $event"
+              @onEmail="email = $event"
               @onDonationFromCompany="isDonationFromCompany = $event"
               @onCompanyName="company_name = $event"
             />
+
             <resume-step
-              v-if="currentStep.number === 2"
+              v-if="currentStep.number === 4"
               :selected-amount="selectedAmount"
               :selected-interval="selectedInterval"
               :has-commentary="hasCommentary"
               :commentary="commentary"
               :is-donation-from-company="isDonationFromCompany"
               :company_name="company_name"
+              class="w-full"
             />
           </form>
         </wrapper-steps>
@@ -42,7 +60,7 @@
         <form-stepper
           :current-step="currentStep.number"
           :total-steps="steps.length"
-          class="px-5 lg:px-0 pb-10 max-w-lg lg:max-w-xl mx-auto w-full flex space-between"
+          class="mt-6 md:mt-10 px-5 lg:px-0 pb-10 max-w-lg lg:max-w-xl mx-auto w-full flex space-between"
           @onNextStep="validateCurrentStepToNext"
           @onPreviousStep="previousStep"
         >
@@ -62,27 +80,39 @@
 import FormStepper from '@/components/donation/FormStepper';
 import WrapperSteps from '@/components/donation/WrapperSteps';
 import ContainerSteps from '@/components/donation/ContainerSteps';
-import MainStep from '@/components/donation/MainStep';
 import ResumeStep from '@/components/donation/ResumeStep';
+import CustomerStep from '@/components/donation/CustomerStep';
+import AmountStep from '@/components/donation/AmountStep';
+import PaymentMethodStep from '@/components/donation/PaymentMethodStep';
 
 const steps = [
   {
     number: 1,
-    name: 'main',
+    name: 'payment-method',
   },
   {
     number: 2,
+    name: 'amount',
+  },
+  {
+    number: 3,
+    name: 'customer',
+  },
+  {
+    number: 4,
     name: 'resume',
   },
 ];
 export default {
   name: 'ModalContentDonation',
   components: {
+    PaymentMethodStep,
+    AmountStep,
+    CustomerStep,
     ResumeStep,
     FormStepper,
     WrapperSteps,
     ContainerSteps,
-    MainStep,
   },
   props: {
     amounts: {
@@ -92,6 +122,10 @@ export default {
     intervals: {
       type: Array,
       default: () => [],
+    },
+    selectedPaymentMethod: {
+      type: String,
+      default: 'stripe',
     },
     selectedAmount: {
       type: Object,
@@ -114,7 +148,12 @@ export default {
       isDonationFromCompany: false,
       company_name: '',
       commentary: '',
-      errors: [],
+      email: '',
+      full_name: '',
+      errors: {
+        amount: [],
+        customer: [],
+      },
     };
   },
 
@@ -124,9 +163,7 @@ export default {
 
   methods: {
     validateCurrentStepToNext() {
-      if (this.currentStep.name === 'main') {
-        if (!this.isMainStepValid()) return;
-      }
+      if (!this.isStepValid(this.currentStep.name)) return;
       this.nextStep();
     },
     nextStep() {
@@ -152,25 +189,28 @@ export default {
       this.$emit('onSelectAmount', { id: null, amount });
       this.$emit('onCustomAmount', amount);
     },
-    isMainStepValid() {
+    isStepValid(step) {
       const errors = [];
-      if (!this.selectedAmount.amount) {
-        errors.push('Veuillez sélectionner un montant.');
-      } else if (this.selectedAmount.amount < 10) {
-        errors.push('Les dons minimaux sont de 10 CHF.');
+      if (step === 'amount') {
+        if (!this.selectedAmount.amount) {
+          errors.push('Veuillez sélectionner un montant.');
+        } else if (this.selectedAmount.amount < 10) {
+          errors.push('Les dons minimaux sont de 10 CHF.');
+        }
+      }
+      if (step === 'customer') {
+        if (this.isDonationFromCompany && !this.company_name) {
+          errors.push(
+            "Le champs donations pour le compte d'une entreprise est requis."
+          );
+        }
+
+        if (this.hasCommentary && !this.commentary) {
+          errors.push('Le champs commentaire est requis.');
+        }
       }
 
-      if (this.isDonationFromCompany && !this.company_name) {
-        errors.push(
-          "Le champs donations pour le compte d'une entreprise est requis."
-        );
-      }
-
-      if (this.hasCommentary && !this.commentary) {
-        errors.push('Le champs commentaire est requis.');
-      }
-
-      this.errors = errors;
+      this.errors[step] = errors;
       return errors.length < 1;
     },
     handleSubmit() {
@@ -179,3 +219,13 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.form-donation {
+  min-height: 30rem;
+  @apply flex items-center justify-center;
+
+  @screen md {
+    min-height: 35rem;
+  }
+}
+</style>
