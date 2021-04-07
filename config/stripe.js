@@ -4,7 +4,6 @@ import { setDonationInSessionStorage } from '@/config/index';
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
 
 export const handleStripeSubmit = async ({ $axios, payload }) => {
-
   const { selectedAmount, selectedInterval } = payload;
   const { data } = await $axios.post(
     `${process.env.BACK_URL}/products/prices/findOrCreate`,

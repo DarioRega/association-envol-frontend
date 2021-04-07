@@ -21,7 +21,7 @@
         </button>
         <button
           class="btn font-semibold lg:mt-6 focus:outline-none"
-          @click="handlePaypalSubmit"
+          @click="handleSubmit"
         >
           go paypal
         </button>
@@ -146,11 +146,9 @@ export default {
     verifyIfDonationRedirect() {
       const query = new URLSearchParams(window.location.search);
       let donation = sessionStorage.getItem('donation');
-      console.log('donation => VERIFIY ', donation);
       if (donation) {
         donation = JSON.parse(donation);
         this.sessionId = donation.sessionId;
-
         if (!donation.isThankYouEmailSent) {
           if (
             query.get('success') &&
@@ -158,7 +156,6 @@ export default {
           ) {
             this.donationState = 'success';
             this.isModalOpen = true;
-            console.log('DONATION', donation);
 
             this.$axios
               .post(`${process.env.BACK_URL}/donate/thankYou`, donation)
@@ -172,8 +169,13 @@ export default {
           } else {
             this.donationState = '';
           }
+        } else {
+          this.$router.push('/soutenir-envol');
+          this.donationState = '';
+          sessionStorage.removeItem('donation');
         }
       } else {
+        this.$router.push('/soutenir-envol');
         this.donationState = '';
       }
 
@@ -193,6 +195,7 @@ export default {
     handleSubmit(customer) {
       const sessionId = uuidv4();
       this.sessionId = sessionId;
+
       const payloadDonation = {
         sessionId,
         selectedAmount: this.selectedAmount,
@@ -206,25 +209,35 @@ export default {
           payload: payloadDonation,
         });
       } else {
-        this.handlePaypalSubmit({
-          $axios: this.axios,
-          payload: payloadDonation,
-        });
+        this.handlePaypalSubmit({ payload: payloadDonation });
       }
     },
-    async handlePaypalSubmit({ $axios, payload }) {
+    async handlePaypalSubmit({ payload }) {
       let setup;
       if (this.selectedInterval.ref === 'one_time') {
-        setup = await configureOneTimePaymentPaypal(payload, this.$router);
+        setup = await configureOneTimePaymentPaypal({
+          payload,
+          successCallback: this.paypalSuccessCallback,
+          errorCallback: () => console.log('error callback'),
+        });
       } else {
         setup = await configureSubscriptionsPaypal({
-          $axios,
+          $axios: this.$axios,
           MAIN_DONATIONS_AMOUNTS,
           payload,
-          $router: this.$router,
+          successCallback: this.paypalSuccessCallback,
+          errorCallback: () => console.log('error callback'),
         });
       }
       setup.paypal.Buttons(setup.config).render('#paypal-button');
+    },
+    paypalSuccessCallback() {
+      this.$router.push(
+        {
+          path: `/soutenir-envol?session=${this.sessionId}&success=true&paymentMethod=paypal`,
+        },
+        () => this.verifyIfDonationRedirect()
+      );
     },
     // async handleStripeSubmit(customer) {
     //   const { data } = await this.$axios.post(

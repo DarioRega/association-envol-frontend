@@ -8,7 +8,11 @@ export const paypalPromise = (params = {}) =>
     ...params,
   });
 
-export const configureOneTimePaymentPaypal = async (payload, $router) => {
+export const configureOneTimePaymentPaypal = async ({
+  payload,
+  successCallback,
+  errorCallback,
+}) => {
   const { selectedAmount } = payload;
   const paypal = await paypalPromise();
 
@@ -33,7 +37,9 @@ export const configureOneTimePaymentPaypal = async (payload, $router) => {
         interval: payload.selectedInterval.ref,
       };
       setDonationInSessionStorage(payloadDonation);
-      $router.push(`/soutenir-envol?session=${payload.sessionId}&success=true`);
+      if (typeof successCallback === 'function') {
+        successCallback();
+      }
       return actions.order.capture().then(function (details) {
         alert(`Transaction completed by ${details.payer.name.given_name}`);
       });
@@ -46,9 +52,11 @@ export const configureSubscriptionsPaypal = async ({
   $axios,
   MAIN_DONATIONS_AMOUNTS,
   payload,
-  $router,
+  successCallback,
+  errorCallback,
 }) => {
   // plan setup
+  console.log('AXIOS PAYPAL CONFIGURE SUB', $axios);
   const { selectedAmount, selectedInterval } = payload;
   const plan = await findOrCreatePaypalPlan({
     $axios,
@@ -78,7 +86,9 @@ export const configureSubscriptionsPaypal = async ({
         interval: payload.selectedInterval.ref,
       };
       setDonationInSessionStorage(payloadDonation);
-      $router.push(`/soutenir-envol?session=${payload.sessionId}&success=true`);
+      if (typeof successCallback === 'function') {
+        successCallback();
+      }
       alert(
         `You have successfully created subscription ${data.subscriptionID}`
       );
