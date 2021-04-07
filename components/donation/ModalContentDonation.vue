@@ -73,6 +73,7 @@
             Procéder au don
           </button>
         </form-stepper>
+        <slot v-if="selectedPaymentMethod === 'paypal'" />
       </template>
     </container-steps>
   </section>

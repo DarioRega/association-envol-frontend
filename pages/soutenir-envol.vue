@@ -19,6 +19,13 @@
         >
           {{ $t('helpEnvol.donateNow') }}
         </button>
+        <button
+          class="btn font-semibold lg:mt-6 focus:outline-none"
+          @click="handlePaypalSubmit"
+        >
+          go paypal
+        </button>
+        <div id="paypal-button"></div>
       </div>
     </container>
     <container>
@@ -48,7 +55,10 @@
           @onSelectPaymentMethod="selectedPaymentMethod = $event"
           @onCustomAmount="customAmount = $event"
           @onSelectAmount="selectedAmount = $event"
-        />
+        >
+          <!--          <div id="paypal-button"></div>-->
+          test
+        </modal-content-donation>
       </modal>
     </container>
   </section>
@@ -56,6 +66,7 @@
 
 <script>
 import { loadStripe } from '@stripe/stripe-js';
+import { loadScript } from '@paypal/paypal-js';
 import { v4 as uuidv4 } from 'uuid';
 import ModalContentDonation from '@/components/donation/ModalContentDonation';
 import Container from '@/components/containers/Container';
@@ -65,6 +76,12 @@ import ModalContentDonationSuccess from '@/components/donation/ModalContentDonat
 
 const BACK_URL = process.env.BACK_URL;
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
+const paypalPromise = (params = {}) =>
+  loadScript({
+    'client-id': process.env.PAYPAL_KEY,
+    currency: 'CHF',
+    ...params,
+  });
 
 // TODO make fields of form disabled when payment processing (this.paymentProcessing) is active
 export default {
@@ -172,7 +189,69 @@ export default {
         this.donationState = '';
       }, 5000);
     },
-    async handleSubmit(customer) {
+    handleSubmit(customer) {
+      this.sessionId = uuidv4();
+
+      if (this.selectedPaymentMethod === 'stripe') {
+        this.handleStripeSubmit(customer);
+      } else {
+        this.handlePaypalSubmit(customer);
+      }
+    },
+    setDonationInSessionStorage(donation) {
+      sessionStorage.setItem('donation', JSON.stringify(donation));
+    },
+    async handlePaypalSubmit(customer) {
+      let config = {};
+      if (this.selectedInterval.ref === 'one_time') {
+        const selectedAmount = this.selectedAmount.amount / 100;
+        const paypal = await paypalPromise();
+        config = {
+          createOrder(data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: selectedAmount,
+                  },
+                },
+              ],
+            });
+          },
+          onApprove(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+              // This function shows a transaction success message to your buyer.
+              alert(
+                `Transaction completed by ${details.payer.name.given_name}`
+              );
+            });
+          },
+        };
+        paypal.Buttons(config).render('#paypal-button');
+      } else {
+        const paypal = await paypalPromise({
+          vault: true,
+          intent: 'subscription',
+        });
+
+        config = {
+          createSubscription(data, actions) {
+            return actions.subscription.create({
+              plan_id: 'P-03829416392135016MBWWHPQ',
+            });
+          },
+          onApprove(data, actions) {
+            alert(
+              `You have successfully created subscription ${data.subscriptionID}`
+            );
+          },
+        };
+        paypal.Buttons(config).render('#paypal-button');
+      }
+    },
+    async handleStripeSubmit(customer) {
       const { data } = await this.$axios.post(
         `${BACK_URL}/products/prices/findOrCreate`,
         {
@@ -185,12 +264,11 @@ export default {
           selected_interval: this.selectedInterval,
         }
       );
-      this.processPayment(data, customer);
+      this.processStripePayment(data, customer);
     },
-    async processPayment(price, customer) {
-      const sessionId = uuidv4();
+    async processStripePayment(price, customer) {
       const donation = {
-        sessionId,
+        sessionId: this.sessionId,
         amount: this.selectedAmount.amount,
         interval: this.selectedInterval.name,
         isThankYouEmailSent: false,
@@ -198,14 +276,14 @@ export default {
         ...customer,
       };
 
-      sessionStorage.setItem('donation', JSON.stringify(donation));
+      this.setDonationInSessionStorage(donation);
 
       const stripe = await stripePromise;
       const { data } = await this.$axios.post(
         `${process.env.BACK_URL}/donate/session`,
         {
           price,
-          client_session: sessionId,
+          client_session: this.sessionId,
           email: customer.email,
         }
       );
