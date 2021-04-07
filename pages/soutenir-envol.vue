@@ -76,6 +76,7 @@ import ModalContentDonationSuccess from '@/components/donation/ModalContentDonat
 
 const BACK_URL = process.env.BACK_URL;
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
+const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
 const paypalPromise = (params = {}) =>
   loadScript({
     'client-id': process.env.PAYPAL_KEY,
@@ -126,9 +127,9 @@ export default {
   watch: {
     data(newValue, oldValue) {},
   },
-  async mounted() {
-    this.verifyIfDonationRedirect();
-    this.stripe = await stripePromise;
+  mounted() {
+    // this.verifyIfDonationRedirect();
+    // this.stripe = await stripePromise;
 
     this.$axios.get(`${BACK_URL}/products/metadata`).then((res) => {
       const { amounts, intervals } = res.data;
@@ -202,10 +203,11 @@ export default {
       sessionStorage.setItem('donation', JSON.stringify(donation));
     },
     async handlePaypalSubmit(customer) {
+      let paypal;
       let config = {};
       if (this.selectedInterval.ref === 'one_time') {
         const selectedAmount = this.selectedAmount.amount / 100;
-        const paypal = await paypalPromise();
+        paypal = await paypalPromise();
         config = {
           createOrder(data, actions) {
             // This function sets up the details of the transaction, including the amount and line item details.
@@ -229,9 +231,9 @@ export default {
             });
           },
         };
-        paypal.Buttons(config).render('#paypal-button');
       } else {
-        const paypal = await paypalPromise({
+        const plan = await this.getPaypalSubscription();
+        paypal = await paypalPromise({
           vault: true,
           intent: 'subscription',
         });
@@ -239,7 +241,7 @@ export default {
         config = {
           createSubscription(data, actions) {
             return actions.subscription.create({
-              plan_id: 'P-03829416392135016MBWWHPQ',
+              plan_id: plan.id,
             });
           },
           onApprove(data, actions) {
@@ -248,8 +250,8 @@ export default {
             );
           },
         };
-        paypal.Buttons(config).render('#paypal-button');
       }
+      paypal.Buttons(config).render('#paypal-button');
     },
     async handleStripeSubmit(customer) {
       const { data } = await this.$axios.post(
@@ -296,6 +298,44 @@ export default {
         // If `redirectToCheckout` fails due to a browser or network
         // error, display the localized error message to your customer
         // using `result.error.message`.
+      }
+    },
+    getPaypalSubscription() {
+      // TODO Find if create subscription front end send or backend side
+      // use https://www.sandbox.paypal.com/billing/plans to find billings plans
+      return new Promise((resolve, reject) => {
+        const auth = {
+          username: process.env.PAYPAL_KEY,
+          password: process.env.PAYPAL_SECRET,
+        };
+        this.$axios
+          .get('https://api-m.sandbox.paypal.com/v1/billing/plans', {
+            auth,
+          })
+          .then((res) => {
+            resolve(this.findOrCreatePaypalPlan(res.data.plans));
+          })
+          .catch((err) => reject(err));
+      });
+    },
+    findOrCreatePaypalPlan(data) {
+      if (!MAIN_DONATIONS_AMOUNTS.includes(this.selectedAmount.amount / 100)) {
+        console.log('IS CUSTOM AMOUNT', this.selectedAmount.amount / 100);
+        // const plan = data.filter((plan) => plan.name === ``);
+      } else {
+        // console.log('SELECTED AMOUNT / 100', this.selectedAmount.amount / 100);
+        // console.log('SELECTED INTERVAL', this.selectedInterval.ref);
+        // console.log('PLANS => ', data);
+        const targetPlan = data.filter(
+          (plan) =>
+            plan.name ===
+            `main-${this.selectedAmount.amount / 100}-${
+              this.selectedInterval.ref
+            }`
+        );
+        if (targetPlan.length > 0) {
+          return targetPlan[0];
+        }
       }
     },
   },
