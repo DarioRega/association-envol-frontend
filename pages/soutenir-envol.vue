@@ -19,13 +19,6 @@
         >
           {{ $t('helpEnvol.donateNow') }}
         </button>
-        <button
-          class="btn font-semibold lg:mt-6 focus:outline-none"
-          @click="handleSubmit"
-        >
-          go paypal
-        </button>
-        <div id="paypal-button"></div>
       </div>
     </container>
     <container>
@@ -56,8 +49,7 @@
           @onCustomAmount="customAmount = $event"
           @onSelectAmount="selectedAmount = $event"
         >
-          <!--          <div id="paypal-button"></div>-->
-          test
+          <div id="paypal-button"></div>
         </modal-content-donation>
       </modal>
     </container>
@@ -80,8 +72,9 @@ import { autoDestructDonationSessionStorage } from '@/config';
 
 // TODO
 // Gérer paypal si on fait un retour dans le formulaire ou reclique, pas afficher d erreur, mais re-render le button
-// reformat stripe in config file
 // reformat code and clean here.
+// paypal find a way to remove unecessary buttons
+// handle errorcallback donation
 // handle ui select when set custom amount then click on main amount then reclick on custom amount doenst make blue background
 const BACK_URL = process.env.BACK_URL;
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
@@ -229,7 +222,14 @@ export default {
           errorCallback: () => console.log('error callback'),
         });
       }
-      setup.paypal.Buttons(setup.config).render('#paypal-button');
+      await setup.paypal.Buttons(setup.config).render('#paypal-button');
+      const element = document.querySelectorAll(
+        "[data-funding-source='paypal']"
+      );
+      console.log('element', element);
+      const ku = document.getElementById('paypal-button');
+      console.log('paypal button => ', ku);
+      element[0].click();
     },
     paypalSuccessCallback() {
       this.$router.push(

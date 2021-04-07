@@ -67,13 +67,16 @@
           @onPreviousStep="previousStep"
         >
           <button
+            v-if="selectedPaymentMethod === 'stripe'"
             class="p-4 outline-none leading-8 focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
             @click="handleSubmit"
           >
             Procéder au don
           </button>
+          <div v-else class="ml-3">
+            <slot />
+          </div>
         </form-stepper>
-        <slot v-if="selectedPaymentMethod === 'paypal'" />
       </template>
     </container-steps>
   </section>
@@ -180,6 +183,9 @@ export default {
         (x) => x.number === this.currentStep.number + 1
       );
       this.currentStep = nextStep;
+      if(nextStep.number === 4 && this.selectedPaymentMethod === 'paypal' ){
+        this.handleSubmit()
+      }
     },
     previousStep() {
       const previousStep = this.steps.find(

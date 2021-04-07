@@ -1,5 +1,13 @@
 import { loadScript } from '@paypal/paypal-js';
 import { setDonationInSessionStorage } from '@/config/index';
+// TODO add button style to render method
+// const PAYPAL_BTN_STYLES = {
+//   layout: 'vertical',
+//   color: 'gold',
+//   shape: 'rect',
+//   label: 'paypal',
+//   tagline: false,
+// };
 
 export const paypalPromise = (params = {}) =>
   loadScript({
@@ -43,6 +51,11 @@ export const configureOneTimePaymentPaypal = async ({
       return actions.order.capture().then(function (details) {
         alert(`Transaction completed by ${details.payer.name.given_name}`);
       });
+    },
+    onError(err) {
+      if (typeof successCallback === 'function') {
+        errorCallback(err);
+      }
     },
   };
   return { paypal, config };
@@ -92,6 +105,11 @@ export const configureSubscriptionsPaypal = async ({
       alert(
         `You have successfully created subscription ${data.subscriptionID}`
       );
+    },
+    onError(err) {
+      if (typeof successCallback === 'function') {
+        errorCallback(err);
+      }
     },
   };
   return { paypal, config };
