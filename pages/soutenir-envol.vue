@@ -49,10 +49,19 @@
           @onCustomAmount="customAmount = $event"
           @onSelectAmount="selectedAmount = $event"
         >
+          <div v-if="isPaypalLoading" class="text-center">
+            <p>Chargement de Paypal...</p>
+          </div>
           <div id="paypal-button"></div>
         </modal-content-donation>
       </modal>
     </container>
+    <notification
+      :is-visible="shouldShowNotification"
+      :type="notification.type"
+      :message="notification.message"
+      @click="shouldShowNotification = false"
+    />
   </section>
 </template>
 
@@ -69,20 +78,26 @@ import {
 } from '@/config/paypal';
 import { handleStripeSubmit } from '@/config/stripe';
 import { autoDestructDonationSessionStorage } from '@/config';
+import Notification from '@/components/Notification';
 
 // TODO
-// Gérer paypal si on fait un retour dans le formulaire ou reclique, pas afficher d erreur, mais re-render le button
 // reformat code and clean here.
-// paypal find a way to remove unecessary buttons
 // handle errorcallback donation
 // handle ui select when set custom amount then click on main amount then reclick on custom amount doenst make blue background
 const BACK_URL = process.env.BACK_URL;
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
-
+const PAYPAL_BTN_STYLES = {
+  layout: 'horizontal',
+  color: 'gold',
+  shape: 'rect',
+  label: 'paypal',
+  tagline: false,
+};
 // TODO make fields of form disabled when payment processing (this.paymentProcessing) is active
 export default {
   name: 'SoutenirEnvol',
   components: {
+    Notification,
     ModalContentDonationSuccess,
     FlyingBirds,
     Modal,
@@ -117,6 +132,12 @@ export default {
       selectedInterval: {},
       donationState: '',
       sessionId: '',
+      isPaypalLoading: false,
+      shouldShowNotification: false,
+      notification: {
+        type: '',
+        message: '',
+      },
     };
   },
   watch: {
@@ -156,8 +177,6 @@ export default {
                 donation.isThankYouEmailSent = true;
                 sessionStorage.setItem('donation', JSON.stringify(donation));
                 autoDestructDonationSessionStorage();
-
-                this.refreshModalDonation();
               });
           } else {
             this.donationState = '';
@@ -178,12 +197,6 @@ export default {
         this.isModalOpen = false;
         this.donationState = '';
       }
-    },
-    refreshModalDonation() {
-      setTimeout(() => {
-        this.isModalOpen = false;
-        this.donationState = '';
-      }, 5000);
     },
     handleSubmit(customer) {
       const sessionId = uuidv4();
@@ -206,12 +219,13 @@ export default {
       }
     },
     async handlePaypalSubmit({ payload }) {
+      this.isPaypalLoading = true;
       let setup;
       if (this.selectedInterval.ref === 'one_time') {
         setup = await configureOneTimePaymentPaypal({
           payload,
           successCallback: this.paypalSuccessCallback,
-          errorCallback: () => console.log('error callback'),
+          errorCallback: () => this.paypalErrorCallback,
         });
       } else {
         setup = await configureSubscriptionsPaypal({
@@ -219,17 +233,22 @@ export default {
           MAIN_DONATIONS_AMOUNTS,
           payload,
           successCallback: this.paypalSuccessCallback,
-          errorCallback: () => console.log('error callback'),
+          errorCallback: () => this.paypalErrorCallback,
         });
       }
-      await setup.paypal.Buttons(setup.config).render('#paypal-button');
-      const element = document.querySelectorAll(
-        "[data-funding-source='paypal']"
-      );
-      console.log('element', element);
-      const ku = document.getElementById('paypal-button');
-      console.log('paypal button => ', ku);
-      element[0].click();
+      setup.paypal
+        .Buttons({
+          style: PAYPAL_BTN_STYLES,
+          funding: {
+            disallowed: [
+              setup.paypal.FUNDING.CARD,
+              setup.paypal.FUNDING.CREDIT,
+            ],
+          },
+          ...setup.config,
+        })
+        .render('#paypal-button')
+        .then((res) => (this.isPaypalLoading = false));
     },
     paypalSuccessCallback() {
       this.$router.push(
@@ -239,53 +258,18 @@ export default {
         () => this.verifyIfDonationRedirect()
       );
     },
-    // async handleStripeSubmit(customer) {
-    //   const { data } = await this.$axios.post(
-    //     `${BACK_URL}/products/prices/findOrCreate`,
-    //     {
-    //       selected_amount: {
-    //         id: this.selectedAmount.id,
-    //         amount: this.selectedAmount.id
-    //           ? this.selectedAmount.amount
-    //           : this.selectedAmount.amount * 100,
-    //       },
-    //       selected_interval: this.selectedInterval,
-    //     }
-    //   );
-    //   this.processStripePayment(data, customer);
-    // },
-    // async processStripePayment(price, customer) {
-    //   const donation = {
-    //     sessionId: this.sessionId,
-    //     amount: this.selectedAmount.amount,
-    //     interval: this.selectedInterval.name,
-    //     isThankYouEmailSent: false,
-    //     created_at: new Date(),
-    //     ...customer,
-    //   };
-    //
-    //   this.setDonationInSessionStorage(donation);
-    //
-    //   const stripe = await stripePromise;
-    //   const { data } = await this.$axios.post(
-    //     `${process.env.BACK_URL}/donate/session`,
-    //     {
-    //       price,
-    //       client_session: this.sessionId,
-    //       email: customer.email,
-    //     }
-    //   );
-    //   const result = await stripe.redirectToCheckout({
-    //     sessionId: data.id,
-    //   });
-    //   if (result.error) {
-    //     console.log('error', result.error.message);
-    //     this.donationState = 'error';
-    //     // If `redirectToCheckout` fails due to a browser or network
-    //     // error, display the localized error message to your customer
-    //     // using `result.error.message`.
-    //   }
-    // },
+    paypalErrorCallback() {
+      this.shouldShowNotification = true;
+      this.notification = {
+        type: 'error',
+        message:
+          '<p class="font-medium">Une erreur est survenue durant la configuration de Paypal, veuillez nous en excuser. Si le problème persiste essayez la méthode avec Stripe.</p>',
+      };
+      setTimeout(() => {
+        this.notification = {};
+        this.shouldShowNotification = false;
+      }, 6000);
+    },
   },
 };
 </script>

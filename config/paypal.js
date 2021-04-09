@@ -1,13 +1,5 @@
 import { loadScript } from '@paypal/paypal-js';
 import { setDonationInSessionStorage } from '@/config/index';
-// TODO add button style to render method
-// const PAYPAL_BTN_STYLES = {
-//   layout: 'vertical',
-//   color: 'gold',
-//   shape: 'rect',
-//   label: 'paypal',
-//   tagline: false,
-// };
 
 export const paypalPromise = (params = {}) =>
   loadScript({

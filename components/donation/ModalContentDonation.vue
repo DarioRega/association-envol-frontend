@@ -58,7 +58,16 @@
           </form>
         </wrapper-steps>
       </template>
+
       <template v-slot:stepper>
+        <div
+          v-if="
+            selectedPaymentMethod === 'paypal' && currentStep.name === 'resume'
+          "
+          class="max-w-lg lg:max-w-xl mx-auto w-full"
+        >
+          <slot />
+        </div>
         <form-stepper
           :current-step="currentStep.number"
           :total-steps="steps.length"
@@ -73,9 +82,6 @@
           >
             Procéder au don
           </button>
-          <div v-else class="ml-3">
-            <slot />
-          </div>
         </form-stepper>
       </template>
     </container-steps>
