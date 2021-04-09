@@ -72,5 +72,8 @@ export default {
       return this.isVisible;
     },
   },
+  mounted() {
+    console.log('MOUNTED !', this.type);
+  },
 };
 </script>

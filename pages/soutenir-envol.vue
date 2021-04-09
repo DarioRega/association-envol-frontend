@@ -57,6 +57,7 @@
       </modal>
     </container>
     <notification
+      v-if="shouldShowNotification"
       :is-visible="shouldShowNotification"
       :type="notification.type"
       :message="notification.message"
@@ -80,9 +81,6 @@ import { handleStripeSubmit } from '@/config/stripe';
 import { autoDestructDonationSessionStorage } from '@/config';
 import Notification from '@/components/Notification';
 
-// TODO
-// ERROR notification not showing up the error icon
-// handle ui select when set custom amount then click on main amount then reclick on custom amount doenst make blue background
 const BACK_URL = process.env.BACK_URL;
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
 const PAYPAL_BTN_STYLES = {
@@ -261,15 +259,18 @@ export default {
     },
     paypalErrorCallback() {
       // TODO check if html is well formated with the $t
-      this.shouldShowNotification = true;
       this.notification = {
         type: 'error',
         message: `<div class="font-medium">${this.$t(
           'helpEnvol.errorPaypalMessage'
         )}</div>`,
       };
+      this.shouldShowNotification = true;
       setTimeout(() => {
-        this.notification = {};
+        this.notification = {
+          type: '',
+          message: '',
+        };
         this.shouldShowNotification = false;
       }, 6000);
     },

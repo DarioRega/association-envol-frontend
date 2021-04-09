@@ -95,7 +95,7 @@ export default {
   methods: {
     handleCustomClick() {
       if (this.customAmount) {
-        this.$emit('onProductSelect', { id: null, amount: this.customAmount });
+        this.$emit('onAmountSelect', { id: null, amount: this.customAmount });
       }
     },
   },
