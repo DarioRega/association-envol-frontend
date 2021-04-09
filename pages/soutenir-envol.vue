@@ -50,7 +50,9 @@
           @onSelectAmount="selectedAmount = $event"
         >
           <div v-if="isPaypalLoading" class="text-center">
-            <p>{{ $t('helpEnvol.loadingPaypal') }}</p>
+            <p>
+              <i>{{ $t('helpEnvol.loadingPaypal') }}</i>
+            </p>
           </div>
           <div id="paypal-button"></div>
         </modal-content-donation>

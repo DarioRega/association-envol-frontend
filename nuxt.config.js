@@ -26,6 +26,10 @@ export default {
     '~/plugins/form-validation.js',
     '~/plugins/form-labels.js',
     '~/plugins/getContent.js',
+    {
+      src: '~/plugins/v-waypoint.js',
+      mode: 'client',
+    },
   ],
 
   components: {

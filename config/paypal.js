@@ -60,8 +60,6 @@ export const configureSubscriptionsPaypal = async ({
   successCallback,
   errorCallback,
 }) => {
-  // plan setup
-  console.log('AXIOS PAYPAL CONFIGURE SUB', $axios);
   const { selectedAmount, selectedInterval } = payload;
   const plan = await findOrCreatePaypalPlan({
     $axios,
