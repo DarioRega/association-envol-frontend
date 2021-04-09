@@ -50,7 +50,7 @@
           @onSelectAmount="selectedAmount = $event"
         >
           <div v-if="isPaypalLoading" class="text-center">
-            <p>Chargement de Paypal...</p>
+            <p>{{ $t('helpEnvol.loadingPaypal') }}</p>
           </div>
           <div id="paypal-button"></div>
         </modal-content-donation>
@@ -81,8 +81,7 @@ import { autoDestructDonationSessionStorage } from '@/config';
 import Notification from '@/components/Notification';
 
 // TODO
-// reformat code and clean here.
-// handle errorcallback donation
+// ERROR notification not showing up the error icon
 // handle ui select when set custom amount then click on main amount then reclick on custom amount doenst make blue background
 const BACK_URL = process.env.BACK_URL;
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
@@ -93,7 +92,6 @@ const PAYPAL_BTN_STYLES = {
   label: 'paypal',
   tagline: false,
 };
-// TODO make fields of form disabled when payment processing (this.paymentProcessing) is active
 export default {
   name: 'SoutenirEnvol',
   components: {
@@ -144,6 +142,7 @@ export default {
     data(newValue, oldValue) {},
   },
   mounted() {
+    this.paypalErrorCallback();
     this.verifyIfDonationRedirect();
     this.getMainAmountsAndIntervals();
   },
@@ -182,21 +181,21 @@ export default {
             this.donationState = '';
           }
         } else {
-          this.$router.push('/soutenir-envol');
-          this.donationState = '';
+          this.pushAndResetDonationState();
           sessionStorage.removeItem('donation');
         }
       } else {
-        this.$router.push('/soutenir-envol');
-        this.donationState = '';
+        this.pushAndResetDonationState();
       }
-
       if (query.get('canceled')) {
         sessionStorage.removeItem('donation');
-        this.$router.push('/soutenir-envol');
         this.isModalOpen = false;
-        this.donationState = '';
+        this.pushAndResetDonationState();
       }
+    },
+    pushAndResetDonationState() {
+      this.$router.push(`/${this.$t('helpEnvol.slug')}`);
+      this.donationState = '';
     },
     handleSubmit(customer) {
       const sessionId = uuidv4();
@@ -253,17 +252,21 @@ export default {
     paypalSuccessCallback() {
       this.$router.push(
         {
-          path: `/soutenir-envol?session=${this.sessionId}&success=true&paymentMethod=paypal`,
+          path: `/${this.$t('helpEnvol.slug')}?session=${
+            this.sessionId
+          }&success=true&paymentMethod=paypal`,
         },
         () => this.verifyIfDonationRedirect()
       );
     },
     paypalErrorCallback() {
+      // TODO check if html is well formated with the $t
       this.shouldShowNotification = true;
       this.notification = {
         type: 'error',
-        message:
-          '<p class="font-medium">Une erreur est survenue durant la configuration de Paypal, veuillez nous en excuser. Si le problème persiste essayez la méthode avec Stripe.</p>',
+        message: `<div class="font-medium">${this.$t(
+          'helpEnvol.errorPaypalMessage'
+        )}</div>`,
       };
       setTimeout(() => {
         this.notification = {};

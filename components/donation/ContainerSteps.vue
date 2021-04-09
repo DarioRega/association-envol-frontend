@@ -4,8 +4,9 @@
       class="relative rounded-t-md bg-brand-dark-blue py-4 sm:py-6 md:py-8 flex items-center justify-center px-5 lg:px-12"
     >
       <h5 class="text-center text-white my-auto font-medium">
-        Association Envol <span class="hidden md:inline">-</span
-        ><span class="md:hidden"><br /></span> Formulaire de donation
+        {{ $t('associationEnvol') }} <span class="hidden md:inline">-</span
+        ><span class="md:hidden"><br /></span>
+        {{ $t('helpEnvol.donationForm') }}
       </h5>
       <div class="absolute right-0 ml-2 sm:mr-4 w-12">
         <a class="cursor-pointer text-white" @click="$emit('closeModal')"

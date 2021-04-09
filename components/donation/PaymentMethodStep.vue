@@ -1,7 +1,7 @@
 <template>
   <section>
     <h5 class="font-medium text-brand-dark-blue mt-10 mb-20">
-      Méthode de paiement
+      {{ $t('helpEnvol.subTitles.paymentMethod') }}
     </h5>
     <div class="flex flex-col lg:flex-row lg:justify-between items-stretch">
       <div

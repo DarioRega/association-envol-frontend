@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h5 class="font-medium text-brand-dark-blue mb-20">Récapitulatif</h5>
+    <h5 class="font-medium text-brand-dark-blue mb-20">
+      {{ $t('helpEnvol.subTitles.resume') }}
+    </h5>
     <div class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Montant du don sélectionné :</p>
+      <p class="inline-flex flex-none mr-2">
+        {{ $t('helpEnvol.amountOfDonationChoosen') }} :
+      </p>
       <p class="inline-flex font-semibold">
         {{
           selectedAmount.id
@@ -13,29 +17,42 @@
       </p>
     </div>
     <div class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Récurrence :</p>
+      <p class="inline-flex flex-none mr-2">{{ $t('helpEnvol.interval') }} :</p>
       <p class="inline-flex font-semibold">{{ selectedInterval.name }}</p>
     </div>
     <div class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Personne de référence :</p>
+      <p class="inline-flex flex-none mr-2">
+        {{ $t('helpEnvol.personOfReference') }} :
+      </p>
       <p class="inline-flex font-semibold">{{ full_name }}</p>
     </div>
     <div class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Email :</p>
+      <p class="inline-flex flex-none mr-2">{{ $t('formLabels.email') }} :</p>
       <p class="inline-flex font-semibold">{{ email }}</p>
     </div>
     <div v-if="company_name && isDonationFromCompany" class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Entreprise de référence :</p>
+      <p class="inline-flex flex-none mr-2">
+        {{ $t('helpEnvol.companyOfReference') }} :
+      </p>
       <p class="inline-flex font-semibold">{{ company_name }}</p>
     </div>
     <div v-if="commentary && hasCommentary" class="flex flex-wrap">
-      <p class="inline-flex flex-none mr-2">Commentaire :</p>
+      <p class="inline-flex flex-none mr-2">
+        {{ $t('formLabels.commentary') }} :
+      </p>
       <p class="inline-flex font-semibold">{{ commentary }}</p>
     </div>
     <div class="mt-4">
       <p>
-        En cliquant sur le bouton <i>Procéder au don</i>, vous allez être
-        redirigé vers une <b>plateforme sécurisée</b> pour le paiement.
+        {{ $t('helpEnvol.explainRedirect.1') }}
+        <i>{{
+          selectedPaymentMethod === 'stripe'
+            ? $t('helpEnvol.explainRedirect.2')
+            : $t('helpEnvol.explainRedirect.2a')
+        }}</i
+        >, {{ $t('helpEnvol.explainRedirect.3') }}
+        <b>{{ $t('helpEnvol.explainRedirect.4') }}</b>
+        {{ $t('helpEnvol.explainRedirect.5') }}.
       </p>
     </div>
   </div>
@@ -51,6 +68,10 @@ export default {
     },
     selectedInterval: {
       type: Object,
+      required: true,
+    },
+    selectedPaymentMethod: {
+      type: String,
       required: true,
     },
     commentary: {

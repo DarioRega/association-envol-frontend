@@ -10,12 +10,14 @@
       </li>
     </ul>
     <h5 class="font-medium text-brand-dark-blue mb-20 lg:mt-6">
-      Informations personnelles
+      {{ $t('helpEnvol.subTitles.personnalsInformations') }}
     </h5>
 
     <div class="flex flex-col lg:flex-row lg:justify-between items-center">
       <div class="single-input-container lg:mr-8">
-        <label for="full_name" class="sr-only">Nom et prénom</label>
+        <label for="full_name" class="sr-only">
+          {{ $t('formLabels.fullName') }}
+        </label>
         <div
           class="flex items-center absolute w-full"
           :style="{ top: '-2rem' }"
@@ -28,7 +30,7 @@
             data-aos-easing="linear"
             data-aos-duration="500"
           >
-            Nom et prénom
+            {{ $t('formLabels.fullName') }}
           </p>
         </div>
         <div class="relative">
@@ -37,14 +39,16 @@
             type="text"
             :value="full_name"
             class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
-            placeholder="Nom et prénom"
+            :placeholder="$t('formLabels.fullName')"
             @change="$emit('onFullName', $event.target.value)"
           />
         </div>
       </div>
 
       <div class="single-input-container mt-16 lg:mt-0 lg:ml-8">
-        <label for="email" class="sr-only">Email</label>
+        <label for="email" class="sr-only">
+          {{ $t('formLabels.email') }}
+        </label>
         <div
           class="flex items-center absolute w-full"
           :style="{ top: '-2rem' }"
@@ -57,7 +61,7 @@
             data-aos-easing="linear"
             data-aos-duration="500"
           >
-            Email
+            {{ $t('formLabels.email') }}
           </p>
         </div>
         <div class="relative">
@@ -66,7 +70,7 @@
             type="text"
             :value="email"
             class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
-            placeholder="Email"
+            :placeholder="$t('formLabels.email')"
             @change="$emit('onEmail', $event.target.value)"
           />
         </div>
@@ -88,14 +92,17 @@
           <label
             class="caption-lg font-medium text-brand-carbon cursor-pointer"
             @click="$emit('onDonationFromCompany', !isDonationFromCompany)"
-            >Ce don est pour le compte d'une entreprise</label
+          >
+            {{ $t('helpEnvol.thisGiftIsFromCompany') }}</label
           >
         </div>
       </div>
       <transition-expand>
         <div v-show="isDonationFromCompany">
           <div class="single-input-container full-size">
-            <label for="company_name" class="sr-only">Société donatrice</label>
+            <label for="company_name" class="sr-only">
+              {{ $t('helpEnvol.companyToDonate') }}
+            </label>
             <div
               class="flex items-center absolute w-full"
               :style="{ top: '-2rem' }"
@@ -108,7 +115,7 @@
                 data-aos-easing="linear"
                 data-aos-duration="500"
               >
-                Société donatrice
+                {{ $t('helpEnvol.companyToDonate') }}
               </p>
             </div>
             <input
@@ -116,7 +123,7 @@
               type="text"
               :value="company_name"
               class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
-              placeholder="Société donatrice"
+              :placeholder="$t('helpEnvol.companyToDonate')"
               @change="$emit('onCompanyName', $event.target.value)"
             />
           </div>
@@ -139,14 +146,17 @@
           <label
             class="caption-lg font-medium text-brand-carbon cursor-pointer"
             @click="$emit('onHasCommentary', !hasCommentary)"
-            >Laisser un commentaire</label
           >
+            {{ $t('helpEnvol.leaveAcomment') }}
+          </label>
         </div>
       </div>
       <transition-expand>
         <div v-show="hasCommentary">
           <div class="single-input-container full-size">
-            <label for="company_name" class="sr-only">Commentaire</label>
+            <label for="company_name" class="sr-only">
+              {{ $t('helpEnvol.Commentary') }}
+            </label>
             <div
               class="flex items-center absolute w-full"
               :style="{ top: '-2rem' }"
@@ -159,14 +169,14 @@
                 data-aos-easing="linear"
                 data-aos-duration="500"
               >
-                Commentaire
+                {{ $t('helpEnvol.commentary') }}
               </p>
             </div>
             <textarea
               rows="4"
               :value="commentary"
               class="shadow-sm focus:outline-none p-3 block w-full p sm: border-brand-variant-main-gray border-2 rounded-md"
-              placeholder="Votre commentaire"
+              :placeholder="$t('helpEnvol.yourComment')"
               @change="$emit('onCommentary', $event.target.value)"
             ></textarea>
           </div>

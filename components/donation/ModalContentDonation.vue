@@ -47,6 +47,7 @@
               v-if="currentStep.number === 4"
               :selected-amount="selectedAmount"
               :selected-interval="selectedInterval"
+              :selected-payment-method="selectedPaymentMethod"
               :has-commentary="hasCommentary"
               :commentary="commentary"
               :email="email"
@@ -80,7 +81,7 @@
             class="p-4 outline-none leading-8 focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
             @click="handleSubmit"
           >
-            Procéder au don
+            {{ $t('helpEnvol.proceedToDonation') }}
           </button>
         </form-stepper>
       </template>
@@ -214,32 +215,32 @@ export default {
       const errors = [];
       if (step === 'amount') {
         if (!this.selectedAmount.amount) {
-          errors.push('Veuillez sélectionner un montant.');
+          errors.push(this.$t('helpEnvol.formError.pleaseSelectAmount'));
         } else if (this.selectedAmount.amount < 10) {
-          errors.push('Les dons minimaux sont de 10 CHF.');
+          errors.push(this.$t('helpEnvol.errorMinimalDonation'));
         }
       }
 
       if (step === 'customer') {
         if (!this.full_name) {
-          errors.push('Le champs Nom et prénom est requis.');
+          errors.push(this.$t('helpEnvol.formError.fullNameRequired'));
         } else if (!regex.full_name.test(this.full_name)) {
-          errors.push('Le nom et prénom sont invalides');
+          errors.push(this.$t('helpEnvol.formError.fullNameInvalid'));
         }
         if (!this.email) {
-          errors.push('Le champs Email est requis.');
+          errors.push(this.$t('helpEnvol.formError.emailRequired'));
         } else if (!regex.email.test(this.email)) {
-          errors.push("L'email est invalide");
+          errors.push(this.$t('helpEnvol.formError.emailInvalid'));
         }
 
         if (this.isDonationFromCompany && !this.company_name) {
           errors.push(
-            "Le champs donations pour le compte d'une entreprise est requis."
+            this.$t('helpEnvol.formError.companyToDonateRequired')
           );
         }
 
         if (this.hasCommentary && !this.commentary) {
-          errors.push('Le champs commentaire est requis.');
+          errors.push(this.$t('helpEnvol.formError.commentaryRequired'));
         }
       }
 

@@ -9,7 +9,9 @@
         {{ error }}
       </li>
     </ul>
-    <h5 class="font-medium text-brand-dark-blue mb-20">Montant</h5>
+    <h5 class="font-medium text-brand-dark-blue mb-20">
+      {{ $t('helpEnvol.subTitles.amount') }}
+    </h5>
     <interval-select
       :options="intervals"
       :selected-option="selectedInterval"
@@ -38,7 +40,7 @@
         <input
           min="10"
           :value="customAmount"
-          placeholder="Montant personnalisé"
+          :placeholder="$t('helpEnvol.customAmount')"
           type="number"
           class="p pl-1 outline-none outline-none overflow-scroll text-current"
           :class="[
@@ -52,7 +54,7 @@
     <label
       v-if="selectedAmount.amount === customAmount && customAmount < 10"
       class="caption-sm pt-2"
-      >Les dons minimaux sont de 10 CHF</label
+      >{{ $t('helpEnvol.errorMinimalDonation') }}</label
     >
   </section>
 </template>

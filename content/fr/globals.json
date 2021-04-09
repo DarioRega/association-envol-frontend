@@ -129,9 +129,54 @@
     "slug": "soutenir-envol",
     "backToHome": "Revenir à l'accueil",
     "helpUs": "Soutenir Envol",
+    "donationForm": "Formulaire de donation",
     "donateNow": "Faire un don en ligne",
+    "proceedToDonation": "Procéder au don",
+    "next": "Suivant",
+    "previous": "Précédent",
     "thanksForYourSupport": "Merci de votre soutien",
-    "butWeStillNeedYou": "Mais nous avons toujours besoin de vous !"
-
+    "butWeStillNeedYou": "Mais nous avons toujours besoin de vous !",
+    "loadingPaypal": "Chargement de Paypal...",
+    "errorPaypalMessage": "<p>Une erreur est survenue durant la configuration de Paypal, veuillez nous en excuser.</p><p>Si le problème persiste essayez la méthode avec Stripe.</p>",
+    "errorMinimalDonation" : "Les dons minimaux sont de 10 CHF",
+    "commentary": "Commentaire",
+    "leaveAcomment": "Laisser un commentaire",
+    "yourComment": "Votre commentaire",
+    "companyToDonate": "Société donatrice",
+    "thisGiftIsFromCompany": "Ce don est pour le compte d'une entreprise",
+    "amountOfDonationChoosen": "Montant du don sélectionné",
+    "interval": "Récurrence",
+    "personOfReference": "Personne de référence",
+    "companyOfReference": "Société de référence",
+    "customAmount": "Montant personnalisé",
+    "explainRedirect": {
+      "1":"En cliquant sur le bouton",
+      "2": "Procéder au don",
+      "2a": "Paypal",
+      "3": "vous allez être redirigé vers une",
+      "4": "plateforme sécurisée",
+      "5": "pour le paiment"
+    },
+    "formError": {
+      "pleaseSelectAmount": "Veuillez sélectionner un montant.",
+      "fullNameRequired": "Le champ Nom et pérnom est requis.",
+      "fullNameInvalid": "Le nom et prénom sont invalides.",
+      "emailRequired": "Le champs Email est requis.",
+      "emailInvalid": "L'email est invalide.",
+      "companyToDonateRequired": "Le champ donations pour le compte d'une entreprise est requis.",
+      "commentaryRequired": "Le champ commentaire est requis."
+    },
+    "successDonation": {
+      "receivedDonation": "Donation reçue",
+      "paragraph1": "L'association Envol vous remercie vivement de votre don. Son comité étudie avec soin les nombreuses demandes de bourses qui lui sont adressées. Il répond favorablement aux demandes jugées prioritaires et réalisables en soulageant les bénéficiaires des coûts de leur formation pour lesquels ils ou elles n'ont trouvé ni aide ni solution.",
+      "paragraph2": "Par votre don, vous contribuez au soutien qu'Envol leur apporte et nous vous en sommes très reconnaissants.",
+      "thanks":"merci"
+    },
+    "subTitles": {
+      "personnalsInformations": "Informations personnelles",
+      "paymentMethod": "Méthode de paiement",
+      "amount": "Montant",
+      "resume": "Récapitulatif"
+    }
   }
 }
