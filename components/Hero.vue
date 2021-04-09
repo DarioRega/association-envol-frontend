@@ -37,7 +37,7 @@
             {{ $t('home.subtitle') }}
           </h5>
           <div class="text-center xl:hidden mt-48 md:mt-64 md:pt-64 pb-6">
-            <span class="block" @click="scrollToEnvol">
+            <span class="block cursor-pointer" @click="scrollToEnvol">
               <icon name="scroll-down-arrow" size="150" />
             </span>
           </div>
@@ -81,6 +81,48 @@ export default {
 .arrow-down {
   @screen xl {
     bottom: 8rem;
+  }
+}
+.dots-down {
+  @apply left-0 hidden;
+  @screen md {
+    @apply block;
+    bottom: 30rem;
+    left: -3rem;
+  }
+  @screen lg {
+    bottom: 18rem;
+  }
+  @screen xl {
+    left: 0rem;
+    bottom: 5rem;
+  }
+  @screen 2xl {
+    transform: scale(1.3);
+    bottom: 15rem;
+    left: 3rem;
+  }
+}
+.dots-up {
+  @apply hidden text-brand-carbon fill-current;
+  @screen md {
+    bottom: 5rem;
+    right: -4rem;
+    @apply block;
+  }
+  @screen lg {
+    top: 20rem;
+    right: 0rem;
+    bottom: unset;
+  }
+  @screen xl {
+    top: 6rem;
+    right: 2rem;
+  }
+  @screen 2xl {
+    top: 10rem;
+    right: 10rem;
+    transform: scale(1.3);
   }
 }
 </style>

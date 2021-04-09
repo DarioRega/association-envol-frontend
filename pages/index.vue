@@ -1,6 +1,6 @@
 <template>
   <section class="page-spacer">
-    <hero />
+    <hero class="w-full" />
     <div class="relative">
       <span id="envol-is" class="absolute"></span>
     </div>
