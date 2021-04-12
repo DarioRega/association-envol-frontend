@@ -6,8 +6,8 @@
           class="birds-container w-full md:h-64 md:w-4/5 xl:w-full mx-auto"
           data-aos="fade-right"
           data-aos-easing="ease-in"
-          data-aos-duration="700"
-          data-aos-delay="800"
+          data-aos-duration="600"
+          data-aos-delay="500"
           data-custom-fade="birds"
         >
           <icon name="envol_home_landing" size="full" />

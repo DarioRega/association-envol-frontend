@@ -14,9 +14,7 @@
           class="navbar-padding h-full flex justify-between items-center"
         >
           <div class="flex-shrink-0 flex items-center w-56 lg:w-64">
-            <picture srcset="~/assets/svg/logo.svg" type="image/svg+xml">
-              <img src="~/assets/images/logo.png" />
-            </picture>
+            <icon name="logo" size="full" />
           </div>
           <!-- Mobile menu button -->
           <button
@@ -45,11 +43,11 @@
           <div
             class="flex-none h-24 navbar-padding flex justify-between items-center"
           >
-            <h4
+            <h3
               class="tracking-wider text-brand-dark-blue font-medium mb-0 pb-0"
             >
               {{ $t('associationEnvol') }}
-            </h4>
+            </h3>
             <button
               class="inline-flex items-center justify-center p-2 hover:text-brand-gray focus:outline-none transition duration-150 ease-in-out"
               aria-expanded="false"
@@ -60,10 +58,10 @@
           </div>
 
           <!--          mobile navigation -->
-          <div
-            class="xl:hidden flex-1 md:relative md:h-full flex md:items-center"
-          >
-            <div class="pt-2 pb-3 w-full h-full flex flex-col justify-between">
+          <div class="xl:hidden flex-1 md:relative h-full flex items-center">
+            <div
+              class="pt-2 pb-3 w-full h-full flex flex-col justify-center items-center -mt-24 lg:mt-0"
+            >
               <main-navigation
                 :navigation-links="navigationLinks"
                 @closeMenu="$emit('closeMenu')"
@@ -77,6 +75,7 @@
 </template>
 
 <script>
+import state, { closeMenu } from '@/store';
 import MainNavigation from '~/components/navbar/MainNavigation';
 
 // TODO ADD ON SCROLL EFFECT WITH BOX SHADOW FIXED NAV
@@ -91,6 +90,19 @@ export default {
     navigationLinks: {
       type: Array,
       required: true,
+    },
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      if (window.innerWidth >= 1300 && state.isMenuOpen) {
+        closeMenu();
+      }
     },
   },
 };

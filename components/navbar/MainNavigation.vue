@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex items-start mt-12 lg:mt-0 md:items-center lg:items-center justify-center xl:block lg:h-full"
+    class="flex items-start lg:mt-0 md:items-center lg:items-center justify-center xl:block lg:h-full"
   >
     <!--    MOBILE -->
-    <div class="xl:hidden flex-col w-full sm:mt-12 lg:-mt-32">
+    <div class="xl:hidden flex-col w-full">
       <ul class="xl:hidden text-center">
         <li
           v-for="link in navigationLinks"

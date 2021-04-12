@@ -3,13 +3,28 @@
     <container>
       <div class="text-center lg:flex lg:flex-row-reverse lg:items-center">
         <flying-birds
+          data-aos="fade-left"
+          data-aos-duration="900"
+          data-custom-fade="birds-face"
+          data-aos-delay="200"
           class="md:w-full md:max-w-4xl mx-auto lg:w-7/12 lg:pl-8 2xl:pl-6 2xl:w-7/12"
         />
-        <div class="lg:w-5/12 2xl:w-5/12 lg:text-right h-full">
+        <div
+          class="lg:w-5/12 2xl:w-5/12 lg:text-right h-full"
+          data-aos="fade-right"
+          data-aos-duration="900"
+          data-custom-fade="help-envol"
+          data-aos-delay="200"
+        >
           <nuxt-content :document="intro" class="font-medium h-full" />
         </div>
       </div>
-      <div class="text-center lg:text-left pt-4 lg:pt-0 3xl:-mt-16">
+      <div
+        class="text-center lg:text-left pt-4 lg:pt-0 3xl:-mt-16"
+        data-aos="fade-up"
+        data-aos-duration="900"
+        data-aos-delay="600"
+      >
         <h5 class="lg:mb-6 hidden lg:block">
           {{ $t('helpEnvol.butWeStillNeedYou') }}
         </h5>
@@ -21,7 +36,7 @@
         </button>
       </div>
     </container>
-    <container>
+    <container data-aos="fade-up" data-aos-duration="900" data-aos-delay="900">
       <nuxt-content :document="informations" class="font-medium" />
     </container>
     <container v-show="isModalOpen">
@@ -138,11 +153,7 @@ export default {
       },
     };
   },
-  watch: {
-    data(newValue, oldValue) {},
-  },
   mounted() {
-    this.paypalErrorCallback();
     this.verifyIfDonationRedirect();
     this.getMainAmountsAndIntervals();
   },
@@ -279,3 +290,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+[data-custom-fade='birds-face'] {
+  transform: translate3d(500px, 0, 0);
+}
+[data-custom-fade='help-envol'] {
+  transform: translate3d(-500px, 0, 0);
+}
+</style>

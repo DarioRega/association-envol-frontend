@@ -3,6 +3,10 @@
     <div
       v-for="(item, index) in list"
       :key="item.name"
+      data-aos="fade-up"
+      data-aos-easing="ease-in"
+      data-aos-duration="600"
+      :data-aos-delay="index * 80"
       class="comitee-card relative my-8 md:my-10 mx-8 rounded-lg shadow-md bg-brand-main-gray px-8 py-8 flex items-center"
     >
       <div class="flex-shrink-0 hidden xl:block">
