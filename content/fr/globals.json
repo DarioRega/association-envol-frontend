@@ -10,6 +10,7 @@
   "search": "Chercher",
   "address": "Adresse",
   "contact": "Contact",
+  "backToHome": "Revenir à l'accueil",
   "contactUs": "Nous contacter",
   "contactHer": "Contacter",
   "importantsRemarks": "Remarques importantes",
@@ -47,7 +48,7 @@
   "pages": [
     {
       "name": "Accueil",
-      "slug": "/"
+      "slug": ""
     },
     {
       "name": "Critères d'attribution",
@@ -127,7 +128,6 @@
   },
   "helpEnvol": {
     "slug": "soutenir-envol",
-    "backToHome": "Revenir à l'accueil",
     "helpUs": "Soutenir Envol",
     "donationForm": "Formulaire de donation",
     "donateNow": "Faire un don en ligne",
@@ -178,5 +178,8 @@
       "amount": "Montant",
       "resume": "Récapitulatif"
     }
+  },
+  "404": {
+    "addressNotFound": "L'adresse rentrée ne correspond à aucune page actuelle."
   }
 }

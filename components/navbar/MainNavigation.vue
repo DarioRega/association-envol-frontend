@@ -11,7 +11,7 @@
           class="text-brand-dark-blue mb-6"
         >
           <nuxt-link
-            :to="link.slug"
+            :to="`/${link.slug}`"
             exact-active-class="font-bold underline"
             class="text-current font-semibold text-state-white inline-block my-4 no-underline focus:outline-none transition duration-150 ease-in-out"
             @click.native="$emit('closeMenu')"
@@ -33,7 +33,7 @@
         class="relative text-brand-carbon"
       >
         <nuxt-link
-          :to="link.slug"
+          :to="`/${link.slug}`"
           exact-active-class="font-bold text-brand-dark-blue"
           class="hover-link font-semibold lg:ml-4 xl:ml-8 inline-flex items-center px-1 pt-1 no-underline focus:outline-none transition duration-150 ease-in-out"
         >
