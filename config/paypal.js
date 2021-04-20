@@ -109,7 +109,7 @@ export const getPaypalSubscriptions = ($axios) => {
   return new Promise((resolve, reject) => {
     const auth = getPaypalAuth();
     $axios
-      .get(`${process.env.PAYPAL_SANDBOX_URL}/v1/billing/plans`, {
+      .get(`${process.env.PAYPAL_URL}/v1/billing/plans`, {
         auth,
       })
       .then((res) => {
@@ -144,7 +144,7 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
   return new Promise((resolve, reject) => {
     const auth = getPaypalAuth();
     const plan = {
-      product_id: process.env.PAYPAL_SANDBOX_CUSTOM_DONATIONS_PRODUCT_ID,
+      product_id: process.env.PAYPAL_CUSTOM_PRODUCT_ID,
       name: `custom-${amount}-${intervalRef}`,
       billing_cycles: [
         {
@@ -177,7 +177,7 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
     };
 
     $axios
-      .post(`${process.env.PAYPAL_SANDBOX_URL}/v1/billing/plans`, plan, {
+      .post(`${process.env.PAYPAL_URL}/v1/billing/plans`, plan, {
         auth,
       })
       .then((response) => resolve(response.data));

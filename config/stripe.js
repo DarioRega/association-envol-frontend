@@ -2,7 +2,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { setDonationInSessionStorage } from '@/config/index';
 
 const stripePromise = loadStripe(process.env.STRIPE_KEY);
-
 export const handleStripeSubmit = async ({ $axios, payload }) => {
   const { selectedAmount, selectedInterval } = payload;
   const { data } = await $axios.post(
@@ -51,6 +50,7 @@ export const processStripePayment = async ({ $axios, payload, price }) => {
   });
 
   if (result.error) {
+    // TODO handle that
     console.log('error', result.error.message);
     // this.donationState = 'error';
     // If `redirectToCheckout` fails due to a browser or network

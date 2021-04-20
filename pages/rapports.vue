@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { API_URL } from '@/constantes';
 import SmallContainer from '~/components/containers/SmallContainer';
 import PageHeader from '~/components/PageHeader';
 export default {
@@ -52,15 +53,14 @@ export default {
     };
   },
   mounted() {
-    // TODO SET BASE URL FOR API
-    const baseUrlApi = 'http://localhost:8000/api';
     this.$axios
-      .get(`${baseUrlApi}/rapports`)
+      .get(`${API_URL.RAPPORTS}`)
       .then((response) => {
-        console.log('response', response.data);
+        // TODO handle that
         this.allFiles = response.data;
       })
-      .catch((err) => console.log('err', err));
+      .catch((err) => console.error('err', err));
+    // TODO handle that
   },
   methods: {
     formatSource(file) {

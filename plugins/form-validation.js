@@ -8,7 +8,6 @@ export default (context, inject) => {
     phoneNumber:/^([0][1-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$|^(([0][0]|\+)[1-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9][0-9](\s|)[0-9][0-9](\s|)[0-9][0-9])$/,
     fullName: /^([^0-9]*)$/,
     subject: /^[a-zA-Z]{3,}$/,
-    message: /^[a-zA-Z]{5,}$/,
     birthdate: /^(0?[1-9]|[12][0-9]|3[01])[\.](0?[1-9]|1[012])[\.]\d{4}$/,
   }
 
@@ -22,6 +21,10 @@ export default (context, inject) => {
         return formErrors.empty;
       }
       if (property.includes('file')) return;
+
+      if (property === 'message') {
+        return value.length < 5 ? formErrors[property] : null;
+      }
 
       if (!validators[property].test(value)) {
         return formErrors[property];

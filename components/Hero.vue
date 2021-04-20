@@ -46,7 +46,7 @@
       <div
         class="arrow-down text-center hidden xl:block absolute left-0 right-0"
       >
-        <span class="block" @click="scrollToEnvol">
+        <span class="block cursor-pointer" @click="scrollToEnvol">
           <icon name="scroll-down-arrow" size="150" />
         </span>
       </div>

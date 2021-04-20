@@ -87,7 +87,7 @@ export default {
             this.shouldShowNotification = false;
           }
           refreshGlobalNotificationState();
-        }, 5000);
+        }, 8000);
       }
     },
   },

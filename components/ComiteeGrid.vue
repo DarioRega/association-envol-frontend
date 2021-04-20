@@ -50,9 +50,6 @@ export default {
       default: () => [],
     },
   },
-  mounted() {
-    console.log('THIS PORPS LIST', this.list);
-  },
 };
 </script>
 <style lang="scss" scoped>

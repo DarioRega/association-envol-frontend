@@ -98,7 +98,6 @@ import { handleStripeSubmit } from '@/config/stripe';
 import { autoDestructDonationSessionStorage } from '@/config';
 import Notification from '@/components/Notification';
 
-const BACK_URL = process.env.BACK_URL;
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
 const PAYPAL_BTN_STYLES = {
   layout: 'horizontal',
@@ -159,13 +158,15 @@ export default {
   },
   methods: {
     getMainAmountsAndIntervals() {
-      this.$axios.get(`${BACK_URL}/products/metadata`).then((res) => {
-        const { amounts, intervals } = res.data;
-        this.amounts = amounts;
-        this.intervals = intervals;
-        this.selectedInterval = intervals[1];
-        this.selectedAmount = amounts[0];
-      });
+      this.$axios
+        .get(`${process.env.BACK_URL}/products/metadata`)
+        .then((res) => {
+          const { amounts, intervals } = res.data;
+          this.amounts = amounts;
+          this.intervals = intervals;
+          this.selectedInterval = intervals[1];
+          this.selectedAmount = amounts[0];
+        });
     },
     verifyIfDonationRedirect() {
       const query = new URLSearchParams(window.location.search);
