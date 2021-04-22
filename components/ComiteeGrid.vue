@@ -9,7 +9,7 @@
       :data-aos-delay="index * 80"
       class="comitee-card relative my-8 md:my-10 mx-8 rounded-lg shadow-md bg-brand-main-gray px-8 py-8 flex items-center"
     >
-      <div class="flex-shrink-0 hidden xl:block">
+      <div class="flex-shrink-0 hidden 2xl:block">
         <div class="w-24 h-24 bg-brand-dark-blue rounded-full">
           <div class="flex items-center text-white h-full justify-center">
             <icon name="user" size="125" />
@@ -21,14 +21,14 @@
         <p class="text-brand-dark-gray font-light">{{ item.function }}</p>
         <a
           :href="`mailto:${item.mail}`"
-          class="font-light hidden xl:inline-flex items-center cursor-pointer hover:text-brand-dark-gray pt-2"
+          class="font-light hidden 2xl:inline-flex items-start 2xl:items-center cursor-pointer hover:text-brand-dark-gray pt-2"
           ><icon name="email" class="mr-4 text-current" size="75" />{{
             item.mail
           }}</a
         >
         <div
-          class="xl:hidden text-center"
-          :class="index === 0 ? 'md:mt-20' : 'mt-8'"
+          class="2xl:hidden text-center"
+          :class="index === 0 ? 'mt-8 md:mt-20' : 'mt-8'"
         >
           <a
             :href="`mailto:${item.mail}`"

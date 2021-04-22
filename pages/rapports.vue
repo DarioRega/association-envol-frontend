@@ -18,19 +18,20 @@
           <li
             v-for="file in fileArray"
             :key="file.id"
-            class="block my-4 w-1/2 xl:w-1/3"
+            class="block my-4 md:pr-6 md:w-1/2 xl:w-1/3"
           >
             <a
               :href="formatSource(file)"
               :download="file.is_external === false"
-              target="_blank"
-              class="inline-flex items-center justify-between caption-lg hover:text-brand-dark-gray"
+              class="inline-flex items-start justify-between caption-lg hover:text-brand-dark-gray"
             >
-              <icon
-                :name="file.is_external ? 'external-link' : 'document'"
-                size="75"
-                class="text-current mr-3"
-              />
+              <span class="flex-none w-10">
+                <icon
+                  :name="file.is_external ? 'external-link' : 'document'"
+                  size="75"
+                  class="text-current"
+                />
+              </span>
               {{ file.name }}</a
             >
           </li>
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import { API_URL } from '@/constantes';
+// import { API_URL } from '@/constantes';
 import SmallContainer from '~/components/containers/SmallContainer';
 import PageHeader from '~/components/PageHeader';
 export default {
@@ -54,9 +55,11 @@ export default {
   },
   mounted() {
     this.$axios
-      .get(`${API_URL.RAPPORTS}`)
+      // .get(`${API_URL.RAPPORTS}`)
+      .get('https://api.association-envol.info/rapports')
       .then((response) => {
         // TODO handle that
+        console.log(response.data);
         this.allFiles = response.data;
       })
       .catch((err) => console.error('err', err));
@@ -64,7 +67,8 @@ export default {
   },
   methods: {
     formatSource(file) {
-      if (!file.is_external) return `http//localhost:80${file.srcUrl}`;
+      if (!file.is_external)
+        return `https://api.association-envol.info/rapports/download/${file.id}`;
       return file.srcUrl;
     },
     getTypeName(fileArray) {
