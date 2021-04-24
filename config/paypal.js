@@ -1,5 +1,6 @@
 import { loadScript } from '@paypal/paypal-js';
 import { setDonationInSessionStorage } from '@/config/index';
+import { API_URL } from '@/constantes';
 
 export const paypalPromise = (params = {}) =>
   loadScript({
@@ -61,7 +62,7 @@ export const configureSubscriptionsPaypal = async ({
   errorCallback,
 }) => {
   const { selectedAmount, selectedInterval } = payload;
-  const plan = await findOrCreatePaypalPlan({
+  const planId = await findOrCreatePaypalPlan({
     $axios,
     MAIN_DONATIONS_AMOUNTS,
     amount: selectedAmount.amount / 100,
@@ -76,7 +77,7 @@ export const configureSubscriptionsPaypal = async ({
   const config = {
     createSubscription(data, actions) {
       return actions.subscription.create({
-        plan_id: plan.id,
+        plan_id: planId,
       });
     },
     onApprove(data, actions) {
@@ -92,9 +93,6 @@ export const configureSubscriptionsPaypal = async ({
       if (typeof successCallback === 'function') {
         successCallback();
       }
-      alert(
-        `You have successfully created subscription ${data.subscriptionID}`
-      );
     },
     onError(err) {
       if (typeof successCallback === 'function') {
@@ -104,19 +102,22 @@ export const configureSubscriptionsPaypal = async ({
   };
   return { paypal, config };
 };
-
-export const getPaypalSubscriptions = ($axios) => {
+// TODO CHECK
+export const findPaypalSubscription = async ($axios, refName) => {
   return new Promise((resolve, reject) => {
-    const auth = getPaypalAuth();
-    $axios
-      .get(`${process.env.PAYPAL_URL}/v1/billing/plans`, {
-        auth,
-      })
-      .then((res) => {
-        resolve(res.data.plans);
-      })
-      .catch((err) => reject(err));
+   $axios.get(`${API_URL.PAYPAL_PLANS}/${refName}`).then((res) => {
+    // eslint-disable-next-line no-prototype-builtins
+     console.log('RES DATA PAYPAL REFNAME ', res.data)
+    if (res.data.hasOwnProperty('id')) {
+      resolve(res.data.plan_id);
+    }
+    resolve(null);
   });
+
+    // GET IN DATABASE IF THE PLAN ALREADY EXIST
+
+    // IF EXIST RETRIEVE PLAN ID BY adding ?product_id=X
+    // MUST RETURN ARRAY IF POSSIBLE OTHERWISE FIX CALLING FN by typeof
 };
 
 export const findOrCreatePaypalPlan = async ({
@@ -125,19 +126,16 @@ export const findOrCreatePaypalPlan = async ({
   amount,
   intervalRef,
 }) => {
-  if (!MAIN_DONATIONS_AMOUNTS.includes(amount)) {
-    const plan = await createPaypalPlan({ $axios, amount, intervalRef });
-    return plan;
-  } else {
-    const plans = await getPaypalSubscriptions($axios);
+  const refName = `${
+    MAIN_DONATIONS_AMOUNTS.includes(amount) ? 'main' : 'custom'
+  }-${amount}-${intervalRef}`;
 
-    const targetPlan = plans.filter(
-      (plan) => plan.name === `main-${amount}-${intervalRef}`
-    );
-    if (targetPlan.length > 0) {
-      return targetPlan[0];
-    }
+  let plan = await findPaypalSubscription($axios, refName);
+  if (!plan) {
+    plan = await createPaypalPlan({ $axios, amount, intervalRef });
   }
+
+  return plan;
 };
 
 export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
