@@ -23,6 +23,7 @@
             <a
               :href="formatSource(file)"
               :download="file.is_external === false"
+              target="_blank"
               class="inline-flex items-start justify-between caption-lg hover:text-brand-dark-gray"
             >
               <span class="flex-none w-10">
@@ -42,7 +43,7 @@
 </template>
 
 <script>
-// import { API_URL } from '@/constantes';
+import { API_URL } from '@/constantes';
 import SmallContainer from '~/components/containers/SmallContainer';
 import PageHeader from '~/components/PageHeader';
 export default {
@@ -55,11 +56,8 @@ export default {
   },
   mounted() {
     this.$axios
-      // .get(`${API_URL.RAPPORTS}`)
-      .get('https://api.association-envol.info/rapports')
+      .get(`${API_URL.RAPPORTS}`)
       .then((response) => {
-        // TODO handle that
-        console.log(response.data);
         this.allFiles = response.data;
       })
       .catch((err) => console.error('err', err));
@@ -67,8 +65,9 @@ export default {
   },
   methods: {
     formatSource(file) {
-      if (!file.is_external)
-        return `https://api.association-envol.info/rapports/download/${file.id}`;
+      if (!file.is_external) {
+        return `${API_URL.RAPPORTS}/download/${file.id}`;
+      }
       return file.srcUrl;
     },
     getTypeName(fileArray) {

@@ -81,7 +81,11 @@
     "since": "Une association depuis",
     "boursesAttribuees": "Bourses attribuées",
     "donators": "Donateurs",
-    "ourComitee": "Notre commité"
+    "ourComitee": "Notre commité",
+    "alert" : {
+      "title": "fermeture",
+      "text": "Envol sera fermé jusqu'au mois d'aout merci de votre compréhension"
+    }
   },
   "formDemand": {
     "filesDeposed": "Documents déposés",
