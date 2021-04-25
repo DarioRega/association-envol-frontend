@@ -8,11 +8,7 @@
         {{ $t('helpEnvol.amountOfDonationChoosen') }} :
       </p>
       <p class="inline-flex font-semibold">
-        {{
-          selectedAmount.id
-            ? selectedAmount.amount / 100
-            : selectedAmount.amount
-        }}
+        {{ selectedAmount.amount / 100 }}
         CHF
       </p>
     </div>

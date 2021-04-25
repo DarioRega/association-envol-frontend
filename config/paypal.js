@@ -62,12 +62,14 @@ export const configureSubscriptionsPaypal = async ({
   errorCallback,
 }) => {
   const { selectedAmount, selectedInterval } = payload;
-  const planId = await findOrCreatePaypalPlan({
+  const plan = await findOrCreatePaypalPlan({
     $axios,
     MAIN_DONATIONS_AMOUNTS,
     amount: selectedAmount.amount / 100,
     intervalRef: selectedInterval.ref,
   });
+
+  console.log('PLAN MUST BE CREATED OR RETRIEVED HERE', plan);
 
   // config
   const paypal = await paypalPromise({
@@ -77,7 +79,7 @@ export const configureSubscriptionsPaypal = async ({
   const config = {
     createSubscription(data, actions) {
       return actions.subscription.create({
-        plan_id: planId,
+        plan_id: plan.id,
       });
     },
     onApprove(data, actions) {
@@ -105,19 +107,15 @@ export const configureSubscriptionsPaypal = async ({
 // TODO CHECK
 export const findPaypalSubscription = async ($axios, refName) => {
   return new Promise((resolve, reject) => {
-   $axios.get(`${API_URL.PAYPAL_PLANS}/${refName}`).then((res) => {
-    // eslint-disable-next-line no-prototype-builtins
-     console.log('RES DATA PAYPAL REFNAME ', res.data)
-    if (res.data.hasOwnProperty('id')) {
-      resolve(res.data.plan_id);
-    }
-    resolve(null);
+    $axios.get(`${API_URL.PAYPAL_PLANS}/${refName}`).then((res) => {
+      // eslint-disable-next-line no-prototype-builtins
+      console.log('RES DATA PAYPAL REFNAME ', res.data);
+      if (res.data) {
+        resolve(res.data.plan_id);
+      }
+      resolve(null);
+    });
   });
-
-    // GET IN DATABASE IF THE PLAN ALREADY EXIST
-
-    // IF EXIST RETRIEVE PLAN ID BY adding ?product_id=X
-    // MUST RETURN ARRAY IF POSSIBLE OTHERWISE FIX CALLING FN by typeof
 };
 
 export const findOrCreatePaypalPlan = async ({
@@ -131,14 +129,16 @@ export const findOrCreatePaypalPlan = async ({
   }-${amount}-${intervalRef}`;
 
   let plan = await findPaypalSubscription($axios, refName);
+  console.log('PLAN FOUND IN BACKEND => ', plan);
   if (!plan) {
     plan = await createPaypalPlan({ $axios, amount, intervalRef });
+    console.log('CREATE PLAN RETURNED', plan);
   }
 
   return plan;
 };
 
-export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
+export const createPaypalPlan = async ({ $axios, amount, intervalRef }) => {
   return new Promise((resolve, reject) => {
     const auth = getPaypalAuth();
     const plan = {
@@ -178,7 +178,17 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
       .post(`${process.env.PAYPAL_URL}/v1/billing/plans`, plan, {
         auth,
       })
-      .then((response) => resolve(response.data));
+      .then((response) => {
+        console.log('PAYPAL CREATE PLAN RESPONSE => ', response);
+        $axios
+          .post(`${API_URL.PAYPAL_PLANS}`, {
+            name: response.data.name,
+            plan_id: response.data.id,
+          })
+          .then((res) => {
+            resolve(response.data);
+          });
+      });
   });
 };
 
