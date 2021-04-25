@@ -60,9 +60,10 @@
           <!--          mobile navigation -->
           <div class="xl:hidden flex-1 md:relative h-full flex items-center">
             <div
-              class="pt-2 pb-3 w-full h-full flex flex-col justify-center items-center -mt-24 lg:mt-0"
+              class="pt-2 pb-3 w-full h-full flex flex-col justify-center items-center"
             >
               <main-navigation
+                class="-mt-24 lg:mt-0"
                 :navigation-links="navigationLinks"
                 @closeMenu="$emit('closeMenu')"
               />

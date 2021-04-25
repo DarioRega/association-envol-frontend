@@ -21,7 +21,7 @@
         </li>
       </ul>
       <div class="xl:hidden mt-8 pt-6 w-full text-center">
-        <donate-envol />
+        <donate-envol @closeMenu="$emit('closeMenu')" />
       </div>
     </div>
 

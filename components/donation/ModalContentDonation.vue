@@ -209,7 +209,7 @@ export default {
     handleCustomAmount(value) {
       const amount = parseInt(value);
       this.$emit('onSelectAmount', { id: null, amount: amount * 100 });
-      this.$emit('onCustomAmount', amount);
+      this.$emit('onCustomAmount', amount * 100);
     },
     isStepValid(step) {
       const errors = [];
