@@ -1,7 +1,6 @@
 <template>
   <section>
     <mobile-navbar-layout
-      v-show="isMobile"
       class="xl:hidden"
       :is-menu-open="isMenuOpen"
       :navigation-links="navigationLinks"
@@ -34,13 +33,6 @@ export default {
   computed: {
     isMenuOpen() {
       return state.isMenuOpen;
-    },
-    isMobile() {
-      // TODO ADD WINDOW EVENT LISTENER
-      if (process.client) {
-        return window.innerWidth < 1300;
-      }
-      return false;
     },
   },
   mounted() {

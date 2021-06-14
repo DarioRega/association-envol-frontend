@@ -18,7 +18,10 @@
             {{ $t('formDemand.find') }}
           </button>
         </div>
-        <button class="lg:hidden button-secondary my-10" @click="openDirectory">
+        <button
+          class="lg:hidden button-secondary mb-10 mt-2"
+          @click="openDirectory"
+        >
           {{ $t('formDemand.downloadFiles') }}
         </button>
       </div>
@@ -115,8 +118,6 @@ export default {
         //  Capture the files from the drop event and add them to our local files
         //  array.
         // */
-        console.log(typeof e.dataTransfer);
-        console.log(e.dataTransfer.files);
         // e.dataTransfer.files.forEach((file) => this.files.push(file));
         for (let i = 0; i < e.dataTransfer.files.length; i++) {
           this.files.push(e.dataTransfer.files[i]);
@@ -124,7 +125,6 @@ export default {
       });
     }
     this.$refs.inputFile.addEventListener('change', (e) => {
-      console.log('EVENT FILE', e.target.files);
       e.target.files.forEach((file) => this.files.push(file));
     });
   },
@@ -198,9 +198,11 @@ export default {
           }.bind(this),
         })
         .then(function () {
+          // TODO handle that
           console.log('SUCCESS!!');
         })
         .catch(function () {
+          // TODO handle that
           console.log('FAILURE!!');
         });
     },

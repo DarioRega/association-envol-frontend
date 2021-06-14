@@ -58,11 +58,6 @@ export default {
       this.entretien,
       this.entretien,
     ];
-    this.questionsSection.forEach((section) => {
-      console.log('ALL', this.questionsSection);
-      console.log('ALL LGT', this.questionsSection.length);
-      console.log('A SECTION => ', section);
-    });
   },
 };
 </script>

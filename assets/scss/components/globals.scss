@@ -46,7 +46,13 @@ $lines: (1,2,3,4,5);
 }
 
  .stats-value {
-   font-size: 7.2rem !important;
+   font-size: 6rem !important;
+   @screen lg {
+    font-size: 5rem !important;
+   }
+   @screen xl {
+     font-size: 7.2rem !important;
+   }
  }
 .lighter {
   @apply text-brand-middle-gray;
@@ -72,7 +78,7 @@ $lines: (1,2,3,4,5);
 }
 
 .form-input {
-  @apply border border-brand-main-gray rounded-md text-brand-carbon bg-white;
+  @apply border border-brand-variant-main-gray rounded-md text-brand-carbon bg-white;
   &.has-error {
     @apply border-red-300 text-red-900;
     &:focus {

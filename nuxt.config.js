@@ -6,13 +6,14 @@ export default {
   head: {
     title: 'envol',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'fr',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
+    script: [{ src: 'https://js.stripe.com/v3/' }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -25,6 +26,10 @@ export default {
     '~/plugins/form-validation.js',
     '~/plugins/form-labels.js',
     '~/plugins/getContent.js',
+    {
+      src: '~/plugins/v-waypoint.js',
+      mode: 'client',
+    },
   ],
 
   components: {
@@ -43,6 +48,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxt/content',
+    '@nuxtjs/dotenv',
     [
       'nuxt-i18n',
       {

@@ -54,7 +54,7 @@ import InputForm from '@/components/InputForm';
 import { API_URL } from '~/constantes';
 import Notification from '~/components/Notification';
 import { refreshGlobalNotificationState } from '~/store';
-
+// TODO ADD TRANSLATE
 export default {
   name: 'FormContact',
   components: { Notification, InputForm },
@@ -87,7 +87,7 @@ export default {
             this.shouldShowNotification = false;
           }
           refreshGlobalNotificationState();
-        }, 5000);
+        }, 8000);
       }
     },
   },
