@@ -7,6 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
+    "release": "release-it",
     "eslint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint 'assets/**/*.scss' 'components/**/*.vue'",
@@ -44,6 +45,7 @@
     "jest": "^26.1.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
+    "release-it": "^14.9.0",
     "sass-loader": "^10.0.2",
     "stylelint": "^13.7.1",
     "stylelint-config-rawbot": "^1.0.0"

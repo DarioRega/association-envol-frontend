@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "before:init": ["npm run lint"]
+  },
+  "npm": {
+    "publish": false
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "eslint",
+      "infile": "./CHANGELOG.mdx"
+    }
+  }
+}
