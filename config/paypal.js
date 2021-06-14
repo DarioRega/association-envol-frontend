@@ -69,8 +69,6 @@ export const configureSubscriptionsPaypal = async ({
     intervalRef: selectedInterval.ref,
   });
 
-  console.log('PLAN MUST BE CREATED OR RETRIEVED HERE', plan);
-
   // config
   const paypal = await paypalPromise({
     vault: true,
@@ -105,11 +103,10 @@ export const configureSubscriptionsPaypal = async ({
   return { paypal, config };
 };
 // TODO CHECK
-export const findPaypalSubscription = async ($axios, refName) => {
+export const findPaypalSubscription = ($axios, refName) => {
   return new Promise((resolve, reject) => {
     $axios.get(`${API_URL.PAYPAL_PLANS}/${refName}`).then((res) => {
       // eslint-disable-next-line no-prototype-builtins
-      console.log('RES DATA PAYPAL REFNAME ', res.data);
       if (res.data) {
         resolve(res.data.plan_id);
       }
@@ -129,16 +126,14 @@ export const findOrCreatePaypalPlan = async ({
   }-${amount}-${intervalRef}`;
 
   let plan = await findPaypalSubscription($axios, refName);
-  console.log('PLAN FOUND IN BACKEND => ', plan);
   if (!plan) {
     plan = await createPaypalPlan({ $axios, amount, intervalRef });
-    console.log('CREATE PLAN RETURNED', plan);
   }
 
   return plan;
 };
 
-export const createPaypalPlan = async ({ $axios, amount, intervalRef }) => {
+export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
   return new Promise((resolve, reject) => {
     const auth = getPaypalAuth();
     const plan = {
