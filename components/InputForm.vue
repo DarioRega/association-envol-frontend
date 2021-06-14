@@ -8,7 +8,7 @@
     >
       <p
         v-if="value"
-        class="caption-sm block pb-2 text-right text-secondary"
+        class="caption-lg block pb-2 text-right text-secondary font-medium"
         data-aos="fade-in"
         data-aos-easing="linear"
         data-aos-duration="500"
@@ -181,3 +181,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+label {
+  @apply font-semibold;
+}
+</style>

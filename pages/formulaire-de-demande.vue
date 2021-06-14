@@ -6,6 +6,9 @@
     <div>
       <small-container>
         <accordions :list="list" />
+        <div class="mt-12 lg:mt-24 mb-8 lg:mb-16 got-questions">
+          <nuxt-content class="" :document="gotQuestions" />
+        </div>
       </small-container>
     </div>
   </section>
@@ -21,8 +24,9 @@ export default {
   async asyncData({ $getContent, error }) {
     try {
       const list = await $getContent('formDemands/accordions');
+      const gotQuestions = await $getContent('formDemands/gotQuestions');
       list.sort((a, b) => a.slug.localeCompare(b.slug));
-      return { list };
+      return { list, gotQuestions };
     } catch (err) {
       error({
         statusCode: 404,
@@ -33,7 +37,19 @@ export default {
   data() {
     return {
       list: [],
+      gotQuestions: {},
     };
   },
 };
 </script>
+<style lang="scss">
+.got-questions {
+  & h4 {
+    @apply font-medium text-brand-dark-blue;
+  }
+
+  & a {
+    @apply text-brand-dark-blue;
+  }
+}
+</style>

@@ -43,7 +43,11 @@
           >
             <p v-if="item.description">{{ item.description }}</p>
 
-            <nuxt-content v-else :document="item" class="outside-list" />
+            <nuxt-content
+              v-else
+              :document="item"
+              class="accordions-content outside-list"
+            />
             <div v-if="item.isBourseForm">
               <div class="md:p-8 md:bg-white md:rounded-md">
                 <transition-expand>
@@ -112,3 +116,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.accordions-content a {
+  @apply text-brand-dark-blue;
+}
+</style>

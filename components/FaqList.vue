@@ -71,9 +71,6 @@ export default {
       currentOpenAccordion: [],
     };
   },
-  mounted() {
-    console.log('THISLIST FAQLIST', this.list);
-  },
   methods: {
     handleClick(id) {
       if (this.currentOpenAccordion.includes(id)) {
