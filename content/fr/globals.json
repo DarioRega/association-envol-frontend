@@ -39,7 +39,7 @@
     "home": "Accueil",
     "attributionCriteria": "Critères d'attribution des bourses",
     "formDemand": "Formulaire de demande de bourse",
-    "status": "Status",
+    "status": "Statuts",
     "faq": "Questions fréquentes",
     "rapports": "Rapports",
     "contact": "Contact",
@@ -63,8 +63,8 @@
       "slug": "faq"
     },
     {
-      "name": "Status",
-      "slug": "status"
+      "name": "Statuts",
+      "slug": "statuts"
     },
     {
       "name": "Rapports",
