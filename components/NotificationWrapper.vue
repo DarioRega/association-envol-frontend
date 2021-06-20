@@ -37,5 +37,3 @@ export default {
   name: 'NotificationWrapper',
 };
 </script>
-
-<style scoped></style>

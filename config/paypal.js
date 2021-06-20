@@ -174,7 +174,6 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
         auth,
       })
       .then((response) => {
-        console.log('PAYPAL CREATE PLAN RESPONSE => ', response);
         $axios
           .post(`${API_URL.PAYPAL_PLANS}`, {
             name: response.data.name,

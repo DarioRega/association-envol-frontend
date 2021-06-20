@@ -56,8 +56,7 @@ h1,h2,h3,h4,h5,h6, th {
     }
   }
 
- &.home-swap {
-   ol {
+ &.home-swap ol {
      li {
        counter-increment: item;
        margin-bottom: 15px;
@@ -66,8 +65,9 @@ h1,h2,h3,h4,h5,h6, th {
 
      p {
        @apply pl-16 flex items-center relative;
+
        @screen md {
-         @apply my-10;
+          @apply my-10;
        }
      }
 
@@ -77,7 +77,6 @@ h1,h2,h3,h4,h5,h6, th {
        font-family: 'Montserrat Alternates', Helvetica, Arial, Lucida, sans-serif;
        width: 1.8em;
      }
-   }
  }
 
   p {
