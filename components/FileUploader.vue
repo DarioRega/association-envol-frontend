@@ -2,7 +2,13 @@
   <div id="file-drag-drop" class="pb-12">
     <form
       ref="fileForm"
-      class="uploader lg:bg-brand-main-gray lg:rounded-md lg:h-64 flex items-center justify-center"
+      class="
+        uploader
+        lg:bg-brand-main-gray lg:rounded-md lg:h-64
+        flex
+        items-center
+        justify-center
+      "
     >
       <input
         ref="inputFile"

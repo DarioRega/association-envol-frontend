@@ -42,11 +42,29 @@
       </div>
 
       <div
-        class="container-swap-item bg-brand-main-gray flex-1 py-6 lg:py-0 flex flex-col justify-center lg:justify-around"
+        class="
+          container-swap-item
+          bg-brand-main-gray
+          flex-1
+          py-6
+          lg:py-0
+          flex flex-col
+          justify-center
+          lg:justify-around
+        "
         :class="body.side === 'right' ? 'lg:rounded-l-3xl' : 'lg:rounded-r-3xl'"
       >
         <div
-          class="mx-auto px-12 sm:px-0 sm:w-9/12 lg:px-0 w-full md:w-10/12 lg:w-9/12 xl:w-8/1"
+          class="
+            mx-auto
+            px-12
+            sm:px-0 sm:w-9/12
+            lg:px-0
+            w-full
+            md:w-10/12
+            lg:w-9/12
+            xl:w-8/1
+          "
         >
           <div class="mt-4 text-secondary rich-text">
             <nuxt-content class="home-swap" :document="body" />

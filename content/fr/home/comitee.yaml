@@ -19,6 +19,10 @@ comitee:
     function: Membre du comité
     mail: ariane.chaulmontet@association-envol.info
 
+  - name: Anick Werro
+    function: Membre du comité
+    mail: anick.werro@association-envol.info
+
   - name: Comptabilité
     function: Service de comptabilité
     mail: comptabilite@association-envol.info
@@ -26,3 +30,7 @@ comitee:
   - name: Secrétariat
     function: Service du secrétariat
     mail: secretariat@association-envol.info
+
+  - name: Dario Regazzoni
+    function: Webmaster
+    mail: webmaster@association-envol.info

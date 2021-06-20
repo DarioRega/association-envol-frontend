@@ -7,7 +7,20 @@
       data-aos-easing="ease-in"
       data-aos-duration="600"
       :data-aos-delay="index * 80"
-      class="comitee-card relative my-8 md:my-10 mx-8 rounded-lg shadow-md bg-brand-main-gray px-8 py-8 flex items-center"
+      class="
+        comitee-card
+        relative
+        my-8
+        md:my-10
+        mx-8
+        rounded-lg
+        shadow-md
+        bg-brand-main-gray
+        px-8
+        py-8
+        flex
+        items-center
+      "
     >
       <div class="flex-shrink-0 hidden 2xl:block">
         <div class="w-24 h-24 bg-brand-dark-blue rounded-full">
@@ -21,7 +34,16 @@
         <p class="text-brand-dark-gray font-light">{{ item.function }}</p>
         <a
           :href="`mailto:${item.mail}`"
-          class="font-light hidden 2xl:inline-flex items-start 2xl:items-center cursor-pointer hover:text-brand-dark-gray pt-2"
+          class="
+            font-light
+            hidden
+            2xl:inline-flex
+            items-start
+            2xl:items-center
+            cursor-pointer
+            hover:text-brand-dark-gray
+            pt-2
+          "
           ><icon name="email" class="mr-4 text-current" size="75" />{{
             item.mail
           }}</a
@@ -32,7 +54,15 @@
         >
           <a
             :href="`mailto:${item.mail}`"
-            class="contact-cta inline-block py-3 px-4 bg-brand-light-blue text-white rounded-md"
+            class="
+              contact-cta
+              inline-block
+              py-3
+              px-4
+              bg-brand-light-blue
+              text-white
+              rounded-md
+            "
             >{{ $t('contactHer') }} <icon name="email" class="ml-4" size="75"
           /></a>
         </div>

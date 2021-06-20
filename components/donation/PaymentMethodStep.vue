@@ -5,7 +5,14 @@
     </h5>
     <div class="flex flex-col lg:flex-row lg:justify-between items-stretch">
       <div
-        class="w-full lg:w-1/2 pb-4 lg:pb-0 lg:pr-6 border-b lg:border-b-0 lg:border-r"
+        class="
+          w-full
+          lg:w-1/2
+          pb-4
+          lg:pb-0 lg:pr-6
+          border-b
+          lg:border-b-0 lg:border-r
+        "
       >
         <button
           class="method-container py-20 h-full"
@@ -20,7 +27,14 @@
         </button>
       </div>
       <div
-        class="w-full lg:w-1/2 pt-4 lg:pt-0 lg:pl-6 border-t lg:border-t-0 lg:border-l"
+        class="
+          w-full
+          lg:w-1/2
+          pt-4
+          lg:pt-0 lg:pl-6
+          border-t
+          lg:border-t-0 lg:border-l
+        "
       >
         <button
           class="method-container py-14 lg:py-20"

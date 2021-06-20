@@ -47,7 +47,16 @@
           :name="field.id"
           rows="5"
           :class="error && 'has-error'"
-          class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
+          class="
+            form-input form-outline
+            block
+            w-full
+            py-3
+            px-4
+            transition
+            ease-in-out
+            duration-150
+          "
           :placeholder="field.placeholder"
         ></textarea>
       </div>
@@ -67,7 +76,16 @@
           v-model="field.options[0].value"
           :name="field.id"
           :class="error && 'has-error'"
-          class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
+          class="
+            form-input form-outline
+            block
+            w-full
+            py-3
+            px-4
+            transition
+            ease-in-out
+            duration-150
+          "
           :placeholder="field.placeholder"
         >
           <option
@@ -112,7 +130,16 @@
           :id="field.id"
           v-model.lazy="value"
           :name="field.id"
-          class="form-input form-outline block w-full py-3 px-4 transition ease-in-out duration-150"
+          class="
+            form-input form-outline
+            block
+            w-full
+            py-3
+            px-4
+            transition
+            ease-in-out
+            duration-150
+          "
           :class="error && 'has-error'"
           :data-mask="field.id === 'birthdate' ? '00.00.0000' : ''"
           :placeholder="field.placeholder"
@@ -123,7 +150,15 @@
 
       <div
         v-if="error"
-        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+        class="
+          absolute
+          inset-y-0
+          right-0
+          pr-3
+          flex
+          items-center
+          pointer-events-none
+        "
       >
         <svg
           class="w-8 h-8 text-brand-error"

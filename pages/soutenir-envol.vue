@@ -7,7 +7,12 @@
           data-aos-duration="900"
           data-custom-fade="birds-face"
           data-aos-delay="200"
-          class="md:w-full md:max-w-4xl mx-auto lg:w-7/12 lg:pl-8 2xl:pl-6 2xl:w-7/12"
+          class="
+            md:w-full md:max-w-4xl
+            mx-auto
+            lg:w-7/12 lg:pl-8
+            2xl:pl-6 2xl:w-7/12
+          "
         />
         <div
           class="lg:w-5/12 2xl:w-5/12 lg:text-right h-full"

@@ -10,7 +10,10 @@
     <div class="bg-brand-main-gray">
       <container>
         <div
-          class="flex flex-col lg:flex-row lg:justify-between lg:items-center lg:py-10"
+          class="
+            flex flex-col
+            lg:flex-row lg:justify-between lg:items-center lg:py-10
+          "
         >
           <stats-envol
             v-for="stat in stats"
@@ -31,7 +34,16 @@
       </container>
     </div>
     <div
-      class="bg-brand-main-gray sm:bg-transparent mt-20 sm:mt-16 md:mt-14 2xl:mt-20 max-w-5xl mx-auto"
+      class="
+        bg-brand-main-gray
+        sm:bg-transparent
+        mt-20
+        sm:mt-16
+        md:mt-14
+        2xl:mt-20
+        max-w-5xl
+        mx-auto
+      "
     >
       <container>
         <alert

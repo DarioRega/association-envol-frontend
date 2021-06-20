@@ -72,13 +72,39 @@
         <form-stepper
           :current-step="currentStep.number"
           :total-steps="steps.length"
-          class="mt-6 md:mt-10 px-5 lg:px-0 pb-10 max-w-lg lg:max-w-xl mx-auto w-full flex space-between"
+          class="
+            mt-6
+            md:mt-10
+            px-5
+            lg:px-0
+            pb-10
+            max-w-lg
+            lg:max-w-xl
+            mx-auto
+            w-full
+            flex
+            space-between
+          "
           @onNextStep="validateCurrentStepToNext"
           @onPreviousStep="previousStep"
         >
           <button
             v-if="selectedPaymentMethod === 'stripe'"
-            class="p-4 outline-none leading-8 focus:outline-none ml-3 font-semibold outline-none focus:outline-none text-white border-2 border-brand-light-blue bg-brand-light-blue w-full rounded-md"
+            class="
+              p-4
+              outline-none
+              leading-8
+              focus:outline-none
+              ml-3
+              font-semibold
+              outline-none
+              focus:outline-none
+              text-white
+              border-2 border-brand-light-blue
+              bg-brand-light-blue
+              w-full
+              rounded-md
+            "
             @click="handleSubmit"
           >
             {{ $t('helpEnvol.proceedToDonation') }}
@@ -190,8 +216,8 @@ export default {
         (x) => x.number === this.currentStep.number + 1
       );
       this.currentStep = nextStep;
-      if(nextStep.number === 4 && this.selectedPaymentMethod === 'paypal' ){
-        this.handleSubmit()
+      if (nextStep.number === 4 && this.selectedPaymentMethod === 'paypal') {
+        this.handleSubmit();
       }
     },
     previousStep() {
@@ -234,9 +260,7 @@ export default {
         }
 
         if (this.isDonationFromCompany && !this.company_name) {
-          errors.push(
-            this.$t('helpEnvol.formError.companyToDonateRequired')
-          );
+          errors.push(this.$t('helpEnvol.formError.companyToDonateRequired'));
         }
 
         if (this.hasCommentary && !this.commentary) {
@@ -253,8 +277,8 @@ export default {
         company_name: this.company_name,
         commentary: this.commentary,
         email: this.email,
-        payment_method: this.selectedPaymentMethod
-      }
+        payment_method: this.selectedPaymentMethod,
+      };
       this.$emit('handleSubmit', data);
     },
   },
