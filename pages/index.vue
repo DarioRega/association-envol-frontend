@@ -48,7 +48,7 @@
       <container>
         <alert
           :title="$t('home.alert.title')"
-          :text="$t('home.alert.text')"
+          :paragraphs="textsAlert"
           class=""
         />
       </container>
@@ -63,7 +63,7 @@
     </section>
     <container :extra-spacing="true">
       <h2 class="text-center font-semibold spacing-subtitle">
-        {{ $t('home.ourComitee') }}
+        {{ $t('home.ourCommittee') }}
       </h2>
       <comitee-grid :list="comitee" />
     </container>
@@ -108,11 +108,19 @@ export default {
       },
     };
   },
+  computed: {
+    textsAlert() {
+      return [
+        this.$t('home.alert.paragraph1'),
+        this.$t('home.alert.paragraph2'),
+      ];
+    },
+  },
   mounted() {
     this.stats = [
       {
         number: 1997,
-        text: this.$t('home.since'),
+        text: this.$t('home.creation'),
       },
       {
         number: 1245,

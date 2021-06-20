@@ -78,13 +78,14 @@
   "home": {
     "subtitle": "ENVOL a pour but de favoriser les études ou la formation professionnelle par l’attribution de bourses.",
     "envolIs": "Envol c'est",
-    "since": "Une association depuis",
+    "creation": "Création",
     "boursesAttribuees": "Bourses attribuées",
     "donators": "Donateurs",
-    "ourComitee": "Notre commité",
+    "ourCommittee": "Notre commité",
     "alert" : {
       "title": "fermeture",
-      "text": "Envol sera fermé jusqu'au mois d'aout merci de votre compréhension"
+      "paragraph1": "Envol est en pause estivale du 1er juillet au 15 août.",
+      "paragraph2": "Merci de votre compréhension"
     }
   },
   "formDemand": {
