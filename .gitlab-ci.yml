@@ -1,0 +1,11 @@
+image: node:12
+
+stages:
+  - lint
+
+lint:
+  stage: lint
+  before_script:
+    - npm install
+  script:
+    - npm run validate

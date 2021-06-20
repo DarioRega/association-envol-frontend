@@ -34,6 +34,10 @@ $lines: (1,2,3,4,5);
   }
 }
 
+.button-disabled {
+  @apply text-white cursor-not-allowed border-2  border-gray-500 bg-gray-500 rounded-lg;
+}
+
 .primary-title {
   @apply text-brand-dark-blue font-bold;
 }

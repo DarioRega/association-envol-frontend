@@ -8,8 +8,8 @@
         <h6 class="font-medium mb-2 text-brand-dark-blue">
           Information {{ title }}
         </h6>
-        <p>
-          {{ text }}
+        <p v-for="paragraph in paragraphs" :key="paragraph">
+          {{ paragraph }}
         </p>
       </div>
     </div>
@@ -24,9 +24,9 @@ export default {
       type: String,
       default: '',
     },
-    text: {
-      type: String,
-      required: true,
+    paragraphs: {
+      type: Array,
+      default: () => [],
     },
   },
 };
