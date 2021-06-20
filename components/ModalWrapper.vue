@@ -6,7 +6,18 @@
     aria-modal="true"
   >
     <div
-      class="flex items-center lg:items-end justify-center min-h-screen pt-4 md:px-4 pb-20 text-center sm:block sm:p-0"
+      class="
+        flex
+        items-center
+        lg:items-end
+        justify-center
+        min-h-screen
+        pt-4
+        md:px-4
+        pb-20
+        text-center
+        sm:block sm:p-0
+      "
     >
       <transition
         enter-active-class="ease-out duration-300"

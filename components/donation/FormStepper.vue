@@ -2,7 +2,17 @@
   <div>
     <button
       v-show="shouldShowPreviousStep"
-      class="p-4 outline-none focus:outline-none font-semibold text-white border-2 border-brand-dark-blue bg-brand-dark-blue w-full rounded-md"
+      class="
+        p-4
+        outline-none
+        focus:outline-none
+        font-semibold
+        text-white
+        border-2 border-brand-dark-blue
+        bg-brand-dark-blue
+        w-full
+        rounded-md
+      "
       :class="shouldShowNextStep || (currentStep === totalSteps && 'mr-3')"
       @click="$emit('onPreviousStep')"
     >
@@ -22,7 +32,17 @@
     </button>
     <button
       v-show="shouldShowNextStep"
-      class="p-4 outline-none focus:outline-none font-semibold text-white border-2 border-brand-dark-blue bg-brand-dark-blue w-full rounded-md"
+      class="
+        p-4
+        outline-none
+        focus:outline-none
+        font-semibold
+        text-white
+        border-2 border-brand-dark-blue
+        bg-brand-dark-blue
+        w-full
+        rounded-md
+      "
       :class="shouldShowPreviousStep && 'ml-3'"
       @click="$emit('onNextStep')"
     >

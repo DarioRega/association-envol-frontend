@@ -4,7 +4,14 @@
       <li
         v-for="error in errors"
         :key="error"
-        class="list-disc mb-2 text-brand-error caption-lg font-semibold tracking-wide"
+        class="
+          list-disc
+          mb-2
+          text-brand-error
+          caption-lg
+          font-semibold
+          tracking-wide
+        "
       >
         {{ error }}
       </li>
@@ -38,7 +45,21 @@
             id="full_name"
             type="text"
             :value="full_name"
-            class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
+            class="
+              p
+              w-full
+              border-2
+              rounded-md
+              outline-none
+              focus:outline-none
+              border-2
+              placeholder-brand-carbon
+              p-2
+              transition-colors
+              duration-500
+              px-4
+              h-20
+            "
             :placeholder="$t('formLabels.fullName')"
             @change="$emit('onFullName', $event.target.value)"
           />
@@ -69,7 +90,21 @@
             id="email"
             type="text"
             :value="email"
-            class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
+            class="
+              p
+              w-full
+              border-2
+              rounded-md
+              outline-none
+              focus:outline-none
+              border-2
+              placeholder-brand-carbon
+              p-2
+              transition-colors
+              duration-500
+              px-4
+              h-20
+            "
             :placeholder="$t('formLabels.email')"
             @change="$emit('onEmail', $event.target.value)"
           />
@@ -84,7 +119,13 @@
             :value="isDonationFromCompany"
             :checked="isDonationFromCompany"
             type="checkbox"
-            class="cursor-pointer h-6 w-6 border-brand-variant-main-gray rounded-md"
+            class="
+              cursor-pointer
+              h-6
+              w-6
+              border-brand-variant-main-gray
+              rounded-md
+            "
             @click="$emit('onDonationFromCompany', !isDonationFromCompany)"
           />
         </div>
@@ -122,7 +163,21 @@
               id="company_name"
               type="text"
               :value="company_name"
-              class="p w-full border-2 rounded-md outline-none focus:outline-none border-2 placeholder-brand-carbon p-2 transition-colors duration-500 px-4 h-20"
+              class="
+                p
+                w-full
+                border-2
+                rounded-md
+                outline-none
+                focus:outline-none
+                border-2
+                placeholder-brand-carbon
+                p-2
+                transition-colors
+                duration-500
+                px-4
+                h-20
+              "
               :placeholder="$t('helpEnvol.companyToDonate')"
               @change="$emit('onCompanyName', $event.target.value)"
             />
@@ -138,7 +193,13 @@
             :value="hasCommentary"
             :checked="hasCommentary"
             type="checkbox"
-            class="cursor-pointer h-6 w-6 border-brand-variant-main-gray rounded-md"
+            class="
+              cursor-pointer
+              h-6
+              w-6
+              border-brand-variant-main-gray
+              rounded-md
+            "
             @click="$emit('onHasCommentary', !hasCommentary)"
           />
         </div>
@@ -175,7 +236,17 @@
             <textarea
               rows="4"
               :value="commentary"
-              class="shadow-sm focus:outline-none p-3 block w-full p sm: border-brand-variant-main-gray border-2 rounded-md"
+              class="
+                shadow-sm
+                focus:outline-none
+                p-3
+                block
+                w-full
+                p
+                sm:
+                border-brand-variant-main-gray border-2
+                rounded-md
+              "
               :placeholder="$t('helpEnvol.yourComment')"
               @change="$emit('onCommentary', $event.target.value)"
             ></textarea>

@@ -1,6 +1,13 @@
 <template>
   <div
-    class="border-2 border-transparent h-20 flex items-center justify-between cursor-pointer"
+    class="
+      border-2 border-transparent
+      h-20
+      flex
+      items-center
+      justify-between
+      cursor-pointer
+    "
   >
     <div
       v-for="(item, index) in options"

@@ -4,7 +4,14 @@
       <li
         v-for="error in errors"
         :key="error"
-        class="list-disc mb-2 text-brand-error caption-lg font-semibold tracking-wide"
+        class="
+          list-disc
+          mb-2
+          text-brand-error
+          caption-lg
+          font-semibold
+          tracking-wide
+        "
       >
         {{ error }}
       </li>
@@ -28,7 +35,18 @@
 
     <div class="flex mt-10 mb-1">
       <div
-        class="rounded-md border-2 h-20 w-full flex items-center justify-start px-3 md:px-4 cursor-pointer"
+        class="
+          rounded-md
+          border-2
+          h-20
+          w-full
+          flex
+          items-center
+          justify-start
+          px-3
+          md:px-4
+          cursor-pointer
+        "
         :class="[
           customAmount === selectedAmount.amount
             ? 'shadow-md text-white bg-brand-dark-blue border-brand-dark-blue'

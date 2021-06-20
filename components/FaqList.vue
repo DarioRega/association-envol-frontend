@@ -19,7 +19,15 @@
                 {{ item.title }}
               </h5>
               <span
-                class="lg:hidden flex-none w-12 text-right transform transition-all duration-500"
+                class="
+                  lg:hidden
+                  flex-none
+                  w-12
+                  text-right
+                  transform
+                  transition-all
+                  duration-500
+                "
                 :class="isOpen(item.id) ? 'rotate-45' : 'rotate-0'"
               >
                 <icon
@@ -33,7 +41,16 @@
                 />
               </span>
               <span
-                class="hidden lg:block flex-none w-12 text-right transform transition-all duration-500"
+                class="
+                  hidden
+                  lg:block
+                  flex-none
+                  w-12
+                  text-right
+                  transform
+                  transition-all
+                  duration-500
+                "
                 :class="isOpen(item.id) ? 'rotate-45' : 'rotate-0'"
               >
                 <icon

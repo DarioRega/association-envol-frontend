@@ -18,7 +18,17 @@
           </div>
           <!-- Mobile menu button -->
           <button
-            class="inline-flex items-center justify-center p-2 hover:text-brand-gray focus:outline-none transition duration-150 ease-in-out"
+            class="
+              inline-flex
+              items-center
+              justify-center
+              p-2
+              hover:text-brand-gray
+              focus:outline-none
+              transition
+              duration-150
+              ease-in-out
+            "
             aria-expanded="false"
             @click="$emit('toggleMenu')"
           >
@@ -41,7 +51,14 @@
         >
           <!--          mobile header -->
           <div
-            class="flex-none h-24 navbar-padding flex justify-between items-center"
+            class="
+              flex-none
+              h-24
+              navbar-padding
+              flex
+              justify-between
+              items-center
+            "
           >
             <h3
               class="tracking-wider text-brand-dark-blue font-medium mb-0 pb-0"
@@ -49,7 +66,17 @@
               {{ $t('associationEnvol') }}
             </h3>
             <button
-              class="inline-flex items-center justify-center p-2 hover:text-brand-gray focus:outline-none transition duration-150 ease-in-out"
+              class="
+                inline-flex
+                items-center
+                justify-center
+                p-2
+                hover:text-brand-gray
+                focus:outline-none
+                transition
+                duration-150
+                ease-in-out
+              "
               aria-expanded="false"
               @click="$emit('toggleMenu')"
             >
@@ -60,7 +87,15 @@
           <!--          mobile navigation -->
           <div class="xl:hidden flex-1 md:relative h-full flex items-center">
             <div
-              class="pt-2 pb-3 w-full h-full flex flex-col justify-center items-center"
+              class="
+                pt-2
+                pb-3
+                w-full
+                h-full
+                flex flex-col
+                justify-center
+                items-center
+              "
             >
               <main-navigation
                 class="-mt-24 lg:mt-0"
