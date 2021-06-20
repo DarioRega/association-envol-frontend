@@ -4,7 +4,6 @@ stages:
   - lint
 
 lint:
-  extends: .base
   stage: lint
   before_script:
     - npm install
