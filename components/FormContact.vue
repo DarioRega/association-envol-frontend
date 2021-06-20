@@ -40,7 +40,14 @@
           data-aos-delay="1300"
           data-aos-offset="-500"
         >
-          <button class="button-primary focus:outline-none" type="submit">
+          <button
+            class="focus:outline-none"
+            :class="
+              isDisabledForHolidays ? 'button-disabled' : 'button-primary'
+            "
+            type="submit"
+            :disabled="isDisabledForHolidays"
+          >
             {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
@@ -50,11 +57,14 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 import InputForm from '@/components/InputForm';
-import { API_URL } from '~/constantes';
-import Notification from '~/components/Notification';
 import { refreshGlobalNotificationState } from '~/store';
-// TODO ADD TRANSLATE
+import { API_URL } from '~/constantes';
+
+import Notification from '~/components/Notification';
+
 export default {
   name: 'FormContact',
   components: { Notification, InputForm },
@@ -78,6 +88,18 @@ export default {
         message: '',
       },
     };
+  },
+  computed: {
+    isDisabledForHolidays() {
+      // mm-dd-yyyy
+      const dateStart = moment('07-01-2021');
+      const dateEnd = moment('07-01-2021');
+      const isDisabled =
+        moment().format('L') >= moment(dateStart).format('L') &&
+        moment().format('L') <= moment(dateEnd).format('L');
+
+      return isDisabled;
+    },
   },
   watch: {
     shouldShowNotification(newValue, oldValue) {
