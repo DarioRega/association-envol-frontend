@@ -205,11 +205,9 @@ export default {
         })
         .then(function () {
           // TODO handle that
-          console.log('SUCCESS!!');
         })
         .catch(function () {
           // TODO handle that
-          console.log('FAILURE!!');
         });
     },
 

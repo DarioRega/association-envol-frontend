@@ -51,7 +51,6 @@ export const processStripePayment = async ({ $axios, payload, price }) => {
 
   if (result.error) {
     // TODO handle that
-    console.log('error', result.error.message);
     // this.donationState = 'error';
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer

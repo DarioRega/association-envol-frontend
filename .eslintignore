@@ -1,7 +1,6 @@
 .nuxt
 coverage
 node_modules
-doc/**
 dist/**
 data/**
 static/**

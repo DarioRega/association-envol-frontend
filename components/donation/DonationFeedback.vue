@@ -13,7 +13,7 @@
       transition-all
       duration-500
     "
-    style="z-index: 888"
+    :style="{ zIndex: 888 }"
   >
     <div
       class="

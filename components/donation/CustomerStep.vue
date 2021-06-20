@@ -265,10 +265,12 @@ export default {
       type: String,
       default: '',
     },
+    // eslint-disable-next-line vue/prop-name-casing
     company_name: {
       type: String,
       default: '',
     },
+    // eslint-disable-next-line vue/prop-name-casing
     full_name: {
       type: String,
       default: '',

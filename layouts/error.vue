@@ -30,7 +30,12 @@ export default {
   name: 'Error',
   components: { Container },
   layout: 'error',
-  props: ['error'],
+  props: {
+    error: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

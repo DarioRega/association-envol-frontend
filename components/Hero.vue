@@ -94,7 +94,7 @@ export default {
     bottom: 18rem;
   }
   @screen xl {
-    left: 0rem;
+    left: 0;
     bottom: 5rem;
   }
   @screen 2xl {
@@ -112,7 +112,7 @@ export default {
   }
   @screen lg {
     top: 20rem;
-    right: 0rem;
+    right: 0;
     bottom: unset;
   }
   @screen xl {

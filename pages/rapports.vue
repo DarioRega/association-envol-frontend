@@ -73,7 +73,7 @@ export default {
       .then((response) => {
         this.allFiles = response.data;
       })
-      .catch((err) => console.error('err', err));
+      .catch((err) => err);
     // TODO handle that
   },
   methods: {

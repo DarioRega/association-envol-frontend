@@ -4497,5 +4497,3 @@ export default {
   name: 'FlyingBirds',
 };
 </script>
-
-<style scoped></style>
