@@ -1,0 +1,27 @@
+image: node:12
+
+.base:
+  before_script:
+    - npm install --frozen-lockfile
+
+stages:
+  - lint
+  - deploy
+
+lint:
+  extends: .base
+  stage: lint
+  script:
+    - npm run validate
+
+pages:
+  extends: .base
+  stage: deploy
+  artifacts:
+    paths:
+      - public
+    expire_in: 7 day
+  only:
+    - tags
+  needs:
+    - lint
