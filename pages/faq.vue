@@ -56,7 +56,7 @@ export default {
       this.budget,
       this.criterias,
       this.entretien,
-      this.entretien,
+      this.renouvellement,
     ];
   },
 };
