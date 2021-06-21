@@ -64,7 +64,11 @@
                 />
               </span>
             </div>
-            <faq-content v-show="isOpen(item.id)" :is-open="isOpen(item.id)">
+            <faq-content
+              v-show="isOpen(item.id)"
+              class="faq-content"
+              :is-open="isOpen(item.id)"
+            >
               <nuxt-content :document="item" class="faq-content" />
             </faq-content>
           </div>
@@ -107,5 +111,10 @@ export default {
 <style lang="scss">
 .faq-title {
   line-height: 1.7em;
+}
+.faq-content {
+  a {
+    @apply text-brand-dark-blue;
+  }
 }
 </style>
