@@ -24,6 +24,7 @@
 import PageHeader from '@/components/PageHeader';
 import Accordions from '@/components/Accordions';
 import SmallContainer from '@/components/containers/SmallContainer';
+
 export default {
   name: 'CriteresDAttribution',
   components: { SmallContainer, Accordions, PageHeader },
@@ -51,6 +52,9 @@ export default {
 .criterias {
   h3 {
     @apply text-brand-dark-blue font-medium;
+  }
+  & a {
+    @apply text-brand-dark-blue;
   }
 }
 </style>

@@ -22,8 +22,8 @@ export default {
   components: { SmallContainer, PageHeader },
   async asyncData({ $getContent, error }) {
     try {
-      const sections = await $getContent('status/sections');
-      const officalSignature = await $getContent('status/signature');
+      const sections = await $getContent('statuts/sections');
+      const officalSignature = await $getContent('statuts/signature');
       return { sections, officalSignature };
     } catch (err) {
       error({

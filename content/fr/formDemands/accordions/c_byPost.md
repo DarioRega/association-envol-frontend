@@ -2,8 +2,7 @@
 id : 123
 title : Envoi par courrier postal
 ---
-1. Télécharger le
-   <a href="https//api.association-envol.info/api/rapports/download/46" target="_blank"><strong>formulaire de demande de bourse en ligne ici</strong></a>
+1. Télécharger le <a href="https//api.association-envol.info/api/rapports/download/46" target="_blank"><strong>formulaire de demande de bourse en ligne ici</strong></a>
 2. Imprimer et compléter le formulaire
 3. Envoyer le dossier par la poste avec tous les documents demandés à :
 
