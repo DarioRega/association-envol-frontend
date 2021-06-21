@@ -69,7 +69,7 @@ export default {
   },
   mounted() {
     this.$axios
-      .get(`${API_URL.RAPPORTS}`)
+      .get(`${API_URL.RAPPORTS_ONLY_WEBSITE_RELATED}`)
       .then((response) => {
         this.allFiles = response.data;
       })
