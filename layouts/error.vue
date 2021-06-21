@@ -1,7 +1,7 @@
 <template>
   <div class="h-full flex items-center">
     <container v-if="error.statusCode === 404">
-      <div class="text-center error-404 -mt-24 lg:-mt-32">
+      <div class="text-center error-404">
         <h2 class="">404</h2>
         <div>
           <h5>Page non trouvée</h5>
