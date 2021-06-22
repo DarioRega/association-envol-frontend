@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="max-w-screen overflow-hidden">
     <container>
       <div class="text-center lg:flex lg:flex-row-reverse lg:items-center">
         <flying-birds

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen max-w-screen overflow-x-hidden">
     <container>
       <div
         class="flex justify-center md:justify-end pt-6 md:pt-12"
@@ -29,7 +29,7 @@
         >
       </div>
     </container>
-    <Nuxt class="flex-grow" />
+    <Nuxt class="max-w-screen overflow-x-hidden" />
   </div>
 </template>
 <script>
