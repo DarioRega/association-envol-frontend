@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-md bg-brand-main-gray sm:px-6 md:p-10 md:shadow-md">
+  <div class="rounded-md bg-brand-main-gray p-6 md:p-10 md:shadow-md">
     <div class="flex">
       <div class="flex-shrink-0 text-brand-dark-blue">
         <icon name="info" size="100" />

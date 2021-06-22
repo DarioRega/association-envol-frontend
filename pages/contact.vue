@@ -21,7 +21,7 @@
                 <alert
                   :title="$t('home.alert.title')"
                   :paragraphs="textsAlert"
-                  class=""
+                  class="shadow-lg"
                 />
               </div>
               <card class="mb-12" icon-name="location" icon-size="150">
