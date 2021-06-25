@@ -1,4 +1,12 @@
 comitee:
+  - name: Comptabilité
+    function: Service de comptabilité
+    mail: comptabilite@association-envol.info
+
+  - name: Secrétariat
+    function: Service du secrétariat
+    mail: secretariat@association-envol.info
+
   - name: Hélène Hrkalovic
     function: Présidente, membre du comité
     mail: hrkalovich@association-envol.info
@@ -22,14 +30,6 @@ comitee:
   - name: Anick Werro
     function: Membre du comité
     mail: anick.werro@association-envol.info
-
-  - name: Comptabilité
-    function: Service de comptabilité
-    mail: comptabilite@association-envol.info
-
-  - name: Secrétariat
-    function: Service du secrétariat
-    mail: secretariat@association-envol.info
 
   - name: Dario Regazzoni
     function: Webmaster
