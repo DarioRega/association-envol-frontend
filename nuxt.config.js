@@ -31,6 +31,15 @@ export default {
       mode: 'client',
     },
   ],
+  env: {
+    STRIPE_KEY: process.env.STRIPE_KEY,
+    STRIPE_SECRET: process.env.STRIPE_SECRET,
+    PAYPAL_KEY: process.env.PAYPAL_KEY,
+    PAYPAL_SECRET: process.env.PAYPAL_SECRET,
+    PAYPAL_URL: process.env.PAYPAL_URL,
+    PAYPAL_CUSTOM_PRODUCT_ID: process.env.PAYPAL_CUSTOM_PRODUCT_ID,
+    BACK_URL: process.env.BACK_URL,
+  },
 
   components: {
     dirs: ['~/components'],
