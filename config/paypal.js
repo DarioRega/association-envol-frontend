@@ -170,7 +170,7 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
     };
 
     $axios
-      .post(`${process.env.PAYPAL_URL}/v1/billing/plans`, plan, {
+      .post(API_URL.PAYPAL_API_BILLING_PLANS, plan, {
         auth,
       })
       .then((response) => {

@@ -53,6 +53,7 @@
 
 <script>
 import FileListUpload from '@/components/FileListUpload';
+import { API_URL } from '@/constantes';
 
 export default {
   /*
@@ -193,7 +194,7 @@ export default {
  Make the request to the POST /file-drag-drop URL
 */
       this.$axios
-        .post('/file-drag-drop', formData, {
+        .post(API_URL.FILE_DRAG_AND_DROP_URL, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
