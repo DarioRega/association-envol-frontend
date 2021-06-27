@@ -48,7 +48,7 @@
           cursor-pointer
         "
         :class="[
-          customAmount === selectedAmount.amount
+          isCustomAmount
             ? 'shadow-md text-white bg-brand-dark-blue border-brand-dark-blue'
             : 'text-brand-carbon bg-white border-brand-variant-main-gray',
         ]"
@@ -57,20 +57,22 @@
         <p class="caption-lg mr-2 text-current">CHF</p>
         <input
           min="10"
-          :value="customAmount"
+          :value="isCustomAmount ? selectedAmount.amount / 100 : ''"
           :placeholder="$t('helpEnvol.customAmount')"
           type="number"
           class="p pl-1 outline-none outline-none overflow-scroll text-current"
           :class="[
-            customAmount === selectedAmount.amount && 'bg-brand-dark-blue',
-            customAmount ? 'placeholder-white' : 'placeholder-brand-carbon',
+            isCustomAmount && 'bg-brand-dark-blue',
+            isCustomAmount && selectedAmount.amount
+              ? 'placeholder-white'
+              : 'placeholder-brand-carbon',
           ]"
           @change="$emit('onCustomAmount', $event.target.value)"
         />
       </div>
     </div>
     <label
-      v-if="selectedAmount.amount === customAmount && customAmount < 10"
+      v-if="isCustomAmount && selectedAmount.amount < 10"
       class="caption-sm pt-2"
       >{{ $t('helpEnvol.errorMinimalDonation') }}</label
     >
@@ -101,9 +103,9 @@ export default {
       required: true,
     },
 
-    customAmount: {
-      type: Number,
-      default: null,
+    isCustomAmount: {
+      type: Boolean,
+      default: false,
     },
     errors: {
       type: Array,
@@ -112,8 +114,8 @@ export default {
   },
   methods: {
     handleCustomClick() {
-      if (this.customAmount) {
-        this.$emit('onAmountSelect', { id: null, amount: this.customAmount });
+      if (this.isCustomAmount) {
+        this.$emit('onAmountSelect', { id: null, amount: this.selectedAmount });
       }
     },
   },

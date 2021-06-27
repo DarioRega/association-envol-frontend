@@ -17,7 +17,7 @@
               :selected-interval="selectedInterval"
               :amounts="amounts"
               :selected-amount="selectedAmount"
-              :custom-amount="customAmount"
+              :is-custom-amount="isCustomAmount"
               :errors="errors.amount"
               class="w-full"
               @onAmountSelect="handleSelectAmount"
@@ -180,9 +180,9 @@ export default {
       type: Object,
       default: () => {},
     },
-    customAmount: {
-      type: [Number, null],
-      default: null,
+    isCustomAmount: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -228,15 +228,27 @@ export default {
     },
     handleSelectAmount(value) {
       this.$emit('onSelectAmount', value);
+      this.$emit('onCustomAmountEntry', false);
     },
     handleSelectInterval(value) {
       this.$emit('onSelectInterval', value);
     },
     handleCustomAmount(value) {
       const amount = parseInt(value);
-      this.$emit('onSelectAmount', { id: null, amount: amount * 100 });
-      this.$emit('onCustomAmount', amount * 100);
+      const amountObject = this.verifyCustomAmountIsNotMainAmounts(amount);
+      this.$emit('onSelectAmount', amountObject);
     },
+
+    verifyCustomAmountIsNotMainAmounts(amount) {
+      const mainAmount = this.amounts.find((x) => x.amount === amount * 100);
+      if (mainAmount) {
+        return mainAmount;
+      } else {
+        this.$emit('onCustomAmountEntry', true);
+        return { id: null, amount: amount * 100 };
+      }
+    },
+
     isStepValid(step) {
       const errors = [];
       if (step === 'amount') {
