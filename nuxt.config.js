@@ -4,16 +4,20 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'envol',
+    title: 'Association Envol',
     htmlAttrs: {
       lang: 'fr',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Envol a pour but de favoriser les études ou la formation professionnelle par l’attribution de bourses.',
+      },
     ],
-    script: [{ src: 'https://js.stripe.com/v3/' }],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
@@ -58,6 +62,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxt/content',
     '@nuxtjs/dotenv',
+    '@nuxtjs/sitemap',
     [
       'nuxt-i18n',
       {
@@ -78,6 +83,11 @@ export default {
     ],
     '@nuxtjs/svg-sprite',
   ],
+  sitemap: {
+    hostname: 'https://association-envol.info',
+    gzip: true,
+  },
+
   tailwindcss: {
     cssPath: '~/assets/scss/tailwind.scss',
   },
