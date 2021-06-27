@@ -4,7 +4,6 @@ stages:
   - lint
   - deploy
   - deployStaging
-
 lint:
   stage: lint
   before_script:
@@ -30,7 +29,7 @@ deploy:
     - npm ci
     - npm run build
     - npm run generate
-    - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/sites/dev.association-envol.info
+    - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/sites/association-envol.info
 
 deployStaging:
   only:
