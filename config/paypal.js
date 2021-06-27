@@ -23,7 +23,7 @@ export const configureOneTimePaymentPaypal = async ({
         purchase_units: [
           {
             amount: {
-              value: selectedAmount.amount,
+              value: selectedAmount.amount / 100,
             },
           },
         ],
@@ -77,7 +77,7 @@ export const configureSubscriptionsPaypal = async ({
   const config = {
     createSubscription(data, actions) {
       return actions.subscription.create({
-        plan_id: plan.id,
+        plan_id: plan.id || plan,
       });
     },
     onApprove(data, actions) {
@@ -102,7 +102,7 @@ export const configureSubscriptionsPaypal = async ({
   };
   return { paypal, config };
 };
-// TODO CHECK
+
 export const findPaypalSubscription = ($axios, refName) => {
   return new Promise((resolve, reject) => {
     $axios.get(`${API_URL.PAYPAL_PLANS}/${refName}`).then((res) => {
@@ -166,6 +166,10 @@ export const createPaypalPlan = ({ $axios, amount, intervalRef }) => {
         },
         setup_fee_failure_action: 'CONTINUE',
         payment_failure_threshold: 1,
+      },
+      taxes: {
+        percentage: '0',
+        inclusive: true,
       },
     };
 
