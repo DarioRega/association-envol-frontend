@@ -59,14 +59,14 @@
           :amounts="amounts"
           :intervals="intervals"
           :selected-payment-method="selectedPaymentMethod"
-          :custom-amount="customAmount"
           :selected-amount="selectedAmount"
           :selected-interval="selectedInterval"
+          :is-custom-amount="isCustomAmount"
           @handleSubmit="handleSubmit"
           @closeModal="isModalOpen = false"
           @onSelectInterval="selectedInterval = $event"
           @onSelectPaymentMethod="selectedPaymentMethod = $event"
-          @onCustomAmount="customAmount = $event"
+          @onCustomAmountEntry="isCustomAmount = $event"
           @onSelectAmount="selectedAmount = $event"
         >
           <div v-if="isPaypalLoading" class="text-center">
@@ -102,6 +102,7 @@ import {
 import { handleStripeSubmit } from '@/config/stripe';
 import { autoDestructDonationSessionStorage } from '@/config';
 import Notification from '@/components/Notification';
+import { API_URL } from '@/constantes';
 
 const MAIN_DONATIONS_AMOUNTS = [20, 50, 100];
 const PAYPAL_BTN_STYLES = {
@@ -140,7 +141,7 @@ export default {
       informations: {},
       stripe: undefined,
       isModalOpen: false,
-      customAmount: null,
+      isCustomAmount: false,
       amounts: [],
       intervals: [],
       metadata: [],
@@ -163,22 +164,36 @@ export default {
   },
   methods: {
     getMainAmountsAndIntervals() {
-      this.$axios
-        .get(`${process.env.BACK_URL}/products/metadata`)
-        .then((res) => {
-          const { amounts, intervals } = res.data;
-          this.amounts = amounts;
-          this.intervals = intervals;
-          this.selectedInterval = intervals[1];
-          this.selectedAmount = amounts[0];
-        });
+      this.$axios.get(API_URL.PRODUCTS_METADATA).then((res) => {
+        const { amounts, intervals } = res.data;
+        this.amounts = amounts;
+        this.intervals = intervals;
+        this.selectedInterval = intervals[1];
+        this.selectedAmount = amounts[0];
+      });
     },
-    verifyIfDonationRedirect() {
+    verifyRefreshsAttempts() {
+      let refreshRetries = parseInt(
+        sessionStorage.getItem('refresh_retries') || '0'
+      );
+      refreshRetries = refreshRetries + 1;
+      sessionStorage.setItem('refresh_retries', refreshRetries.toString());
+      return refreshRetries;
+    },
+
+    async verifyIfDonationRedirect() {
       const query = new URLSearchParams(window.location.search);
+
       let donation = sessionStorage.getItem('donation');
       if (donation) {
+        const refreshRetries = this.verifyRefreshsAttempts();
         donation = JSON.parse(donation);
         this.sessionId = donation.sessionId;
+        if (refreshRetries > 2) {
+          sessionStorage.removeItem('donation');
+          sessionStorage.removeItem('refresh_retries');
+          return this.pushAndResetDonationState();
+        }
         if (!donation.isThankYouEmailSent) {
           if (
             query.get('success') &&
@@ -186,14 +201,20 @@ export default {
           ) {
             this.donationState = 'success';
             this.isModalOpen = true;
-
-            this.$axios
-              .post(`${process.env.BACK_URL}/donate/thankYou`, donation)
-              .then((res) => {
-                donation.isThankYouEmailSent = true;
-                sessionStorage.setItem('donation', JSON.stringify(donation));
-                autoDestructDonationSessionStorage();
-              });
+            try {
+              await this.$axios.post(API_URL.THANK_YOU_URL, donation);
+              donation.isThankYouEmailSent = true;
+              sessionStorage.setItem('donation', JSON.stringify(donation));
+              sessionStorage.setItem('refresh_retries', '0');
+              autoDestructDonationSessionStorage();
+            } catch (err) {
+              this.notification = {
+                ...this.notification,
+                type: 'error',
+                message: err.response.data.message,
+              };
+              // TODO show warning but donation ok
+            }
           } else {
             this.donationState = '';
           }
@@ -210,10 +231,12 @@ export default {
         this.pushAndResetDonationState();
       }
     },
+
     pushAndResetDonationState() {
       this.$router.push(`/${this.$t('helpEnvol.slug')}`);
       this.donationState = '';
     },
+
     handleSubmit(customer) {
       const sessionId = uuidv4();
       this.sessionId = sessionId;
@@ -234,6 +257,7 @@ export default {
         this.handlePaypalSubmit({ payload: payloadDonation });
       }
     },
+
     async handlePaypalSubmit({ payload }) {
       this.isPaypalLoading = true;
       let setup;
