@@ -49,7 +49,6 @@ export const processStripePayment = async ({ $axios, payload, price }) => {
   });
 
   if (result.error) {
-    console.error(result.error);
     //   // TODO handle that
     //   // this.donationState = 'error';
     //   // If `redirectToCheckout` fails due to a browser or network

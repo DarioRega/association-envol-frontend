@@ -228,24 +228,24 @@ export default {
     },
     handleSelectAmount(value) {
       this.$emit('onSelectAmount', value);
-      this.$emit('onCustomAmountEntry',false);
+      this.$emit('onCustomAmountEntry', false);
     },
     handleSelectInterval(value) {
       this.$emit('onSelectInterval', value);
     },
     handleCustomAmount(value) {
       const amount = parseInt(value);
-      const amountObject = this.verifyCustomAmountIsNotMainAmounts(amount)
+      const amountObject = this.verifyCustomAmountIsNotMainAmounts(amount);
       this.$emit('onSelectAmount', amountObject);
     },
 
-    verifyCustomAmountIsNotMainAmounts(amount){
-      const mainAmount = this.amounts.find(x => x.amount === amount * 100)
-      if(mainAmount){
-        return mainAmount
+    verifyCustomAmountIsNotMainAmounts(amount) {
+      const mainAmount = this.amounts.find((x) => x.amount === amount * 100);
+      if (mainAmount) {
+        return mainAmount;
       } else {
-      this.$emit('onCustomAmountEntry',true);
-      return { id: null, amount: amount * 100 }
+        this.$emit('onCustomAmountEntry', true);
+        return { id: null, amount: amount * 100 };
       }
     },
 
