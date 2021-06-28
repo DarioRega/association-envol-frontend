@@ -72,7 +72,7 @@
       </div>
     </div>
     <label
-      v-if="isCustomAmount && selectedAmount.amount < 10"
+      v-if="isCustomAmount && selectedAmount.amount < 1000"
       class="caption-sm pt-2"
       >{{ $t('helpEnvol.errorMinimalDonation') }}</label
     >
