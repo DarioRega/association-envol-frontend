@@ -112,7 +112,7 @@ export default {
     textsAlert() {
       return [
         this.$t('home.alert.paragraph1'),
-        this.$t('home.alert.paragraph2'),
+        this.$t('home.alert.paragraph3'),
       ];
     },
   },

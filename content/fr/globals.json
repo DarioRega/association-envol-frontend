@@ -85,7 +85,8 @@
     "alert" : {
       "title": "fermeture",
       "paragraph1": "Envol est en pause estivale du 1er juillet au 15 août.",
-      "paragraph2": "Merci de votre compréhension."
+      "paragraph2": "Le fonctionnalité de contact est désactivée durant cette période.",
+      "paragraph3": "Merci de votre compréhension."
     }
   },
   "formDemand": {
