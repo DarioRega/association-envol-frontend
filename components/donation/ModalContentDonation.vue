@@ -254,7 +254,7 @@ export default {
       if (step === 'amount') {
         if (!this.selectedAmount.amount) {
           errors.push(this.$t('helpEnvol.formError.pleaseSelectAmount'));
-        } else if (this.selectedAmount.amount < 10) {
+        } else if (this.selectedAmount.amount < 1000) {
           errors.push(this.$t('helpEnvol.errorMinimalDonation'));
         }
       }
