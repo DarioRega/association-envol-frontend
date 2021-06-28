@@ -25,6 +25,7 @@
             transition-colors
             duration-300
           "
+          @click.native="closeMenu"
           >{{ $t('backToHome') }}</nuxt-link
         >
       </div>
@@ -34,7 +35,14 @@
 </template>
 <script>
 import Container from '@/components/containers/Container';
+import { closeMenu } from '~/store';
+
 export default {
   components: { Container },
+  methods: {
+    closeMenu() {
+      closeMenu();
+    },
+  },
 };
 </script>
