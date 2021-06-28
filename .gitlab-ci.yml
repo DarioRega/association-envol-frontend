@@ -32,7 +32,7 @@ lint:
 deploy:production:
   extends: .deployBase
   variables:
-    DEPLOY_PATH: web
+    DEPLOY_PATH: sites/association-envol.info
   only:
     - master
 
