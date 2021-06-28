@@ -5,5 +5,5 @@ export const setDonationInSessionStorage = (payload) => {
 export const autoDestructDonationSessionStorage = () => {
   setTimeout(() => {
     sessionStorage.removeItem('donation');
-  }, 300000);
+  }, 60000);
 };
