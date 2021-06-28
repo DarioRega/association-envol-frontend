@@ -93,7 +93,7 @@ export default {
     isDisabledForHolidays() {
       // mm-dd-yyyy
       const dateStart = moment('07-01-2021');
-      const dateEnd = moment('07-01-2021');
+      const dateEnd = moment('08-15-2021');
       const isDisabled =
         moment().format('L') >= moment(dateStart).format('L') &&
         moment().format('L') <= moment(dateEnd).format('L');

@@ -62,8 +62,12 @@ export default {
       return [
         this.$t('home.alert.paragraph1'),
         this.$t('home.alert.paragraph2'),
+        this.$t('home.alert.paragraph3'),
       ];
     },
+  },
+  head() {
+    return { title: `Contact - ${process.env.APP_NAME}` };
   },
 };
 </script>

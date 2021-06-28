@@ -40,6 +40,9 @@ export default {
       gotQuestions: {},
     };
   },
+  head() {
+    return { title: `Demande de bourse - ${process.env.APP_NAME}` };
+  },
 };
 </script>
 <style lang="scss">

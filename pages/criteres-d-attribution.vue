@@ -46,6 +46,9 @@ export default {
       remarks: [],
     };
   },
+  head() {
+    return { title: `Critères d'attribution - ${process.env.APP_NAME}` };
+  },
 };
 </script>
 <style lang="scss">

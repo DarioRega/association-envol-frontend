@@ -92,5 +92,8 @@ export default {
       return '';
     },
   },
+  head() {
+    return { title: `Rapports - ${process.env.APP_NAME}` };
+  },
 };
 </script>
