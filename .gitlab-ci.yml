@@ -24,6 +24,17 @@ lint:
     - apt-get install sshpass lftp
     - apt-get -y install rsync
     - npm ci
+    - touch .env
+    - echo -e "APP_NAME=$APP_NAME" >> .env
+    - echo -e "BACK_URL=$BACK_URL" >> .env
+    - echo -e "PAYPAL_CUSTOM_PRODUCT_ID=$PAYPAL_CUSTOM_PRODUCT_ID" >> .env
+    - echo -e "PAYPAL_KEY=$PAYPAL_KEY" >> .env
+    - echo -e "PAYPAL_SECRET=$PAYPAL_SECRET" >> .env
+    - echo -e "PAYPAL_URL=$PAYPAL_URL" >> .env
+    - echo -e "SSH_PASSWORD=$SSH_PASSWORD" >> .env
+    - echo -e "SSH_PRIVATE_KEY=$SSH_PRIVATE_KEY" >> .env
+    - echo -e "STRIPE_KEY=$STRIPE_KEY" >> .env
+    - echo -e "STRIPE_SECRET=$STRIPE_SECRET" >> .env
     - npm run build
     - npm run generate
     - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/$DEPLOY_PATH
@@ -33,6 +44,16 @@ deploy:production:
   extends: .deployBase
   variables:
     DEPLOY_PATH: sites/association-envol.info
+    APP_NAME: $APP_NAME
+    BACK_URL: $PRODUCTION_BACK_URL
+    PAYPAL_CUSTOM_PRODUCT_ID: $PRODUCTION_PAYPAL_CUSTOM_PRODUCT_ID
+    PAYPAL_KEY: $PRODUCTION_PAYPAL_KEY
+    PAYPAL_SECRET: $PRODUCTION_PAYPAL_SECRET
+    PAYPAL_URL: $PRODUCTION_PAYPAL_URL
+    SSH_PASSWORD: $SSH_PASSWORD
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+    STRIPE_KEY: $PRODUCTION_STRIPE_KEY
+    STRIPE_SECRET: $PRODUCTION_STRIPE_KEY
   only:
     - master
 
@@ -40,6 +61,16 @@ deploy:staging:
   extends: .deployBase
   variables:
     DEPLOY_PATH: sites/staging.association-envol.info
+    APP_NAME: $STG_APP_NAME
+    BACK_URL: $STG_BACK_URL
+    PAYPAL_CUSTOM_PRODUCT_ID: $TST_PAYPAL_CUSTOM_PRODUCT_ID
+    PAYPAL_KEY: $TST_PAYPAL_KEY
+    PAYPAL_SECRET: $TST_PAYPAL_SECRET
+    PAYPAL_URL: $TST_PAYPAL_URL
+    SSH_PASSWORD: $SSH_PASSWORD
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+    STRIPE_KEY: $TST_STRIPE_KEY
+    STRIPE_SECRET: $TST_STRIPE_KEY
   only:
     - staging
 
@@ -47,5 +78,15 @@ deploy:dev:
   extends: .deployBase
   variables:
     DEPLOY_PATH: sites/dev.association-envol.info
+    APP_NAME: $DEV_APP_NAME
+    BACK_URL: $DEV_BACK_URL
+    PAYPAL_CUSTOM_PRODUCT_ID: $TST_PAYPAL_CUSTOM_PRODUCT_ID
+    PAYPAL_KEY: $TST_PAYPAL_KEY
+    PAYPAL_SECRET: $TST_PAYPAL_SECRET
+    PAYPAL_URL: $TST_PAYPAL_URL
+    SSH_PASSWORD: $SSH_PASSWORD
+    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
+    STRIPE_KEY: $TST_STRIPE_KEY
+    STRIPE_SECRET: $TST_STRIPE_KEY
   only:
     - develop
