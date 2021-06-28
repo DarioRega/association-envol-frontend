@@ -3,8 +3,6 @@ image: node:12
 stages:
   - lint
   - deploy
-  - deployStaging
-
 lint:
   stage: lint
   before_script:
@@ -12,9 +10,7 @@ lint:
   script:
     - npm run validate
 
-deploy:
-  only:
-    - master
+.deployBase:
   stage: deploy
   before_script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -30,24 +26,26 @@ deploy:
     - npm ci
     - npm run build
     - npm run generate
-    - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/sites/dev.association-envol.info
+    - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/$DEPLOY_PATH
 
-deployStaging:
+
+deploy:production:
+  extends: .deployBase
+  variables:
+    DEPLOY_PATH: web
+  only:
+    - master
+
+deploy:staging:
+  extends: .deployBase
+  variables:
+    DEPLOY_PATH: sites/staging.association-envol.info
   only:
     - staging
-  stage: deployStaging
-  before_script:
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  script:
-    - apt-get update -y
-    - apt-get install sshpass lftp
-    - apt-get -y install rsync
-    - npm ci
-    - npm run build
-    - npm run generate
-    - sshpass -p $SSH_PASSWORD rsync --progress -avz -e ssh dist/ ehlu_drega_e@ehlu.ftp.infomaniak.com:/home/clients/ce48751faad06eb8e1d97a6416bdd98d/sites/staging.association-envol.info
+
+deploy:dev:
+  extends: .deployBase
+  variables:
+    DEPLOY_PATH: sites/dev.association-envol.info
+  only:
+    - develop
