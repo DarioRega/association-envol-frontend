@@ -73,20 +73,3 @@ deploy:staging:
     STRIPE_SECRET: $TST_STRIPE_KEY
   only:
     - staging
-
-deploy:dev:
-  extends: .deployBase
-  variables:
-    DEPLOY_PATH: sites/dev.association-envol.info
-    APP_NAME: $DEV_APP_NAME
-    BACK_URL: $DEV_BACK_URL
-    PAYPAL_CUSTOM_PRODUCT_ID: $TST_PAYPAL_CUSTOM_PRODUCT_ID
-    PAYPAL_KEY: $TST_PAYPAL_KEY
-    PAYPAL_SECRET: $TST_PAYPAL_SECRET
-    PAYPAL_URL: $TST_PAYPAL_URL
-    SSH_PASSWORD: $SSH_PASSWORD
-    SSH_PRIVATE_KEY: $SSH_PRIVATE_KEY
-    STRIPE_KEY: $TST_STRIPE_KEY
-    STRIPE_SECRET: $TST_STRIPE_KEY
-  only:
-    - develop
