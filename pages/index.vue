@@ -141,6 +141,9 @@ export default {
       }
     },
   },
+  head() {
+    return { title: `Accueil - ${process.env.APP_NAME}` };
+  },
 };
 </script>
 <style lang="scss">

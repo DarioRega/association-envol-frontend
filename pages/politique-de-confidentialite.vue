@@ -39,6 +39,9 @@ export default {
       policy: {},
     };
   },
+  head() {
+    return { title: `Politique de confidentialité - ${process.env.APP_NAME}` };
+  },
 };
 </script>
 <style lang="scss">

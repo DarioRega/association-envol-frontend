@@ -43,6 +43,7 @@ export default {
     PAYPAL_URL: process.env.PAYPAL_URL,
     PAYPAL_CUSTOM_PRODUCT_ID: process.env.PAYPAL_CUSTOM_PRODUCT_ID,
     BACK_URL: process.env.BACK_URL,
+    APP_NAME: `Association Envol`,
   },
 
   components: {

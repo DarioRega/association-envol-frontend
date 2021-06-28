@@ -65,5 +65,8 @@ export default {
       ];
     },
   },
+  head() {
+    return { title: `Contact - ${process.env.APP_NAME}` };
+  },
 };
 </script>

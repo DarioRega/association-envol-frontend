@@ -122,7 +122,6 @@ export default {
     Container,
     ModalContentDonation,
   },
-  layout: 'helpEnvol',
   async asyncData({ $getContent, error }) {
     try {
       const intro = await $getContent('donate/intro');
@@ -318,6 +317,10 @@ export default {
       }, 6000);
     },
   },
+  head() {
+    return { title: `Soutenir - ${process.env.APP_NAME}` };
+  },
+  layout: 'helpEnvol',
 };
 </script>
 <style lang="scss" scoped>

@@ -59,5 +59,8 @@ export default {
       this.renouvellement,
     ];
   },
+  head() {
+    return { title: `Questions fréquentes - ${process.env.APP_NAME}` };
+  },
 };
 </script>

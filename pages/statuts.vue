@@ -38,6 +38,9 @@ export default {
       officalSignature: {},
     };
   },
+  head() {
+    return { title: `Status - ${process.env.APP_NAME}` };
+  },
 };
 </script>
 <style lang="scss">
