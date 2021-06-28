@@ -99,5 +99,8 @@ export default {
   h3 {
     @apply text-brand-dark-blue font-medium text-left mb-8;
   }
+  a {
+    @apply text-brand-dark-blue;
+  }
 }
 </style>
