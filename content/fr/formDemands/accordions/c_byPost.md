@@ -15,6 +15,6 @@ Case postale 5193
 
 <br> 
 
-- ne mettre que les documents demandés et de ne pas les agrafer
+- ne mettre que les documents demandés et ne pas les agrafer
 - inutile d’envoyer votre dossier en Recommandé
 - si vous souhaitez récupérer votre dossier papier, veuillez joindre à votre envoi une enveloppe timbrée avec votre adresse.
