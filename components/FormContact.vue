@@ -28,7 +28,14 @@
           data-aos-delay="1300"
           data-aos-offset="-500"
         >
-          <button class="button-primary focus:outline-none" type="submit">
+          <button
+            class="button-primary focus:outline-none"
+            :class="
+              isDisabledForHolidays ? 'button-disabled' : 'button-primary'
+            "
+            type="submit"
+            :disabled="isDisabledForHolidays"
+          >
             {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
