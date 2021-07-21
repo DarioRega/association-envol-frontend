@@ -98,8 +98,8 @@ export default {
   },
   computed: {
     isDisabledForHolidays() {
-      if(this.typeOfForm !== 'contact'){
-        return false
+      if (this.typeOfForm !== 'contact') {
+        return false;
       }
       // mm-dd-yyyy
       const dateStart = moment('07-01-2021');
