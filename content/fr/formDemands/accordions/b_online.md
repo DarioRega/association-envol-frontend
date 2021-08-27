@@ -13,4 +13,4 @@ title : Envoi en ligne
 Pour valider la demande, il faut :
 
 - avoir complété le formulaire (n’oubliez pas votre photo)
-- avoir ajouté tous les documents demandés en pièces jointes lettre de motivation, budget, CV, réponses reçues aux demandes de financement auprès d’autres organismes)
+- avoir ajouté tous les documents demandés en pièces jointes (lettre de motivation, budget, CV, réponses reçues aux demandes de financement auprès d’autres organismes)
