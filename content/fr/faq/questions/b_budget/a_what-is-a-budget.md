@@ -7,7 +7,11 @@ title : Qu’est-ce qu’un budget ?
 Le budget indique le détail de vos revenus et dépenses mensuelles ou annuelles.
 Il doit absolument figurer au dossier de votre demande de bourse. Nous pouvons vous demander d’apporter certains justificatifs lors de votre entretien.
 
-Exemple de budget : <a href="https://api.association-envol.info/rapports/download/47" target="_blank"><strong>Exemple de budget pour demande</strong></a>
+Vous trouverez ci-dessous des examples de budgets en différents formats:
+- <a href="https://api.association-envol.info/rapports/download/54" target="_blank"><strong>Exemple de budget format xls</strong></a>
+- <a href="https://api.association-envol.info/rapports/download/53" target="_blank"><strong>Exemple de budget format pdf</strong></a>
+- <a href="https://api.association-envol.info/rapports/download/52" target="_blank"><strong>Exemple de budget famille format xls</strong></a>
+- <a href="https://api.association-envol.info/rapports/download/51" target="_blank"><strong>Exemple de budget famille format pdf</strong></a>
 
 Vous devrez ensuite faire votre propre budget
 
