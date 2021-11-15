@@ -17,13 +17,13 @@
           </div>
           <div class="w-full lg:w-2/5">
             <div class="sm:w-9/12 lg:w-full mx-auto w-full">
-              <!-- <div class="mb-12">
+              <div class="mb-12">
                 <alert
                   :title="$t('home.alert.title')"
                   :paragraphs="textsAlert"
                   class="shadow-lg"
                 />
-              </div> -->
+              </div>
               <card class="mb-12" icon-name="location" icon-size="150">
                 <h5 class="font-medium pb-4">{{ $t('contact.address') }}</h5>
                 <p>{{ $t('contact.name') }}</p>
@@ -59,12 +59,11 @@ export default {
   components: { FormContact, Card, Container, PageHeader, Alert },
   computed: {
     textsAlert() {
-      return [];
-      // return [
-      //   this.$t('home.alert.paragraph1'),
-      //   this.$t('home.alert.paragraph2'),
-      //   this.$t('home.alert.paragraph3'),
-      // ];
+      return [
+        this.$t('home.alert.paragraph1'),
+        this.$t('home.alert.paragraph2'),
+        this.$t('home.alert.paragraph3'),
+      ];
     },
   },
   head() {

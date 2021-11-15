@@ -45,13 +45,13 @@
         mx-auto
       "
     >
-      <!--<container>
+      <container>
         <alert
           :title="$t('home.alert.title')"
           :paragraphs="textsAlert"
           class=""
         />
-      </container> -->
+      </container>
     </div>
     <section>
       <content-swap
@@ -110,11 +110,10 @@ export default {
   },
   computed: {
     textsAlert() {
-      return [];
-      // return [
-      //   this.$t('home.alert.paragraph1'),
-      //   this.$t('home.alert.paragraph3'),
-      // ];
+      return [
+        this.$t('home.alert.paragraph1'),
+        this.$t('home.alert.paragraph3'),
+      ];
     },
   },
   mounted() {
