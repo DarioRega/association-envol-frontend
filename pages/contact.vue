@@ -17,20 +17,12 @@
           </div>
           <div class="w-full lg:w-2/5">
             <div class="sm:w-9/12 lg:w-full mx-auto w-full">
-              <div class="mb-12">
-                <alert
-                  :title="$t('home.alert.title')"
-                  :paragraphs="textsAlert"
-                  class="shadow-lg"
-                />
-              </div>
               <card class="mb-12" icon-name="location" icon-size="150">
                 <h5 class="font-medium pb-4">{{ $t('contact.address') }}</h5>
                 <p>{{ $t('contact.name') }}</p>
                 <p>{{ $t('contact.cp') }}</p>
                 <p>{{ $t('contact.npa') }}</p>
               </card>
-
               <card icon-name="phone" icon-size="125">
                 <h5 class="font-medium pb-4">{{ $t('contact.contact') }}</h5>
                 <a
@@ -52,11 +44,10 @@ import PageHeader from '@/components/PageHeader';
 import Container from '@/components/containers/Container';
 import Card from '@/components/Card';
 import FormContact from '@/components/FormContact';
-import Alert from '~/components/Alert';
 
 export default {
   name: 'Contact',
-  components: { FormContact, Card, Container, PageHeader, Alert },
+  components: { FormContact, Card, Container, PageHeader },
   computed: {
     textsAlert() {
       return [

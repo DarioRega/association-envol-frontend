@@ -7,7 +7,7 @@
     <h2 class="text-center font-semibold spacing-subtitle">
       {{ $t('home.envolIs') }}
     </h2>
-    <div class="bg-brand-main-gray">
+    <div class="bg-brand-main-gray md:mb-16 2xl:mb-24">
       <container>
         <div
           class="
@@ -33,26 +33,6 @@
         ></div>
       </container>
     </div>
-    <div
-      class="
-        bg-brand-main-gray
-        sm:bg-transparent
-        mt-20
-        sm:mt-16
-        md:mt-14
-        2xl:mt-20
-        max-w-5xl
-        mx-auto
-      "
-    >
-      <container>
-        <alert
-          :title="$t('home.alert.title')"
-          :paragraphs="textsAlert"
-          class=""
-        />
-      </container>
-    </div>
     <section>
       <content-swap
         v-for="item in contentSwap"
@@ -76,12 +56,11 @@ import Container from '@/components/containers/Container';
 import ContentSwap from '@/components/ContentSwap';
 import StatsEnvol from '@/components/StatsEnvol';
 import ComiteeGrid from '@/components/ComiteeGrid';
-import Alert from '@/components/Alert';
 
 // TODO Scroll to on click icon, animation content swap, animation hero, animation comitee, animation trigger on numbers when only visisble stats
 export default {
   name: 'Index',
-  components: { Alert, ComiteeGrid, StatsEnvol, Container, Hero, ContentSwap },
+  components: { ComiteeGrid, StatsEnvol, Container, Hero, ContentSwap },
   async asyncData({ $getContent, error }) {
     try {
       const contentSwap = await $getContent('home/content-swap');
