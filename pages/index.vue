@@ -57,7 +57,6 @@ import ContentSwap from '@/components/ContentSwap';
 import StatsEnvol from '@/components/StatsEnvol';
 import ComiteeGrid from '@/components/ComiteeGrid';
 
-// TODO Scroll to on click icon, animation content swap, animation hero, animation comitee, animation trigger on numbers when only visisble stats
 export default {
   name: 'Index',
   components: { ComiteeGrid, StatsEnvol, Container, Hero, ContentSwap },
@@ -87,14 +86,6 @@ export default {
       },
     };
   },
-  computed: {
-    textsAlert() {
-      return [
-        this.$t('home.alert.paragraph1'),
-        this.$t('home.alert.paragraph3'),
-      ];
-    },
-  },
   mounted() {
     this.stats = [
       {
@@ -102,11 +93,11 @@ export default {
         text: this.$t('home.creation'),
       },
       {
-        number: 1245,
+        number: 1272,
         text: this.$t('home.boursesAttribuees'),
       },
       {
-        number: 216,
+        number: 208,
         text: this.$t('home.donators'),
       },
     ];
