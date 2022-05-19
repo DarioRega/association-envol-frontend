@@ -1,23 +1,7 @@
 <template>
   <div
     :style="{ zIndex: 777, maxWidth: '1400px', margin: '0 auto' }"
-    class="
-      fixed
-      inset-0
-      w-full
-      h-full
-      md:w-auto md:h-auto
-      flex
-      items-start
-      justify-center
-      px-6
-      md:px-10
-      xl:px-0
-      pt-32
-      xl:pt-40
-      pointer-events-none
-      sm:justify-end
-    "
+    class="fixed inset-0 w-full h-full md:w-auto md:h-auto flex items-start justify-center px-6 md:px-10 xl:px-0 pt-32 xl:pt-40 pointer-events-none sm:justify-end"
   >
     <transition
       enter-active-class="transform ease-out duration-300 transition"

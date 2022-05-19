@@ -7,13 +7,7 @@
         :class="index < 1 ? 'mb-12' : 'my-12'"
       >
         <div
-          class="
-            rounded-md
-            border-4 border-brand-main-gray
-            p-6
-            transition-colors
-            duration-500
-          "
+          class="rounded-md border-4 border-brand-main-gray p-6 transition-colors duration-500"
           :class="
             isOpen(item.id) ? 'bg-brand-main-gray' : 'bg-white cursor-pointer'
           "
@@ -38,14 +32,7 @@
             </h4>
             <span
               :class="isOpen(item.id) ? 'opacity-0' : 'opacity-100'"
-              class="
-                flex-none
-                w-12
-                text-right
-                transition-opacity
-                duration-300
-                delay-700
-              "
+              class="flex-none w-12 text-right transition-opacity duration-300 delay-700"
             >
               <icon name="plus" size="75" />
             </span>

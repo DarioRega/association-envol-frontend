@@ -10,10 +10,7 @@
     <div class="bg-brand-main-gray md:mb-16 2xl:mb-24">
       <container>
         <div
-          class="
-            flex flex-col
-            lg:flex-row lg:justify-between lg:items-center lg:py-10
-          "
+          class="flex flex-col lg:flex-row lg:justify-between lg:items-center lg:py-10"
         >
           <stats-envol
             v-for="stat in stats"

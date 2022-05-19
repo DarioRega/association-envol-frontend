@@ -1,18 +1,7 @@
 <template>
   <notification-wrapper v-show="shouldShow">
     <div
-      class="
-        mx-auto
-        max-w-2xl
-        border border-brand-main-gray
-        w-full
-        bg-white
-        shadow-lg
-        rounded-lg
-        pointer-events-auto
-        ring-1 ring-black ring-opacity-5
-        overflow-hidden
-      "
+      class="mx-auto max-w-2xl border border-brand-main-gray w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
     >
       <div class="p-4">
         <div class="flex items-center">
@@ -32,19 +21,7 @@
 
           <div class="ml-4 h-full flex items-center">
             <span
-              class="
-                block
-                cursor-pointer
-                bg-white
-                rounded-md
-                inline-flex
-                text-gray-400
-                hover:text-gray-500
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-indigo-500
-              "
+              class="block cursor-pointer bg-white rounded-md inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               @click="$emit('click')"
             >
               <span class="sr-only">Close</span>

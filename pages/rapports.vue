@@ -13,14 +13,7 @@
           {{ getTypeName(fileArray) }}
         </h3>
         <ul
-          class="
-            flex flex-col
-            md:flex-row
-            flex-wrap
-            justify-between
-            md:justify-start
-            w-full
-          "
+          class="flex flex-col md:flex-row flex-wrap justify-between md:justify-start w-full"
         >
           <li
             v-for="file in fileArray"
@@ -31,13 +24,7 @@
               :href="formatSource(file)"
               :download="file.is_external === false"
               target="_blank"
-              class="
-                inline-flex
-                items-start
-                justify-between
-                caption-lg
-                hover:text-brand-dark-gray
-              "
+              class="inline-flex items-start justify-between caption-lg hover:text-brand-dark-gray"
             >
               <span class="flex-none w-10">
                 <icon

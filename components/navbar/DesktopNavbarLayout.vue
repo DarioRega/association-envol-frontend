@@ -1,29 +1,11 @@
 <template>
   <nav class="shadow w-full relative h-32">
     <div
-      class="
-        max-w-7xl
-        h-full
-        w-full
-        mx-auto
-        px-6
-        lg:px-10
-        2xl:px-0
-        transition-color
-        duration-1000
-      "
+      class="max-w-7xl h-full w-full mx-auto px-6 lg:px-10 2xl:px-0 transition-color duration-1000"
       :style="{ maxWidth: '1400px', margin: '0 auto' }"
     >
       <div
-        class="
-          flex
-          justify-between
-          h-full
-          items-center
-          px-6
-          md:px-10
-          lg:px-0 lg:flex-1
-        "
+        class="flex justify-between h-full items-center px-6 md:px-10 lg:px-0 lg:flex-1"
       >
         <!--        LG MENU -->
 
@@ -48,14 +30,7 @@
           </div>
         </div>
         <div
-          class="
-            lg:flex lg:items-center
-            flex-none
-            w-64
-            xl:w-full xl:max-w-sm
-            ml-auto
-            justify-center
-          "
+          class="lg:flex lg:items-center flex-none w-64 xl:w-full xl:max-w-sm ml-auto justify-center"
         >
           <div class="relative w-full flex-shrink-0 xxl:w-full">
             <div class="flex items-center justify-end">

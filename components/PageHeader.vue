@@ -1,16 +1,7 @@
 <template>
   <div>
     <div
-      class="
-        page-header
-        mt-10
-        md:mt-0
-        flex
-        items-center
-        justify-start
-        w-full
-        text-left
-      "
+      class="page-header mt-10 md:mt-0 flex items-center justify-start w-full text-left"
       :class="pageCategory"
     >
       <h1 class="font-medium">{{ title }}</h1>
