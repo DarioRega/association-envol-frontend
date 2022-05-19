@@ -126,7 +126,12 @@ export default {
       });
     }
     this.$refs.inputFile.addEventListener('change', (e) => {
-      e.target.files.forEach((file) => this.files.push(file));
+      for (let i = 0; i < e.target.files.length; i++) {
+        const file = e.target.files[i];
+        if (file) {
+          this.files.push(file);
+        }
+      }
     });
   },
   methods: {
