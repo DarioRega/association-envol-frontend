@@ -10,12 +10,7 @@
           </p>
           <nuxt-link
             to="/"
-            class="
-              font-medium
-              h4
-              text-brand-dark-blue
-              hover:text-brand-carbon hover-link
-            "
+            class="font-medium h4 text-brand-dark-blue hover:text-brand-carbon hover-link"
             >{{ $t('backToHome') }}</nuxt-link
           >
         </div>

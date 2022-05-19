@@ -1,31 +1,10 @@
 <template>
   <div
-    class="
-      feedback
-      absolute
-      inset-0
-      w-full
-      h-full
-      loader-container
-      flex
-      items-center
-      justify-center
-      transition-all
-      duration-500
-    "
+    class="feedback absolute inset-0 w-full h-full loader-container flex items-center justify-center transition-all duration-500"
     :style="{ zIndex: 888 }"
   >
     <div
-      class="
-        hero-feedback
-        w-full
-        h-full
-        bg-brand-dark-blue
-        flex
-        items-center
-        justify-center
-        rounded-md
-      "
+      class="hero-feedback w-full h-full bg-brand-dark-blue flex items-center justify-center rounded-md"
       :class="currentState"
     >
       <div class="p-6">

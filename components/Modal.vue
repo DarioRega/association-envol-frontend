@@ -12,22 +12,7 @@
       @closeModal="$emit('closeModal')"
     >
       <div
-        class="
-          w-full
-          inline-block
-          align-bottom
-          bg-secondary
-          rounded-lg
-          text-left
-          overflow-hidden
-          shadow-xl
-          transform
-          transition-all
-          sm:my-8 sm:align-middle
-          px-6
-          md:px-0 md:max-w-4xl
-          lg:max-w-5xl
-        "
+        class="w-full inline-block align-bottom bg-secondary rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle px-6 md:px-0 md:max-w-4xl lg:max-w-5xl"
         :class="fluid ? 'xl:max-w-6xl' : 'xl:max-w-3xl'"
       >
         <slot />

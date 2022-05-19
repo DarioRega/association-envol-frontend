@@ -9,22 +9,7 @@
       >
         <nuxt-link
           to="/"
-          class="
-            rounded-full
-            h6
-            mb-0
-            font-normal
-            tracking-wider
-            text-white
-            bg-brand-dark-blue
-            px-10
-            py-3
-            font-heading
-            hover:bg-white hover:text-brand-dark-blue
-            border-2 border-brand-dark-blue
-            transition-colors
-            duration-300
-          "
+          class="rounded-full h6 mb-0 font-normal tracking-wider text-white bg-brand-dark-blue px-10 py-3 font-heading hover:bg-white hover:text-brand-dark-blue border-2 border-brand-dark-blue transition-colors duration-300"
           @click.native="closeMenu"
           >{{ $t('backToHome') }}</nuxt-link
         >
