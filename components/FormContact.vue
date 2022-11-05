@@ -102,11 +102,12 @@ export default {
         return false;
       }
       // mm-dd-yyyy
-      const dateStart = moment('07-01-2021');
-      const dateEnd = moment('08-15-2021');
+      const dateStart = moment('07-01-2022');
+      const dateEnd = moment('07-31-2022');
+      const now = moment().format('L');
       const isDisabled =
-        moment().format('L') >= moment(dateStart).format('L') &&
-        moment().format('L') <= moment(dateEnd).format('L');
+        now >= moment(dateStart).format('L') &&
+        now <= moment(dateEnd).format('L');
 
       return isDisabled;
     },

@@ -30,6 +30,17 @@
         ></div>
       </container>
     </div>
+    <div
+      class="bg-brand-main-gray sm:bg-transparent mt-20 sm:mt-16 md:mt-14 2xl:mt-20 max-w-5xl mx-auto"
+    >
+      <container>
+        <alert
+          :title="$t('home.alert.title')"
+          :paragraphs="textsAlert"
+          class=""
+        />
+      </container>
+    </div>
     <section>
       <content-swap
         v-for="item in contentSwap"
@@ -82,6 +93,14 @@ export default {
         threshold: [1, 0], // [0.25, 0.75] if you want a 25% offset!
       },
     };
+  },
+  computed: {
+    textsAlert() {
+      return [
+        this.$t('home.alert.paragraph1'),
+        this.$t('home.alert.paragraph3'),
+      ];
+    },
   },
   mounted() {
     this.stats = [
