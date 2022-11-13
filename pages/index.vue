@@ -30,7 +30,7 @@
         ></div>
       </container>
     </div>
-    <div
+    <!--    <div
       class="bg-brand-main-gray sm:bg-transparent mt-20 sm:mt-16 md:mt-14 2xl:mt-20 max-w-5xl mx-auto"
     >
       <container>
@@ -40,7 +40,7 @@
           class=""
         />
       </container>
-    </div>
+    </div>-->
     <section>
       <content-swap
         v-for="item in contentSwap"
@@ -109,7 +109,7 @@ export default {
         text: this.$t('home.creation'),
       },
       {
-        number: 1272,
+        number: 1325,
         text: this.$t('home.boursesAttribuees'),
       },
       {
