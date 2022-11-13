@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+// import moment from 'moment';
 
 import InputForm from '@/components/InputForm';
 import { refreshGlobalNotificationState } from '~/store';
@@ -101,15 +101,19 @@ export default {
       if (this.typeOfForm !== 'contact') {
         return false;
       }
+
+      // NO NEED TO DISABLE IT's NOT HOLIDAY
+      return false;
+
       // mm-dd-yyyy
-      const dateStart = moment('07-01-2022');
+      /*      const dateStart = moment('07-01-2022');
       const dateEnd = moment('07-31-2022');
       const now = moment().format('L');
       const isDisabled =
         now >= moment(dateStart).format('L') &&
         now <= moment(dateEnd).format('L');
 
-      return isDisabled;
+      return isDisabled; */
     },
   },
   watch: {
