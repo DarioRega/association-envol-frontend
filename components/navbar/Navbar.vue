@@ -1,14 +1,14 @@
 <template>
   <section>
     <mobile-navbar-layout
-      class="xl:hidden"
+      class="lg:hidden"
       :is-menu-open="isMenuOpen"
       :navigation-links="navigationLinks"
       @toggleMenu="toggleMenu"
       @closeMenu="closeMenu"
     />
     <desktop-navbar-layout
-      class="hidden xl:block"
+      class="hidden lg:block"
       :navigation-links="navigationLinks"
     />
   </section>

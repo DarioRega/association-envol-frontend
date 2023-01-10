@@ -1,6 +1,6 @@
 <template>
   <div class="hero flex items-center relative">
-    <container class="-mt-32">
+    <container class="-mt-32 lg:mt-0 xl:-mt-32">
       <div class="h-full w-full flex flex-col xl:flex-row-reverse">
         <div
           class="birds-container w-full md:h-64 md:w-4/5 xl:w-full mx-auto"
@@ -36,7 +36,9 @@
           >
             {{ $t('home.subtitle') }}
           </h5>
-          <div class="text-center xl:hidden mt-48 md:mt-64 md:pt-64 pb-6">
+          <div
+            class="text-center xl:hidden mt-48 md:mt-64 md:pt-64 lg:pt-32 lg:mt-32 pb-6"
+          >
             <span class="block cursor-pointer" @click="scrollToEnvol">
               <icon name="scroll-down-arrow" size="150" />
             </span>

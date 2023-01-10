@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full h-24 lg:h-32 relative">
+  <nav class="w-full h-24 relative">
     <div class="h-full">
       <transition
         enter-active-class="ease-in-out duration-100"
@@ -13,7 +13,7 @@
           v-show="!isMenuOpen"
           class="navbar-padding h-full flex justify-between items-center"
         >
-          <div class="flex-shrink-0 flex items-center w-56 lg:w-64">
+          <div class="flex-shrink-0 flex items-center w-56">
             <icon name="logo" size="full" />
           </div>
           <!-- Mobile menu button -->
@@ -58,12 +58,12 @@
           </div>
 
           <!--          mobile navigation -->
-          <div class="xl:hidden flex-1 md:relative h-full flex items-center">
+          <div class="flex-1 md:relative h-full flex items-center">
             <div
               class="pt-2 pb-3 w-full h-full flex flex-col justify-center items-center"
             >
               <main-navigation
-                class="-mt-24 lg:mt-0"
+                class="-mt-24"
                 :navigation-links="navigationLinks"
                 @closeMenu="$emit('closeMenu')"
               />
