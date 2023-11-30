@@ -28,14 +28,7 @@
           data-aos-delay="1300"
           data-aos-offset="-500"
         >
-          <button
-            class="button-primary focus:outline-none"
-            :class="
-              isDisabledForHolidays ? 'button-disabled' : 'button-primary'
-            "
-            type="submit"
-            :disabled="isDisabledForHolidays"
-          >
+          <button class="button-primary focus:outline-none" type="submit">
             {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
@@ -47,14 +40,7 @@
           data-aos-delay="1300"
           data-aos-offset="-500"
         >
-          <button
-            class="focus:outline-none"
-            :class="
-              isDisabledForHolidays ? 'button-disabled' : 'button-primary'
-            "
-            type="submit"
-            :disabled="isDisabledForHolidays"
-          >
+          <button class="focus:outline-none button-primary" type="submit">
             {{ isLoading ? $t('sendInProgress') : $t('send') }}
           </button>
         </span>
@@ -64,8 +50,6 @@
 </template>
 
 <script>
-import moment from 'moment';
-
 import InputForm from '@/components/InputForm';
 import { refreshGlobalNotificationState } from '~/store';
 import { API_URL } from '~/constantes';
@@ -95,26 +79,6 @@ export default {
         message: '',
       },
     };
-  },
-  computed: {
-    isDisabledForHolidays() {
-      if (this.typeOfForm !== 'contact') {
-        return false;
-      }
-
-      // NO NEED TO DISABLE IT's NOT HOLIDAY
-      // return false;
-
-      // mm-dd-yyyy
-      const dateStart = moment('07-01-2023');
-      const dateEnd = moment('07-31-2023');
-      const now = moment().format('L');
-      const isDisabled =
-        now >= moment(dateStart).format('L') &&
-        now <= moment(dateEnd).format('L');
-
-      return isDisabled;
-    },
   },
   watch: {
     shouldShowNotification(newValue, oldValue) {

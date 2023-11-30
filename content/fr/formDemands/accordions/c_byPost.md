@@ -9,9 +9,9 @@ title : Envoi par courrier postal
 
 Association Envol
 
-Case postale 5193
+Case postale 16
 
-1002 Lausanne
+1001 Lausanne
 
 <br> 
 

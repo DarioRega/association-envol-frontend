@@ -5,9 +5,9 @@
 
 ##### Association Envol
 
-##### Case postale 5193
+##### Case postale 16
 
-##### 1002 Lausanne
+##### 1001 Lausanne
 
 Compte bancaire BCV : IBAN CH43 0076 7000 K092 8012 5
 

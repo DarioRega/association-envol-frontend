@@ -31,6 +31,7 @@
       </container>
     </div>
     <div
+      v-show="shouldShowAlertHolidays"
       class="bg-brand-main-gray sm:bg-transparent mt-20 sm:mt-16 md:mt-14 2xl:mt-20 max-w-5xl mx-auto"
     >
       <container>
@@ -64,6 +65,7 @@ import Container from '@/components/containers/Container';
 import ContentSwap from '@/components/ContentSwap';
 import StatsEnvol from '@/components/StatsEnvol';
 import ComiteeGrid from '@/components/ComiteeGrid';
+import moment from 'moment';
 
 export default {
   name: 'Index',
@@ -95,10 +97,19 @@ export default {
     };
   },
   computed: {
+    shouldShowAlertHolidays() {
+      const currentYear = moment().year(); // Get the current year
+      // mm-dd-yyyy - use current year
+      const dateStart = moment(`06-20-${currentYear}`);
+      const dateEnd = moment(`08-15-${currentYear}`);
+      const now = moment();
+
+      return now.isSameOrAfter(dateStart) && now.isSameOrBefore(dateEnd);
+    },
     textsAlert() {
       return [
         this.$t('home.alert.paragraph1'),
-        this.$t('home.alert.paragraph3'),
+        this.$t('home.alert.paragraph2'),
       ];
     },
   },
@@ -109,7 +120,7 @@ export default {
         text: this.$t('home.creation'),
       },
       {
-        number: 1325,
+        number: 1343,
         text: this.$t('home.boursesAttribuees'),
       },
       {

@@ -17,7 +17,7 @@
           </div>
           <div class="w-full lg:w-2/5">
             <div class="sm:w-9/12 lg:w-full mx-auto w-full">
-              <div class="mb-12">
+              <div v-show="shouldShowAlertHolidays" class="mb-12">
                 <Alert
                   :title="$t('home.alert.title')"
                   :paragraphs="textsAlert"
@@ -52,16 +52,25 @@ import Container from '@/components/containers/Container';
 import Card from '@/components/Card';
 import FormContact from '@/components/FormContact';
 import Alert from '@/components/Alert';
+import moment from 'moment/moment';
 
 export default {
   name: 'Contact',
   components: { FormContact, Card, Container, PageHeader, Alert },
   computed: {
+    shouldShowAlertHolidays() {
+      const currentYear = moment().year(); // Get the current year
+      // mm-dd-yyyy - use current year
+      const dateStart = moment(`06-20-${currentYear}`);
+      const dateEnd = moment(`08-15-${currentYear}`);
+      const now = moment();
+
+      return now.isSameOrAfter(dateStart) && now.isSameOrBefore(dateEnd);
+    },
     textsAlert() {
       return [
         this.$t('home.alert.paragraph1'),
         this.$t('home.alert.paragraph2'),
-        this.$t('home.alert.paragraph3'),
       ];
     },
   },

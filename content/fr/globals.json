@@ -84,9 +84,8 @@
     "ourCommittee": "Notre comité",
     "alert" : {
       "title": "fermeture",
-      "paragraph1": "Envol est en pause estivale du 1er juillet au 31 juillet.",
-      "paragraph2": "Le fonctionnalité de contact est désactivée durant cette période.",
-      "paragraph3": "Merci de votre compréhension."
+      "paragraph1": "Envol est en pause estivale du 1er juillet au 15 août.",
+      "paragraph2": "Merci de votre compréhension."
     }
   },
   "formDemand": {
@@ -127,8 +126,8 @@
   "contact": {
     "address": "Adresse",
     "name": "Association Envol",
-    "cp": "Case postale 5193",
-    "npa": "1002 Lausanne",
+    "cp": "Case postale 16",
+    "npa": "1001 Lausanne",
     "contact": "Contact",
     "phoneNumber": "079 643 16 65"
   },
