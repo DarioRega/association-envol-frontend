@@ -9,6 +9,6 @@ Si le dossier est complet, la réponse définitive est prise dans les 4 à 6 sem
 
 Remarques : Envol reçoit beaucoup de demandes de mai à octobre. Les demandes sont traitées dans l’ordre de leur réception et selon le temps et les fonds disponibles. 
 
-Le temps de réponse peut être plus long durant cette période de l’année car le comité est composé de bénévoles et fonctionne «au ralenti» durant les vacances scolaires….
+Le temps de réponse peut être plus long durant cette période de l’année car le comité est composé de bénévoles et son activité est suspendue durant les vacances scolaires….
 
 __Il est donc fortement conseillé d’envoyer sa demande plusieurs mois avant le début de la formation.__
