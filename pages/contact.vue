@@ -17,7 +17,8 @@
           </div>
           <div class="w-full lg:w-2/5">
             <div class="sm:w-9/12 lg:w-full mx-auto w-full">
-              <div class="mb-12">
+              <!-- Only enable on holidays-->
+              <div v-if="false" class="mb-12">
                 <Alert
                   :title="$t('home.alert.title')"
                   :paragraphs="textsAlert"

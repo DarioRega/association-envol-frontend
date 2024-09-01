@@ -30,7 +30,9 @@
         ></div>
       </container>
     </div>
+    <!-- Only enable on holidays-->
     <div
+      v-if="false"
       class="bg-brand-main-gray sm:bg-transparent mt-20 sm:mt-16 md:mt-14 2xl:mt-20 max-w-5xl mx-auto"
     >
       <container>
