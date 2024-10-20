@@ -19,9 +19,9 @@ comitee:
     function: Membre du comité
     mail: marianne.modak@association-envol.info
 
-  - name: Diolinda Hajda
+  - name: Maida Cikaric
     function: Membre du comité
-    mail: diolinda.hajda@association-envol.info
+    mail: maida.cikaric@association-envol.info
 
   - name: Ariane Chaulmontet
     function: Membre du comité
@@ -30,10 +30,6 @@ comitee:
   - name: Anick Werro
     function: Membre du comité
     mail: anick.werro@association-envol.info
-
-  - name: Sylvia Monnat
-    function: Membre du comité
-    mail: sylvia.monnat@association-envol.info
 
   - name: Dario Regazzoni
     function: Webmaster
