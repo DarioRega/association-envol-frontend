@@ -140,7 +140,6 @@
     "next": "Suivant",
     "previous": "Précédent",
     "thanksForYourSupport": "Merci de votre soutien.",
-    "butWeStillNeedYou": "Mais nous avons toujours besoin de vous !",
     "loadingPaypal": "Chargement de Paypal...",
     "errorPaypalMessage": "<p>Une erreur est survenue durant la configuration de Paypal, veuillez nous en excuser.</p><p>Si le problème persiste essayez la méthode avec Stripe.</p>",
     "errorMinimalDonation" : "Les dons minimaux sont de 10 CHF",

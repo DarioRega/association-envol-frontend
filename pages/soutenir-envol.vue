@@ -20,14 +20,11 @@
         </div>
       </div>
       <div
-        class="text-center lg:text-left pt-4 lg:pt-0 3xl:-mt-16"
+        class="text-center lg:text-left pt-4 lg:pt-0 lg:-mt-16"
         data-aos="fade-up"
         data-aos-duration="900"
         data-aos-delay="600"
       >
-        <h5 class="lg:mb-6 hidden lg:block">
-          {{ $t('helpEnvol.butWeStillNeedYou') }}
-        </h5>
         <button
           class="btn button-primary font-semibold lg:mt-6 focus:outline-none"
           @click="isModalOpen = true"
