@@ -116,7 +116,7 @@ export default {
         text: this.$t('home.boursesAttribuees'),
       },
       {
-        number: 182,
+        number: 173,
         text: this.$t('home.donators'),
       },
     ];

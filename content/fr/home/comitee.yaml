@@ -7,9 +7,9 @@ comitee:
     function: Service du secrétariat
     mail: secretariat@association-envol.info
 
-  - name: Hélène Hrkalovic
+  - name: Maida Cikaric
     function: Présidente, membre du comité
-    mail: hrkalovich@association-envol.info
+    mail: maida.cikaric@association-envol.info
 
   - name: Marie-Thérèse Chavannes
     function: Secrétaire des donateurs/trices, membre du comité
@@ -19,9 +19,9 @@ comitee:
     function: Membre du comité
     mail: marianne.modak@association-envol.info
 
-  - name: Maida Cikaric
+  - name: Hélène Hrkalovic
     function: Membre du comité
-    mail: maida.cikaric@association-envol.info
+    mail: hrkalovich@association-envol.info
 
   - name: Ariane Chaulmontet
     function: Membre du comité
@@ -30,6 +30,10 @@ comitee:
   - name: Anick Werro
     function: Membre du comité
     mail: anick.werro@association-envol.info
+
+  - name: Stéphanie Zysset
+    function: Membre du comité
+    mail: stephanie.zysset@association-envol.info
 
   - name: Dario Regazzoni
     function: Webmaster
